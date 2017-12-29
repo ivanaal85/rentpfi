@@ -1,0 +1,43 @@
+<div id="menu-offscroll" class="cbx-mainmenu cbx-mainmenu-bg">
+        <div class="container">
+        <div class="row">
+        <div class="col-xs-12">
+        <div id="menu-offscrolls" class="navbar navbar-default yamm cbx-navbar">
+        <div class="navbar-header cbx-navbar-header">
+        <button class="navbar-toggle collapsed" data-target="#navbar-collapse-grid" data-toggle="collapse" type="button" aria-expanded="false">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <div class="cbx-search hidden-sm hidden-md hidden-lg">
+        <form action="#" method="post">
+            <input class="search" name="search" type="text" placeholder="What're we looking for ?" />
+            <a class="search_submit" href="#">
+            <em class="fa fa-search" aria-hidden="true"></em>
+            </a>
+        </form>
+        </div>
+        </div>
+        <!--//NAvBAR HEADER-->
+        <div id="navbar-collapse-grid" class="navbar-collapse collapse cbx-main-nav" role="menu" aria-expanded="false" style="height: 1px;">
+		{% comment -%}  Update the following assign statement with your main navigation menu id  {% endcomment -%}
+        <ul class="nav navbar-nav cbx-navbar-nav">
+		
+            <!-- Grid 12 Menu -->
+          <ul class="nav navbar-nav cbx-navbar-nav" data-dropdown-menu="data-dropdown-menu">
+            {module_menu menuID="1405853" render="collection" template="/ModuleTemplates/Menu/Main/main-menu.inc"}
+          </ul>
+		  
+
+        </ul>
+        </div>
+        <!--//navbar-collapse -->
+        </div>
+        <!--//CBX NAVBAR -->
+        </div>
+        <!--//.col 12-->
+        </div>
+        <!--//.Row-->
+        </div>
+        <!--//.CONTAINER-->
+        </div>

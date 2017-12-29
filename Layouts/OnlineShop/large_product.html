@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="columns medium-6">
+        <div class="image-large"><img alt="" src="{tag_largeimage_path}" class="scale-with-grid" />
+        </div>
+        <div class="poplets">{tag_poplets}</div>
+    </div>
+    <div class="columns medium-6">
+        <h1>{tag_name}</h1>
+        <div class="description">{tag_description}</div>
+        <ul>
+            <li class="price"><strong>{tag_saleprice}</strong>
+            </li>
+            <li class="instock">In stock: <strong>{tag_instock}</strong>
+            </li>
+        </ul>
+        <div class="productAttributesContainer">
+            <div class="row">
+                <div class="medium-8 columns">
+                    {tag_attributes}</div>
+                <div class="medium-4 columns">Quantity {tag_addtocartinputfield}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-7 columns">
+                {tag_buynow}
+            </div>
+            <div class="medium-5 columns"><span class="right wishlist-link"> <span class="fa fa-star"></span> <a>{tag_addtofavorites,Add to Wishlist,Remove from Wishlist}</a>
+                </span>
+            </div>
+            <div class="">
+                <div class="medium-12 columns">
+                    
+                    {tag_relatedproducts template="" collection="relatedProducts"} 
+                    {% if relatedProducts.items -%}
+                    <h3>Related Products</h3>
+                    <!-- loop thru the items -->
+                    {% for item in relatedProducts.items -%}
+                    <!-- iterate through each of your related items -->
+                    <div class="columns medium-4 text-center left">
+                        <div class="image">
+                            <a href="{{ item.url }}"><img src="{{ item.smallimage }}" alt="{{ item.name }} for {{ item.saleprice}}" />
+                            </a>
+                        </div>
+                        <ul class="product-details">
+                            <li class="price"><a href="{{ item.url }}">{{ item.saleprice | currency}}</a>
+                            </li>
+                            <li class="name">
+                                <h5><a href="{{ item.url }}">{{ item.name }}</a></h5>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor -%} {% endif -%}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/_assets/js/jquery-1.11.1.min.js"></script>
+<script>
+    $('.catalogueList, .store-description,.cart-desc').hide();
+    //responsive poplets
+    $('table.productPoplets').replaceWith($('table.productPoplets').html()
+                                          .replace(/<tbody/gi, "<div id='productPoplets'")
+                                          .replace(/<tr/gi, "<div class='row collapse'")
+                                          .replace(/<\/tr>/gi, "</div>")
+                                          .replace(/<td class="productPopletsItem"/gi, "<div class='small-2 productPopletsItem columns left'")
+                                          .replace(/<\/td>/gi, "</div>")
+                                          .replace(/<\/tbody/gi, "<\/div")
+                                         );
+</script>

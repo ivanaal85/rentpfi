@@ -1,0 +1,33 @@
+
+  <div class="row">
+    <div class="medium-12 columns"><div class="announcement-details">
+<h1>{tag_subject}</h1>
+    <span class="date" style="font-size:13px;">{tag_releasedate}</span>   {tag_body}   <hr />
+<div class="comment-form">
+<h5>Comment</h5>
+<form action="/RatingProcess.aspx?OID={module_oid}&amp;OTYPE={module_otype}" method="post" onsubmit="return checkWholeForm2343(this)" name="catratingform2343">
+    <div class="form">
+    <div class="medium-12">   <label>Was this helpful?</label><br />
+    No   <input type="radio" value="1" name="Rating" />   <input type="radio" value="2" name="Rating" />   <input type="radio" value="3" checked="checked" name="Rating" />   <input type="radio" value="4" name="Rating" />   <input type="radio" value="5" name="Rating" />   Very   </div>
+        <p></p>  <div class="medium-12">   <label>Name (optional)</label><br />
+    <input type="text" maxlength="255" name="FullName" class="cat_textbox_small" style="background-image: url(data:image/png;base64,ivborw0kggoaaaansuheugaaabaaaaascayaaabso15qaaaabmjlr0qa/wd/ap+gvaetaaaacxbiwxmaaastaaaleweampwyaaaab3rjtuuh3qspdhss3lcozqaaau5jrefuomvdkzfla0eqhd/bo7iiymklacuoplaqa6knaawt9beignuwlhpjrchfebr7cygwgidy2sliqbt/gdacogdudiy8slwkbiwz1c7y+gz25i0wnfeqlszfzkgdi8iiior7au32qkr2c7ncpcljaarakgckb8iwrgf1fg/oj8lrahkr2vdvmoq8akjqy1bmhgcgyxhfchnag6omjgcbxezrtnoxyk2dmsamt1qtd9/3p40x5ys9thicyf1vn0moxxh8uq/xb389wff9pqdbqrb0t/qnoipz1h4b2moo0fxnyz8doocovbwhqq8kjzzpa3raxzikawcenhmjjn/+giiqlcofgkkq3pemamwauca5vk1w3safbaiopum+cy5kzwxn3m5ai6xvylvt1mq1u8/ztls1cec9j2+6o1wuz1lrvzpwxldwtg3pz/0cqnd2jos49xuaaaaasuvork5cyii=); background-repeat: no-repeat; background-attachment: scroll; background-position: right center;" />   </div>
+    <p></p>   <div class="medium-12">   <label>Website (optional)</label><br />
+    <input class="cat_textbox_small" type="text" name="website" maxlength="255" />   </div>
+   <p></p>    <div class="medium-12">   <label>Email Address (optional)</label><br />
+    <input type="text" maxlength="255" name="EmailAddress" class="cat_textbox_small" />   </div>
+    <p></p>   <div class="medium-12">   <label>Enter Word Verification in box below</label><br />
+    {module_captchav2}   </div>
+    <p></p>   <div class="medium-12">   <label>Comment (optional)</label><br />
+    <textarea name="Feedback" class="cat_listbox_small"></textarea>   </div>
+    <p></p>   <div class="medium-12">   <input type="submit" value="Submit" class="cat_button" />   </div>
+    </div>
+    <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js"></script>
+    <script type="text/javascript">   //<![CDATA[
+   function checkWholeForm2343(theForm){var why = "";if (theForm.EmailAddress) if (theForm.EmailAddress.value.length > 0) why += checkEmail(theForm.EmailAddress.value);if (theForm.CaptchaV2) why += isEmpty(theForm.CaptchaV2.value, "Enter Word Verification in box below");if (why != ""){alert(why);return false;}return true;}   
+//]]>   </script>
+</form>
+</div>
+<div class="goBack">{module_referreraddress,,Go Back}</div>
+</div></div>
+</div>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{%capture html-%}
+<html><!-- InstanceBegin template="/Templates/Inner Template Maintenance Blog.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+
+
+
+
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="two-column-area">
+  <div class="row">
+    <div class="large-9 medium-8 columns left_area_panel">
+      <div class="content_area"> <!-- InstanceBeginEditable name="ContentArea" --> {% comment -%} Get the blog url so we can pass it to the module_blogpostlist which is used for generating the tag links {% endcomment -%} {module_data resource="blogs" version="v3" fields="id,blogUrl" blogId="11089" skip="0" limit="10" order="id" collection="BlogData"}
+        {% assign blog_url = BlogData.items[0].blogUrl -%}
+        <div class="medium-11 pull-left left-col md-12-col">
+          <div class="single-wrap fullBlock">
+            <div class="large-5 medium-6 small-11 left">
+              <div class="block-title">
+                <h4>{module_pagename}</h4>
+                <div class="line small"></div>
+              </div>
+            </div>
+            <div class="blog-content"> {module_blogpostlist  collection="homeArticles" theblogurl="{{blog_url}}"  template="/ModuleTemplates/Blog/recent-tile.tpl" blogId="14086" rowCount="3" } 
+              <!--                    {tag_postlist, 3}--> 
+            </div>
+            {% unless globals.get.postid -%}
+            {% comment -%}
+            <p class="caps text-center">Standard BC Pagination</p>
+            <p class="page-nav">{tag_previouspage} {tag_pagination} {tag_nextpage}</p>
+            {% endcomment -%}
+            {% include"/_System/Includes/blog-pagination.inc" %}
+            {% endunless -%} </div>
+        </div>
+        
+
+
+<!-- InstanceEndEditable --> </div>
+      {% comment -%}<!--insert ad content holder
+        <div class="content_area">{module_contentholder, name="General Household Maintenance Ads"}</div>-->{% endcomment -%}
+    </div>
+    <div class="large-3 medium-4 columns right_area_panel">
+      <div class="side_panel">
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Most Commented</h4>
+            <div class="line small"></div>
+          </div>
+          <div class="BlogRecentPost"> {% include "/bc-widgets/most-commented-posts/init.liquid" -%} </div>
+        </div>
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Featured Post</h4>
+            <div class="line small"></div>
+          </div>
+          {module_blogpostlist  collection="homeArticles" theblogurl="{{blog_url}}"  render="collection" template="" blogId="14086" rowCount="5" }
+          <div class="BlogTagList"> {% for item in homeArticles.items %}
+            <ul>
+              <li> <a href="{{item.url}}" title="{{item.title}}">{{item.title}}</a> </li>
+            </ul>
+            {% endfor -%} </div>
+        </div>
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Tags</h4>
+            <div class="line small"></div>
+          </div>
+          <!--                            {tag_blogtaglist}--> 
+          {module_blogtaglist blogId="14086"} </div>
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Recent Property</h4>
+            <div class="line small"></div>
+          </div>
+            {% include"/_System/Includes/inner-blog-recent-properties.inc" %} 
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% include"/_System/Includes/_footer.inc" %} 
+        {% include"/_System/Includes/scripts.inc" %}
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

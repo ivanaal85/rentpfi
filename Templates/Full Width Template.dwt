@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %}  
+<section class="main_content"> <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable --> </section>
+{module_contentholder, name="Newsletter {{region}} Section"}
+<!--end section main--> 
+<!-- footer  --> 
+{% include"/_System/Includes/_footer.inc" %}  
+<!-- end footer  --> 
+{% include"/_System/Includes/scripts.inc" %} 
+<!-- include scripts -->
+</body>
+</html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

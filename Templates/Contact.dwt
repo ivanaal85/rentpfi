@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="contact-page"> <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable --> </section>
+{% comment -%}<!--end section main--> 
+<!-- footer  -->{% endcomment -%} 
+{% include"/_System/Includes/_footer.inc" %} 
+{% comment -%}<!-- end footer  -->{% endcomment -%} 
+{% include"/_System/Includes/scripts.inc" %} 
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDlWnkFhrlkJRaqIP0cl7FLDu4UDXEC0TE&callback=initMap"></script> 
+<script src="/_assets/js/map.js"></script> 
+{% comment -%}<!-- include scripts -->{% endcomment -%}
+</body>
+</html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

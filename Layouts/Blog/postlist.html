@@ -1,0 +1,34 @@
+{% assign myDate = date %}
+{% include "/bc-widgets/friendly-date/init.liquid" -%}
+
+<div class="blog-item">
+  <div class="row">
+      
+<figure class="small-12 pull-left">  {% if postFeaturedImage and postFeaturedImage != "" -%}
+        <a href="{tag_itemurl_nolink}"><img class="post-image" alt="{tag_blogposttitle_nolink} - blog post image " src="{{postFeaturedImage}}?Action=thumbnail&Width=786&Height=472&algorithim=fill_proportional" /></a>
+    {% endif -%}
+                      <figcaption>
+                        <h2>{tag_blogposttitle} </h2>
+                      </figcaption>
+                    </figure>
+                    <div class="post-meta">
+                      <ul>
+                          {module_data resource="blogposts" version="v3" fields="tag" subresource="tags" resourceId="{tag_blogpostid}" skip="0" limit="10" order="objectType" collection="postTags"}
+                        <li><em class="fa fa-pencil"></em><span>
+{% for item in postTags.items -%} 
+                            <a href="/media/tag/{{item.tag.tagName}}">{{item.tag.tagName}}</a>
+                            {% endfor -%} 
+
+                            </span> </li>
+                          <li><em class="fa fa-calendar"></em>{tag_blogpostday}-{tag_blogpostmonth}-{tag_blogpostyear}</li>
+                        <li><em class="fa fa-comment"></em><a href="{tag_permalinkonly}#comments">{tag_commentcount} Comments </a></li>
+                        <li><em class="fa fa-user"></em>{tag_blogpostauthor}</li>
+                        <li><em class="fa fa-calendar-o"></em> Posted {{friendlyDate}} ago</li>
+                      </ul>
+                    </div>
+                    <div class="blog-item-desc">
+                        <p>{tag_blogpostbody,350}</p>
+                    </div>
+    <a href="{tag_itemurl_nolink}" class="button small">Read More</a> </div>
+
+  </div>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{%capture html-%}
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+<link href="_asset/css/style.css" type="text/css" rel="stylesheet" />
+</head><body>
+{% include"/_System/Includes/_header.inc" %}
+<section class="two-column-area">
+  <div class="row">
+    <div class="large-9 medium-8 columns left_area_panel">
+      <div class="content_area"> <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable --> </div>
+    </div>
+    <div class="large-3 medium-4 columns right_area_panel">
+      <div class="side_panel">
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Most Commented</h4>
+            <div class="line small"></div>
+          </div>
+          <div class="BlogRecentPost"> {% include "/bc-widgets/most-commented-posts/init.liquid" -%} </div>
+        </div>
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Featured Post</h4>
+            <div class="line small"></div>
+          </div>
+          {tag_blogrecentpost,5} </div>
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Tags</h4>
+            <div class="line small"></div>
+          </div>
+          {tag_blogtaglist}</div>
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Recent Property</h4>
+            <div class="line small"></div>
+          </div>
+          {% include"/_System/Includes/inner-blog-recent-properties.inc" %}</div>
+      </div>
+    </div>
+  </div>
+</section>
+{% include"/_System/Includes/_footer.inc" %}
+        {% include"/_System/Includes/scripts.inc" %}
+</body>
+</html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

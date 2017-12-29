@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html><!-- InstanceBegin template="/Templates/Account.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="inner-banner"> <img src="/_assets/img/banner-1.png?Action=thumbnail&Width=1903&Height=895&algorithim=fill_proportional" />
+  <div class="banner-caption">
+    <div class="row"> 
+      <h1></h1>
+    </div>
+  </div>
+</section>
+<section class="inner-main">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="small-12 left">
+        <div class="large-4 medium-6 small-11 left">
+          <div class="block-title">
+            <h1>{module_pagename}</h1>
+            <div class="line small"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-3 columns"> {module_menu, version="2", menuId="1537645", moduleTemplateGroup="Aside"} 
+          {% comment -%}<!--end ul side-nav-->{% endcomment -%} 
+        </div>
+        <div class="medium-9  columns solutions-detail"> <!-- InstanceBeginEditable name="ContentArea" -->
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+<hr />
+{module_favorites,a,0,0}
+
+
+<!-- InstanceEndEditable --> </div>
+      </div>
+    </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"} 
+{% comment -%}<!--end section main--> 
+<!-- footer  -->{% endcomment -%} 
+{% include"/_System/Includes/_footer.inc" %} 
+{% comment -%}<!-- end footer  -->{% endcomment -%} 
+{% include"/_System/Includes/scripts.inc" %} 
+{% comment -%}<!-- include scripts -->{% endcomment -%}
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

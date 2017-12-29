@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html><!-- InstanceBegin template="/Templates/Default.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+
+
+
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="inner-banner-bg"> {% comment -%}<!--<img src="/_assets/img/sitesearch_bg.jpg" />-->{% endcomment -%}
+  <div class="banner-caption">
+    <div class="row">
+      <h1></h1>
+    </div>
+  </div>
+</section>
+<section class="inner-main">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="small-12 left">
+        <div class="large-4 medium-6 small-11 left">
+          <div class="block-title">
+            <h1>{module_pagename}</h1>
+            <div class="line small"></div>
+          </div>
+        </div>
+      </div>
+      <!-- InstanceBeginEditable name="ContentArea" --><h1>Shipping &amp; Returns</h1>
+<h3>Shipping</h3>
+<p>Please be assured that your items will ship out within two days of purchase. We determine the most efficient shipping carrier for your order. The carriers that may be used are: U.S. Postal Service (USPS), United Parcel Service (UPS) or Fed EX. Sorry but we cannot ship to P.O. Boxes. If you're trying to estimate when a package will be delivered, please note the following: </p>
+<p>Credit card authorization and verification must be received prior to processing. Federal Express and UPS deliveries occur Monday through Friday, excluding holidays. If you require express or 2 day shipping, please <a href="/contact">contact us</a> for charges. </p>
+<h3>Returns</h3>
+<p>All refunds will be provided as a credit to the credit card used at the time of purchase within five (5) business days upon receipt of the returned merchandise.</p>
+
+
+
+<!-- InstanceEndEditable --> </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"} 
+{% comment -%}<!--end section main--> 
+<!-- footer  -->{% endcomment -%} 
+{% include"/_System/Includes/_footer.inc" %} 
+{% comment -%}<!-- end footer  -->{% endcomment -%} 
+{% include"/_System/Includes/scripts.inc" %} 
+{% comment -%}<!-- include scripts -->{% endcomment -%}
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

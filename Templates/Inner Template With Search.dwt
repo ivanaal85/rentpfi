@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% capture templateHtml -%}
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %}
+<section class="two-column-area"> <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable --> </section>
+{% include"/_System/Includes/_footer.inc" %} 
+{% include"/_System/Includes/scripts.inc" %}
+</body>
+</html>
+{% endcapture -%}{{ templateHtml | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }} 

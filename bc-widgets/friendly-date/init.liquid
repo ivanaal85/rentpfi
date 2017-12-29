@@ -1,0 +1,41 @@
+{% assign time = myDate | convert: "date" -%}
+
+{% assign lengths = '86400,3600,60,1' -%}
+{% assign lengthsArr = lengths | split: "," -%}
+{% assign difference = globals.site.dateNow | minus: time -%}
+{% assign timeSpan = difference | date: "dd':'hh':'mm':'ss" -%}
+{% assign timeSpanArr = timeSpan | split:":" -%}
+
+{% assign total = 0 -%}
+{% assign count = -1 -%}
+{% for item in timeSpanArr -%}
+  {% assign count = count | plus: 1 -%}
+  {% assign len = lengthsArr[count] | convert: "number" -%}
+  {% assign seconds = item | convert: "number" | times: len -%}
+  {% assign total = total | plus: seconds -%}
+{% endfor -%}
+
+{% if total < 60 -%}
+  {% assign interval = "second,1" | split: ","  -%}
+{% elsif total < 3600 -%}
+  {% assign interval = "minute,60" | split: "," -%}
+{% elsif total < 86400 -%}
+  {% assign interval = "hour,3600" | split: "," -%}
+{% elsif total < 2628000 -%}
+  {% assign interval = "day,86400" | split: "," -%}
+{% elsif total < 31556926 -%}
+  {% assign interval = "month,2628000" | split: "," -%}
+{% else -%}
+  {% assign interval = "year,31556926" | split: "," -%}
+{% endif -%}
+
+{% assign term = interval[0] -%}
+{% assign terms = interval[0] | append: "s" -%} 
+{% assign termSeconds = interval[1] | convert: "number" -%}
+
+{% assign total = total %}
+{% assign termseconds = termseconds | number: "F1" -%}
+{% assign timeAgo = total | divided_by: termSeconds -%}
+
+{% assign pluraliseInterval = timeAgo | round | pluralize: term, terms %}
+{% assign friendlyDate = timeAgo | round | append: " " | append: pluraliseInterval -%}

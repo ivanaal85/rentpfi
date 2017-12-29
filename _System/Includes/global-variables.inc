@@ -1,0 +1,9 @@
+{% assign defaultGalleryImage = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+{% assign defaultFeaturedImage = "/_assets/img/PhotoComingSoon-PropertyGallery-LeftAligned.jpg" -%}
+{% assign defaultListingImage = "/_assets/img/PhotoComingSoon-ListingImage.jpg" -%}
+{% assign defaultSliderImage = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+{% assign defaultProfileImage = "/_assets/img/PhotoComingSoon-ListingImage.jpg" -%}
+{% assign defaultFemaleMgrImage = "/_assets/img/female-placeholder.jpg" -%}
+{% assign defaultMaleMgrImage = "/_assets/img/male-placeholder.jpg" -%}
+{% assign defaultFemaleMgrImageLg = "/_assets/img/female-placeholder2.jpg" -%}
+{% assign defaultMaleMgrImageLg = "/_assets/img/male-placeholder2.jpg" -%}

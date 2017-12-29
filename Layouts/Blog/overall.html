@@ -1,0 +1,39 @@
+<html>
+    
+    <head>
+        <meta name="title" content="{tag_blogpostmetatitle}" />
+        <meta name="description" content="{tag_blogpostmetadescription}" />
+        <meta name="og:title" content="{tag_blogpostmetatitle}" />
+        <meta name="og:description" content="{tag_blogpostmetadescription}" />
+        <meta name="og:image" content="{tag_blogpostfeaturedimageurl}" />
+    </head>
+    
+    <body> 
+        <div class="medium-11 pull-left left-col md-12-col">
+            <div class="single-wrap fullBlock">
+                <div class="large-5 medium-6 small-11 left">
+                    <div class="block-title">
+                        <h4>{tag_blogtitle}</h4>
+                        <div class="line small"></div>
+                    </div>
+                </div>
+                
+                
+                <div class="blog-content"> 
+                    {tag_postlist, 3}
+                </div>
+                {% unless globals.get.postid -%}
+                {% comment -%}
+                <p class="caps text-center">Standard BC Pagination</p>
+                <p class="page-nav">{tag_previouspage} {tag_pagination} {tag_nextpage}</p>
+                {% endcomment -%}
+                
+                
+                
+                {% include"/_System/Includes/blog-pagination.inc" %}
+                {% endunless -%} </div>
+        </div>
+        
+        
+    </body> 
+</html>

@@ -1,0 +1,36 @@
+{% assign blogId = 11089 -%}
+{% assign howMany = 1 -%}
+
+{module_blog render="item" filter="item" itemId="{{blogId}}" collection="myBlog" template=""}
+{% if myBlog.items[0].totalPosts -%}
+
+	{module_blogpostlist render="collection" blogId="{{blogId}}" rowCount="{{myBlog.items[0].totalPosts}}" collection="mostCommented" template=""}
+
+	{% if mostCommented.items.size > howMany -%}
+	<!-- START Most Commented Posts -->
+	<ul id="most-commented-posts" style="display:none">
+	    {% for item in mostCommented.items -%}
+	    <li data-comment-number="{{ item.commentsCount }}">
+            <a href="{{ item.url }}">{{ item.title }} | {{ item.commentsCount }} {{ item.commentsCount | pluralize: 'comment', 'comments' }}</a>
+	    </li>
+	    {% endfor -%}
+	</ul>
+	<!-- END Most Commented Posts -->
+
+	<script type="text/javascript">
+			// Set a variable to the wrapper div where your list items reside
+	        var $wrapper = $('#most-commented-posts');
+	        // Set a variable to the following string for shorter code
+	        var $attr = 'data-comment-number';
+			// Find the elements in the wrapper that contain the postitem class and sort them 
+	        var sortedPosts = $wrapper.find("li")
+	                                  .sort(function (a,b) {
+	            return b.getAttribute($attr) - a.getAttribute($attr);
+	        })
+	        // Clear the elements in the wrapper and then show it
+	        $wrapper.empty().show();
+	        sortedPosts.slice(0,{{howMany}}).appendTo($wrapper);
+	</script>
+
+	{% endif -%}
+{% endif -%}

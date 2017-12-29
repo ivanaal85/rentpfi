@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html><!-- InstanceBegin template="/Templates/Account.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="inner-banner"> <img src="/_assets/img/banner-1.png?Action=thumbnail&Width=1903&Height=895&algorithim=fill_proportional" />
+  <div class="banner-caption">
+    <div class="row"> 
+      <h1></h1>
+    </div>
+  </div>
+</section>
+<section class="inner-main">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="small-12 left">
+        <div class="large-4 medium-6 small-11 left">
+          <div class="block-title">
+            <h1>{module_pagename}</h1>
+            <div class="line small"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-3 columns"> {module_menu, version="2", menuId="1537645", moduleTemplateGroup="Aside"} 
+          {% comment -%}<!--end ul side-nav-->{% endcomment -%} 
+        </div>
+        <div class="medium-9  columns solutions-detail"> <!-- InstanceBeginEditable name="ContentArea" --><script type="text/javascript">
+	$(function () {
+		$("#js-messages table:odd, #js-orders table:odd").addClass("odd");
+
+		$(".js-subject a").each(function () {
+			var txt = this.innerHTML;
+
+			txt = txt.replace("/", " - ");
+			this.innerHTML = txt;
+		});
+	});
+</script>
+
+<h3>Purchases</h3>
+<table width="100%">
+    <tbody>
+        <tr>
+            <th style="text-align: left; width: 15%;">Order #</th>
+            <th style="text-align: left; width: 20%;">Created On<br />
+            </th>
+            <th style="text-align: left; width: 15%;">Amount</th>
+            <th style="text-align: left; width: 30%;">Details</th>
+            <th style="text-align: left; width: 15%;">Status</th>
+        </tr>
+    </tbody>
+</table>
+<div id="js-orders">
+{module_order,a,}
+</div>
+<hr />
+<h3>Cases</h3>
+<table width="100%">
+    <tbody>
+        <tr>
+            <th style="text-align: left; width: 15%;">Document #</th>
+            <th style="text-align: left; width: 20%;">Created On<br />
+            </th>
+            <th style="text-align: left; width: 40%;">Details</th>
+        </tr>
+    </tbody>
+</table>
+<div id="js-messages">
+<div id="js-orders">{module_case,a,}</div>
+</div>
+
+
+
+<!-- InstanceEndEditable --> </div>
+      </div>
+    </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"} 
+{% comment -%}<!--end section main--> 
+<!-- footer  -->{% endcomment -%} 
+{% include"/_System/Includes/_footer.inc" %} 
+{% comment -%}<!-- end footer  -->{% endcomment -%} 
+{% include"/_System/Includes/scripts.inc" %} 
+{% comment -%}<!-- include scripts -->{% endcomment -%}
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

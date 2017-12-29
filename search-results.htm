@@ -1,0 +1,47 @@
+<div class="resultsWrapper">
+<div class="webapp-search-results"> {module_webappsresults resultsPerPage="4" collection="theSearchResults" template="/layouts/custom/listing-search-results.tpl" }
+  {% assign resultsLength = theSearchResults.items | size %} 
+  
+  <!--Now output the pagination--> 
+  {% if resultsLength == 0 %}
+  <div class="row">
+    <div class="small-12 columns text-center">
+      <div class="panel callout radius">
+        <h4>Sorry, no results meet the criteria you entered....please try again</h4>
+      </div>
+    </div>
+  </div>
+  {% elseif  theSearchResults.pagination.nextPageUrl and theSearchResults.pagination.nextPageUrl != "" %}
+  <div class="row">
+    <div class="small-12 columns text-center"> <a class="loadMoreBtn button" href="{{ theSearchResults.pagination.nextPageUrl}}">Load More</a> </div>
+  </div>
+  {% else %}
+  <div class="row">
+    <div class="small-12 columns text-center">
+      <div class="panel callout radius">
+        <h4>That's the end of the list!</h4>
+      </div>
+    </div>
+  </div>
+  {% endif %} 
+  <script>
+            
+            $('.matchheightme').matchHeight();
+                         
+			// Get some more search results
+			$('.loadMoreBtn').click(function(e){
+					e.preventDefault();
+					var nextPage = $(this).attr("href");
+					
+					$.get( nextPage, function(data) {
+                         // Append more results
+                         $('.my-search-results').append(data);
+					}); 
+					
+					$(this).fadeOut(300, function(){
+						$(this).remove();
+					});
+			});
+		</script> 
+</div>
+<div>

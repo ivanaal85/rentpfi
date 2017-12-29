@@ -1,0 +1,455 @@
+{% comment -%}<!-------------------------------Production Copy------------------------------------------------>
+<!------------------------Call Marin Listings Web App This Item------------------------------------------->{% endcomment -%}
+{module_webapps collection="listings" render="collection" id="Apartment Listings Marin" filter="item" itemID="{tag_itemid}" template=""} 
+{% comment -%}<!--listing for loop-------> {% endcomment -%}
+{% for listing in listings.items %}
+
+{% comment -%}<!------------------------Call Property Web App-------------------------------------------> {% endcomment -%}
+{module_webapps collection="listingProp" render="collection" id="Apartment Listings Marin" filter="item" itemID="{{listing.['property_id']}}" template=""}
+{% comment -%}<!------------------------Call Floor Plans Web App------------------------------------------->{% endcomment -%} 
+{module_webapps id="Apartment Listings Marin" filter="item" itemID="{{listing.['floor plans_id']}}" collection="floorPlans" render="collection" template=""}
+{% comment -%}<!-----------------------Call Property Web App through Leasing Office ID-------->{% endcomment -%} 
+{module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{listing.['Leasing Office Location_id']}}" template=""}
+{% comment -%}<!------------------Call Our Managers Marin Web App------------------------------->{% endcomment -%} 
+{module_webapps collection="myWebapp" render="collection" id="Our Managers Marin"  filter="item" itemId="{{listing.['contact agent_id']}}" template=""}
+
+{% comment -%}<!--Start for loops to use above web app items multiple times on page-->{% endcomment -%}
+{% for property in listingProp.items %} 
+{% for floorplan in floorPlans.items %}
+{% for leasing_office in myPropertyInfoWebapp.items %}
+{% for manager in myWebapp.items %}
+
+{% comment -%}<!-------------------Assign property gallery image variables-------------------------------------------------->{% endcomment -%}
+{% if listing.['property gallery'] !='' -%}
+    {% assign defaultGalleryImage = {{listing.['property gallery']}} -%}
+    {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+    {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+    {% assign class = '' -%}
+    {% assign classNav = '' -%}
+
+    {% elseif listing.['use alternate default property gallery image if available'] == "Floor Plan" -%}
+
+        {% if floorplan.['3d floor plan'] != '' -%}
+            {% assign defaultGalleryImage = {{floorplan.['3d floor plan']}} -%}
+            {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+            {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+            {% assign class = '' -%}
+            {% assign classNav = '' -%}
+        {% elseif floorplan.['2d floor plan'] != '' -%}
+            {% assign defaultGalleryImage = {{floorplan.['2d floor plan']}} -%}
+            {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+            {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+            {% assign class = '' -%}
+            {% assign classNav = '' -%}
+        {% elseif floorplan.['3d floor plan square'] != '' -%}
+            {% assign defaultGalleryImage = {{floorplan.['3d floor plan square']}} -%}
+            {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
+            {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
+            {% assign class = 'class = "default-gallery-img1"' -%}
+            {% assign classNav = 'class="default-gallery-thumb1"' -%}
+        {% elseif floorplan.['2d floor plan square'] != '' -%}
+            {% assign defaultGalleryImage = {{floorplan.['2d floor plan square']}} -%}
+            {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
+            {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
+            {% assign class = 'class = "default-gallery-img1"' -%}
+            {% assign classNav = 'class="default-gallery-thumb1"' -%}
+        {% endif -%}
+
+    {% elseif listing.['use alternate default property gallery image if available'] == "Default Slider Image" -%}
+
+        {% if property.['default slider image'] !='' -%}
+        {% assign defaultGalleryImage = {{property.['default slider image']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+        {% assign class = '' -%}
+        {% assign classNav = '' -%}
+        {% elseif property.['default square image'] != '' -%}
+        {% assign defaultGalleryImage = {{property.['default square image']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
+        {% assign class = 'class = "default-gallery-img1"' -%}
+        {% assign classNav = 'class="default-gallery-thumb1"' -%}
+        {% endif -%}
+
+    {% elseif floorplan.['3d floor plan'] != '' -%}
+        {% assign defaultGalleryImage = {{floorplan.['3d floor plan']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+        {% assign class = '' -%}
+        {% assign classNav = '' -%}
+    {% elseif floorplan.['2d floor plan'] != '' -%}
+        {% assign defaultGalleryImage = {{floorplan.['2d floor plan']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+        {% assign class = '' -%}
+        {% assign classNav = '' -%}
+    {% elseif property.['default slider image'] != '' -%}
+        {% assign defaultGalleryImage = {{property.['default slider image']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+        {% assign class = '' -%}
+        {% assign classNav = '' -%}
+    {% elseif floorplan.['3d floor plan square'] != '' -%}
+        {% assign defaultGalleryImage = {{floorplan.['3d floor plan square']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
+        {% assign class = 'class = "default-gallery-img1"' -%}
+        {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    {% elseif floorplan.['2d floor plan square'] != '' -%}
+        {% assign defaultGalleryImage = {{floorplan.['2d floor plan square']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
+        {% assign class = 'class = "default-gallery-img1"' -%}
+        {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    {% elseif property.['default square image'] != '' -%}
+        {% assign defaultGalleryImage = {{property.['default square image']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
+        {% assign class = 'class = "default-gallery-img1"' -%}
+        {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    {% elseif listing.['listing image'] != '' -%}
+        {% assign defaultGalleryImage = {{listing.['listing image']}} -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
+        {% assign class = 'class = "default-gallery-img1"' -%}
+        {% assign classNav = 'class="default-gallery-thumb1"' -%}
+
+    {% else -%}
+        {% assign defaultGalleryImage = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+        {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+        {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+        {% assign class = '' -%}
+        {% assign classNav = '' -%}
+
+{% endif -%}
+
+{% assign fillpro = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
+{% assign fillproNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
+
+
+{% if listing.['property gallery 1'] !='' -%}
+    {% assign defaultGalleryImage1 = {{listing.['property gallery 1']}} -%}
+    {% else -%}
+    {% assign defaultGalleryImage1 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+{% endif -%}
+
+{% if listing.['property gallery 2'] !='' -%}
+    {% assign defaultGalleryImage2 = {{listing.['property gallery 2']}} -%}
+    {% else -%}
+    {% assign defaultGalleryImage2 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+{% endif -%}
+
+{% if listing.['property gallery 3'] !='' -%}
+    {% assign defaultGalleryImage3 = {{listing.['property gallery 3']}} -%}
+    {% else -%}
+    {% assign defaultGalleryImage3 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+{% endif -%}
+
+{% if listing.['property gallery 4'] !='' -%}
+    {% assign defaultGalleryImage4 = {{listing.['property gallery 4']}} -%}
+    {% else -%}
+    {% assign defaultGalleryImage4 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+{% endif -%}
+
+{% comment -%}<!--end variable definitions for listing image------>{% endcomment -%}
+<div class="small-12 left">
+  <div class="large-6 medium-8 small-12 left">
+    <div class="block-title">
+      <h3>{{listing.['listing title']}}</h3>
+      <span>{{listing.['address']}}</span>
+      <div class="line small"></div>
+    </div>
+  </div>
+</div>
+<div class="properti-detail-page reduced{tag_price reduced}"> 
+    {% if listing.['property gallery'] == '' and floorplan.['3d floor plan'] == '' and floorplan.['2d floor plan'] == '' and property.['default slider image'] == '' and listing.['listing image'] == '' and floorplan.['3d floor plan square'] == '' and floorplan.['2d floor plan square'] == '' and property.['default square image'] == '' -%}
+    <div class="properti-large-slider"  style="display:none"></div>
+    {% else -%}
+    <div class="properti-large-slider">
+    <ul class="slider-for">
+      <li><img {{class}} src="{{defaultGalleryImage}}{{fill}}">
+        <div class="triangle"><em class="fa fa-star"></em></div>
+      </li>
+      <li><img src="{{defaultGalleryImage1}}{{fillpro}}">
+        <div class="triangle"><em class="fa fa-star"></em></div>
+      </li>
+      <li><img src="{{defaultGalleryImage2}}{{fillpro}}">
+        <div class="triangle"><em class="fa fa-star"></em></div>
+      </li>
+      <li><img src="{{defaultGalleryImage3}}{{fillpro}}">
+        <div class="triangle"><em class="fa fa-star"></em></div>
+      </li>
+      <li><img src="{{defaultGalleryImage4}}{{fillpro}}">
+        <div class="triangle"><em class="fa fa-star"></em></div>
+      </li>
+    </ul>
+    <div class="row">
+      <ul class="slider-nav">
+        <li {{classNav}}>
+          <div class="small-12 column"><img src="{{defaultGalleryImage}}{{fillNav}}"></div>
+        </li>
+        <li>
+          <div class="small-12 column"><img src="{{defaultGalleryImage1}}{{fillNav}}"></div>
+        </li>
+        <li>
+          <div class="small-12 column"><img src="{{defaultGalleryImage2}}{{fillNav}}"></div>
+        </li>
+        <li>
+          <div class="small-12 column"><img src="{{defaultGalleryImage3}}{{fillNav}}"></div>
+        </li>
+        <li>
+          <div class="small-12 column"><img src="{{defaultGalleryImage4}}{{fillNav}}"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  {% endif -%}<!--main if-->
+  <div class="properti-description">
+    <div class="row">
+      <div class="large-4 medium-6  columns">
+        <div class="properti-detail-panel">
+          <h4>Apartment Detail</h4>
+          <div class="properti-detail-menu">
+            <ul>
+              <li>
+                <div class="small-5 left"><span>Address</span></div>
+                <div class="small-7 right">
+                  <h6>{{listing.['address']}}</h6>
+                </div>
+              </li>
+              <li>
+                <div class="small-5 left"><span>City</span></div>
+                <div class="small-7 right">
+                  <h6>{{listing.['property location']}}</h6>
+                </div>
+              </li>
+              {% if listing.['neighborhood'] != '' -%}
+              <li>
+                <div class="small-5 left"><span>Neighborhood</span></div>
+                <div class="small-7 right">
+                  <h6>{{listing.[neighborhood']}}</h6>
+                </div>
+              </li>
+              {% endif -%} 
+              {% if property.['Miles from SMART'] != '' -%}
+              <li>
+                <div class="small-5 left"><span><a href="http://www.sonomamarintrain.org/stations" target="_blank">SMART</a></span> </div>
+                <div class="small-7 right">
+                  <h6>{{property.['Miles from SMART']}}&nbsp;miles away</h6>
+                </div>
+              </li>
+              {% endif -%} 
+              <li>
+                <div class="small-5 left"><span>Price</span> </div>
+                <div class="small-7 right">
+                  <h6>{{listing.['price'] | number: "C0"}}</h6>
+                </div>
+              </li>
+              <li>
+                <div class="small-5 left"><span>Total Sqft</span> </div>
+                <div class="small-7 right">
+                  <h6>{{listing.['square foot area'] | number: "N0"}} sqft</h6>
+                </div>
+              </li>
+              <li>
+                <div class="small-5 left"><span>Bedrooms</span> </div>
+                <div class="small-7 right">
+                  <h6>{{listing.['bedrooms'] | number: "N0"}}</h6>
+                </div>
+              </li>
+              <li>
+                <div class="small-5 left"><span>Bathrooms</span> </div>
+                <div class="small-7 right">
+                  <h6>{{listing.['bathrooms'] | number: "N0"}}</h6>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="large-8 medium-6 columns">
+        <h2>{{listing.['listing title']}}</h2>
+        {{listing.['description']}} </div>
+    </div>
+  </div>
+  <div class="property-features">
+    <div class="block-title">
+      <div class="line"></div>
+    </div>
+    <h3>Unit Amenities</h3>
+    <ul class="features_list features">
+      {% assign theFeatures = listing.['Property Features'] | split: "," -%}
+      {% for item in theFeatures -%}
+      <li><span><em class="fa fa-check"></em>{{item}}</span></li>
+      {% endfor -%}
+    </ul>
+  </div>
+    <div class="property-agent">
+    <div class="block-title">
+      <div class="line"></div>
+    </div>
+    <h3>Contact Manager</h3>
+    {% if listing.['Contact Agent'] == '1 - No Current Onsite Agent' -%}
+    <div class="row">
+      <div class="large-7 medium-12 columns">
+        <div class="agent-description">
+          <div class="agent-information margin-bottom-25px">
+            <ul>
+              <li>
+                <h5><em class="fa fa-phone"></em><a href="tel:{{leasing_office.['Phone']}}">{{leasing_office.['Phone']}}</a> </h5>
+              </li>
+              {% if leasing_office.['Mobile Number'] != '' -%}
+              <li>
+                <h5><em class="fa fa-mobile"></em><a href="tel:{{leasing_office.['Mobile Number']}}">{{leasing_office.['Mobile Number']}}</a></h5>
+              </li>
+              {% endif -%} 
+              <li>
+                <h5><em class="fa fa-envelope"></em><a href="mailto:{{leasing_office.['Email']}}">{{leasing_office.['Email']}}</a></h5>
+              </li>
+              {% if leasing_office.['Skype User Name'] != '' -%}
+              <li>
+                <h5><em class="fa fa-skype"></em><a href="#">{{leasing_office.['Skype User Name']}}</a></h5>
+              </li>
+              {% endif -%} 
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+   {% else -%}
+    <div class="row">
+      <div class="large-7 medium-12 columns"> 
+        <div class="agent-detail">
+          <div class="agent-image"> {% if manager.['large image'] != '' -%}
+            <figure> <img src="{{manager.['large image']}}?Action=thumbnail&Width=174&Height=299&algorithim=fill_proportional"> </figure>
+            {% else -%}
+            <figure class="no-image"> <img src="{{defaultProfileImage}}?Action=thumbnail&Width=174&Height=299&algorithim=fill_proportional"> </figure>
+            {% endif -%} </div>
+          <div class="agent-description">
+            <div class="agent-information">
+              <ul>
+                <li><em class="fa fa-phone"></em><a href="tel:{{leasing_office.['Phone']}}">{{leasing_office.['Phone']}}</a> </li>
+                {% if manager.['Mobile Number'] == '' -%} 
+                {% if leasing_office.['Mobile Number'] != '' -%}
+                <li><em class="fa fa-mobile"></em><a href="tel:{{leasing_office.['Mobile Number']}}">{{leasing_office.['Mobile Number']}}</a> </li>
+                {% endif -%}   
+                {% endif -%} 
+                <li><em class="fa fa-envelope"></em><a href="mailto:{{leasing_office.['Email']}}">{{leasing_office.['Email']}}</a> </li>
+                {% if leasing_office.['Skype User Name'] != '' -%}
+                <li><em class="fa fa-skype"></em><a href="#">{{leasing_office.['Skype User Name']}}</a> </li>
+                {% endif -%} 
+              </ul>
+            </div>
+            {% if manager.['Twitter Link'] == '' and manager.['Facebook Link'] == '' and manager.['LinkedIn Link'] == '' and manager.['Google-Plus Link'] == '' and manager.['Rss Link'] == '' -%} 
+            {% if leasing_office.['Twitter Link'] == '' and leasing_office.['Facebook Link'] == '' and leasing_office.['LinkedIn Link'] == '' and leasing_office.['Google-Plus Link'] == '' and leasing_office.['Rss Link'] == '' -%}
+            <div></div>
+            {% else -%}
+            <div class="agents-social">
+              <ul>
+                {% if manager.['Twitter Link'] != '' -%}
+                <li><a href="{{manager.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
+                {% elseif leasing_office.['Twitter Link'] != '' -%}
+                <li><a href="{{leasing_office.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
+                {% endif -%}
+                  
+                {% if manager.['Facebook Link'] != '' -%}
+                <li><a href="{{manager.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
+                {% elseif leasing_office.['Facebook Link'] != '' -%}
+                <li><a href="{{leasing_office.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
+                {% endif -%}
+                  
+                {% if manager.['LinkedIn Link'] != '' -%}
+                <li><a href="{{manager.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
+                {% elseif leasing_office.['LinkedIn Link'] != '' -%}
+                <li><a href="{{leasing_office.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
+                {% endif -%}
+                  
+                {% if manager.['Google-Plus Link'] != '' -%}
+                <li><a href="{{manager.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
+                {% elseif leasing_office.['Google-Plus Link'] != '' -%}
+                <li><a href="{{leasing_office.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
+                {% endif -%}
+                  
+                {% if manager.['Rss Link'] != '' -%}
+                <li><a href="{{manager.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
+                {% elseif leasing_office.['Rss Link'] != '' -%}
+                <li><a href="{{leasing_office.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
+                {% endif -%} 
+              </ul>
+            </div>
+            {% endif -%}
+            
+            {% else %}
+            <div class="agents-social">
+              <ul>
+                {% if manager.['Twitter Link'] != '' -%}
+                <li><a href="{{manager.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
+                {% elseif leasing_office.['Twitter Link'] != '' -%}
+                <li><a href="{{leasing_office.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
+                {% endif -%}
+                  
+                {% if manager.['Facebook Link'] != '' -%}
+                <li><a href="{{manager.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
+                {% elseif leasing_office.['Facebook Link'] != '' -%}
+                <li><a href="{{leasing_office.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
+                {% endif -%}
+                  
+                {% if manager.['LinkedIn Link'] != '' -%}
+                <li><a href="{{manager.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
+                {% elseif leasing_office.['LinkedIn Link'] != '' -%}
+                <li><a href="{{leasing_office.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
+                {% endif -%}
+                  
+                {% if manager.['Google-Plus Link'] != '' -%}
+                <li><a href="{{manager.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
+                {% elseif leasing_office.['Google-Plus Link'] != '' -%}
+                <li><a href="{{leasing_office.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
+                {% endif -%}
+                  
+                {% if manager.['Rss Link'] != '' -%}
+                <li><a href="{{manager.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
+                {% elseif leasing_office.['Rss Link'] != '' -%}
+                <li><a href="{{leasing_office.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
+                {% endif -%} 
+              </ul>
+            </div>
+        {% endif -%}
+            {% unless manager.['name'] == "1 - No Current Onsite Agent" -%}
+            <a href="{{manager.['url']}}" class="button secondary">{{manager.['name']}}</a> 
+            {%endunless-%}
+            </div>
+            
+        </div>
+         </div>
+      <div class="large-5 medium-12 columns"> 
+        
+        {% if property.['Property Listing Contact Form HTML'] != '' %}
+        {{property.['Property Listing Contact Form HTML']}}
+        {% else %}
+        <form name="catwebformform12803" method="post" onsubmit="return checkWholeForm12803(this)" enctype="multipart/form-data" action="/Default.aspx?A=Form&Email={{listing.['Email']}}&Subject=Customer+Enquiry+For+Property&EmailFrom=office@rentpfi.com&ID=/thank-you">
+          <input type="text" name="FirstName" id="FirstName" placeholder="Your Name*" maxlength="255" />
+          <input type="text" name="EmailAddress" id="EmailAddress" placeholder="Your Email*" maxlength="255" />
+          <textarea name="CAT_Custom_446375" id="CAT_Custom_446375" placeholder="Message*" onkeydown="if(this.value.length>=4000)this.value=this.value.substring(0,3999);"></textarea>
+          <input type="submit" value="Submit" id="catwebformbutton" />
+          <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js?vs=b2333.r510325-phase1"></script><script type="text/javascript">
+//<![CDATA[
+var submitcount12803 = 0;function checkWholeForm12803(theForm){var why = "";if (theForm.FirstName) why += isEmpty(theForm.FirstName.value, "Your Name");  if (theForm.EmailAddress) why += checkEmail(theForm.EmailAddress.value); if (theForm.CAT_Custom_446375) why += isEmpty(theForm.CAT_Custom_446375.value, "Message");if(why != ""){alert(why);return false;}if(submitcount12803 == 0){submitcount12803++;theForm.submit();return false;}else{alert("Form submission is in progress.");return false;}}
+//]]>
+</script>
+        </form>
+        {% endif %}
+         </div>
+    </div>
+  {% endif -%}      
+        
+</div>
+</div>
+<!--end test code-->
+<!--end detail layout-->
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
+<!--end floor plan, property, leasing office and manager webapp for loops-->
+{% endfor -%} 
+<!--Listing endfor----> 

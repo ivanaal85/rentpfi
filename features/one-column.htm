@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{%capture-%}
+<html><!-- InstanceBegin template="/Templates/OneColumn.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+
+
+
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %}
+<section class="inner-banner"> <img src="/_assets/img/banner-1.png?Action=thumbnail&Width=1903&Height=895&algorithim=fill_proportional" />
+  <div class="banner-caption">
+    <div class="row">
+      <h1></h1> 
+    </div>
+  </div>
+</section>
+<section class="inner-main">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="small-12 left">
+        <div class="large-5 medium-6 small-11 left">
+          <div class="block-title">
+            <h2>{module_pagename}</h2>
+            <div class="line small"></div>
+          </div>
+        </div>
+      </div>
+      <!-- InstanceBeginEditable name="ContentArea" --><h2>H2. Used for Headers. (Trocchi Bold, 36px)</h2>
+<p class="lead">Intro body copy. A bit larger than normal body copy. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat proin gravada sit amet et unum. </p>
+<div class="double-dash"></div>
+<p>&nbsp;</p>
+<h3> H3. USED FOR SUBHEADERS, IN ALL CAPS. (Montserrat Bold, 18px, uppercase)</h3>
+<p> Normal body copy. Lorem ipsum dolor sit amet, consec tetuer elit. Suspendisse in massa id augue sodales tincidunt. Curabitur vitae enim aliquet tellus pulvinar. Vivamus ut erat laoreet. <a>Here is a link within text</a>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamad ipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+<h4> H4. USED FOR SUBHEADERS, IN ALL CAPS. (Montserrat Bold, 16px, uppercase)</h4>
+<p> Normal body copy. Lorem ipsum dolor sit amet, consec tetuer elit. Suspendisse in massa id augue sodales tincidunt. Curabitur vitae enim aliquet tellus pulvinar. Vivamus ut erat laoreet. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamad ipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+<h5> H5. Used for subheaders. (Montserrat Bold, 15px, normal)</h5>
+<p>Normal body copy. Lorem ipsum dolor sit amet, consec tetuer elit. Suspendisse in massa id augue sodales tincidunt. Curabitur vitae enim aliquet tellus pulvinar. Vivamus ut erat laoreet. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamad ipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+<h6>H6. Used for subheaders. (Merriweather Bold, 14px, normal)</h6>
+<p> Normal body copy. Lorem ipsum dolor sit amet, consec tetuer elit. Suspendisse in massa id augue sodales tincidunt. Curabitur vitae enim aliquet tellus pulvinar. Vivamus ut erat laoreet. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamad ipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+<div class="double-dash"></div>
+<ul class="bullet_list">
+    <li>Here is a list item. Lorem ipsum dolor sit amet adipiscing consecteteur.
+    </li>
+    <li>  This is another list item. Proin gravada dolor etum.</li>
+    <li> Once again, we have a list item.</li>
+    <li> This one is longer to show what a list item will look like when spread over multiple lines. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+    <li> Here is a fifth list item. Dolor sit amet adipiscing suspendisse.
+    </li>
+</ul>
+<div class="double-dash"></div>
+<div class="row">
+<div class="medium-3 columns">
+<div class="feature-image"><img alt="" src="/_assets/img/properti-4.jpg" /></div>
+</div>
+<div class="medium-9 columns">
+<h3>Header goes in this area</h3>
+<p>
+Normal body copy. Lorem ipsum dolor sit amet, consec tetuer elit. Suspendisse in massa id augue sodales tincidunt. Curabitur vitae enim aliquet tellus pulvinar. Vivamus ut erat laoreet. <a href="#">Here is a link within text</a>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniamad ipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+</div>
+</div>
+<p>&nbsp;</p>
+
+
+
+<!-- InstanceEndEditable --> </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"} 
+{% comment -%}<!--end section main--> 
+<!-- footer  -->{% endcomment -%} 
+{% include"/_System/Includes/_footer.inc" %} 
+{% comment -%}<!-- end footer  -->{% endcomment -%} 
+{% include"/_System/Includes/scripts.inc" %} 
+{% comment -%}<!-- include scripts -->{% endcomment -%}
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

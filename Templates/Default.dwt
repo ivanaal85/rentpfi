@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="inner-banner-bg"> {% comment -%}<!--<img src="/_assets/img/sitesearch_bg.jpg" />-->{% endcomment -%}
+  <div class="banner-caption">
+    <div class="row">
+      <h1></h1>
+    </div>
+  </div>
+</section>
+<section class="inner-main">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="small-12 left">
+        <div class="large-4 medium-6 small-11 left">
+          <div class="block-title">
+            <h1>{module_pagename}</h1>
+            <div class="line small"></div>
+          </div>
+        </div>
+      </div>
+      <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable --> </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"} 
+{% comment -%}<!--end section main--> 
+<!-- footer  -->{% endcomment -%} 
+{% include"/_System/Includes/_footer.inc" %} 
+{% comment -%}<!-- end footer  -->{% endcomment -%} 
+{% include"/_System/Includes/scripts.inc" %} 
+{% comment -%}<!-- include scripts -->{% endcomment -%}
+</body>
+</html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

@@ -1,0 +1,41 @@
+{
+  "name": "rentpfi",
+  "version": "1.0.0",
+  "description": "RentPFI Multi-site",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GREGG-CHRISTOFFERSON/rentpfi-assets.git"
+  },
+  "keywords": [
+    "\"rentpfi",
+    "assets\""
+  ],
+  "author": "Gregg Christofferson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GREGG-CHRISTOFFERSON/rentpfi-assets/issues"
+  },
+  "homepage": "https://github.com/GREGG-CHRISTOFFERSON/rentpfi-assets#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-imagemin": "^4.0.0",
+    "gulp-minify": "^2.1.0",
+    "gulp-remove-empty-lines": "^0.1.0",
+    "gulp-strip-comments": "^2.5.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-useref": "^3.1.3",
+    "useref": "^1.4.0"
+  },
+  "dependencies": {
+    "gulp-cssnano": "^2.1.2",
+    "gulp-trimlines": "^1.0.1",
+    "gulp-whitespace": "^0.1.0"
+  }
+}

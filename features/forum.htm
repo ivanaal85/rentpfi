@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html><!-- InstanceBegin template="/Templates/Features.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+
+
+
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="inner-banner-bg"> <!--<img src="/_assets/img/banner-1.png" />-->
+  <div class="banner-caption">
+    <div class="row">
+      <h1></h1>
+    </div>
+  </div>
+</section>
+<section class="interior_content">
+  <div class="row">
+    <div class="large-12 columns"> <!-- InstanceBeginEditable name="ContentArea" -->
+<section class="main_content">
+  <div class="small-12 left">
+    <div class="large-4 medium-6 small-11 left">
+      <div class="block-title">
+        <h2> {module_pagename}</h2>
+        <div class="line small"></div>
+      </div>
+    </div>
+  </div>
+    {module_forum filter="all"}</section>
+
+
+
+<!-- InstanceEndEditable --> </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"}
+<!--end section main--> 
+<!-- footer  --> 
+{% include"/_System/Includes/_footer.inc" %} 
+<!-- end footer  --> 
+{% include"/_System/Includes/scripts.inc" %} 
+<!-- include scripts -->
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

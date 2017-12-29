@@ -1,0 +1,20 @@
+{module_webapps collection="ourSocialWebapp" render="collection" id="Company Social Links" filter="item" itemId="7889991" template=""}
+      {% for item in ourSocialWebapp.items %}
+          <ul>
+		  {% if item.['Twitter'] != '' %}
+            <li><a href="{{item.['Twitter']}}" class="icon_twitter"><em class="fa fa-twitter"></em></a></li>
+			{% endif -%}
+			{% if item.['Facebook'] != '' %}
+            <li><a href="{{item.['Facebook']}}" class="icon_facebook"><em class="fa fa-facebook"></em></a></li>
+			{% endif -%}
+			{% if item.['LinkedIn'] != '' %}
+            <li><a href="{{item.['LinkedIn']}}" class="icon_linkedin"><em class="fa fa-linkedin"></em></a></li>
+			{% endif -%}
+			{% if item.['GooglePlus'] != '' %}
+            <li><a href="{{item.['GooglePlus']}}" class="icon_googleplus"><em class="fa fa-google-plus"></em></a></li>
+			{% endif -%}
+			{% if item.['RSS'] != '' %}
+            <li><a href="{{item.['RSS']}}" class="icon_rss"><em class="fa fa-rss"></em></a></li>
+			{% endif -%}
+          </ul>
+		{% endfor -%}

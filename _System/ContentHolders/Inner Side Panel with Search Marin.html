@@ -1,0 +1,517 @@
+{% include"/_System/Includes/global-variables.inc" %}
+<div class="side_area">
+  <div class="block-title">
+    <h4>Find Property</h4>
+    <div class="line small"></div>
+  </div>
+  <div class="search_block search-custom"> {module_webapps id="Apartment Listings Marin" filter="all" collection="search" template=""}
+    {% comment -%}<!--Get unique locations for the dropdown search-->{% endcomment -%}
+    {% assign theLocations = search.items | map:"Property Location" | join:"," | split:"," -%} 
+    {% assign theLocations = theLocations | sort -%} 
+    {% comment -%}<!--Remove any Duplicates from the Array-->{% endcomment -%}
+    {% assign uniqueLocations = "" -%}
+    {% for item in theLocations -%}
+    {% assign theitem = item | strip -%}
+    {% unless uniqueLocations contains theitem -%}
+    {% capture uniqueLocations -%}{{ uniqueLocations }},{{ theitem }}{% endcapture -%}
+    {% endunless -%}
+    {% endfor -%}	 
+    {% assign uniqueLocations = uniqueLocations | remove_first:"," | split:"," -%}
+    
+    {% comment -%}<!--Get unique neighborhoods for the dropdown search-->{% endcomment -%}
+    {% assign theNeighborhoods = search.items | map:"Neighborhood" | join:"," | split:"," -%} 
+    {% assign theNeighborhoods = theNeighborhoods | sort -%} 
+    {% comment -%}<!--Remove any Duplicates from the Array-->{% endcomment -%}
+    {% assign uniqueNeighborhoods = "" -%}
+    {% for item in theNeighborhoods -%}
+    {% assign theitem = item | strip -%}
+    {% unless uniqueNeighborhoods contains theitem -%}
+    {% capture uniqueNeighborhoods -%}{{ uniqueNeighborhoods }},{{ theitem }}{% endcapture -%}
+    {% endunless -%}
+    {% endfor -%}	 
+    {% assign uniqueNeighborhoods = uniqueNeighborhoods | remove_first:"," | split:"," -%}
+    
+    {% comment -%}<!--Get unique Property Type for the dropdown search-->{% endcomment -%}
+    {% assign thePropType = search.items | map:"Property Type" | join:"," | split:"," -%} 
+    {% assign thePropType = thePropType | sort -%} 
+    {% comment -%}<!--Remove any Duplicates from the Array-->{% endcomment -%}
+    {% assign uniquePropType = "" -%}
+    {% for item in thePropType -%}
+    {% assign theitem = item | strip -%}
+    {% unless uniquePropType contains theitem -%}
+    {% capture uniquePropType -%}{{ uniquePropType }},{{ theitem }}{% endcapture -%}
+    {% endunless -%}
+    {% endfor -%}	 
+    {% assign uniquePropType = uniquePropType | remove_first:"," | split:"," -%}
+    
+    
+    {% assign pricemin = search.items[0].['Price'] | convert: "number"  -%}
+    {% assign pricemax = search.items[0].['Price'] | convert: "number"  -%}
+    {% assign areamin = search.items[0].['Square Foot Area'] | convert: "number"  -%}
+    {% assign areamax = search.items[0].['Square Foot Area'] | convert: "number"  -%}
+    
+    {% for item in search.items %}
+    
+    {% assign itemprice = item.['Price'] | convert: "number"  -%}
+    {% assign itemarea = item.['Square Foot Area'] | convert: "number"  -%}
+    
+    {% if itemprice < pricemin -%}
+    {% assign pricemin = itemprice -%}
+    {% endif -%}
+    
+    {% if itemprice > pricemax -%}
+    {% assign pricemax = itemprice -%}
+    {% endif -%}
+    
+    {% if itemarea < areamin -%}
+    {% assign areamin = itemarea -%}
+    {% endif -%}
+    
+    {% if itemarea > areamax -%}
+    {% assign areamax = itemarea -%}
+    {% endif -%}
+    
+    {% endfor %}
+    <form id="property-search" name="catcustomcontentform47801" method="post" onsubmit="return checkWholeForm47801(this)" action="/Default.aspx?CCID=30862&FID=300262&ExcludeBoolFalse=True&ID=/ApartmentHomesMarin/search-results">
+      <div class="small-12 column">
+        <select name="CAT_Custom_13" id="CAT_Custom_13">
+          <option value=" ">Locations</option>
+                             
+                {% for item in uniqueLocations %}
+                
+          <option value="{{item}}">{{item}}</option>
+                           
+                {% endfor %}
+            
+        </select>
+      </div>
+      <div class="small-12 column">
+        <select name="CAT_Custom_15" id="CAT_Custom_15">
+          <option value=" ">Neighborhoods</option>
+                             
+                {% for item in uniqueNeighborhoods %}
+                
+          <option value="{{item}}">{{item}}</option>
+                           
+                {% endfor %}
+            
+        </select>
+      </div>
+      <div class="small-12 column">
+        <select name="CAT_Custom_11" id="CAT_Custom_11">
+          <option value=" ">Property Type</option>
+                             
+                {% for item in uniquePropType %}
+                
+          <option value="{{item}}">{{item}}</option>
+                           
+                {% endfor %}
+            
+        </select>
+      </div>
+      <div class="small-6 column">
+        <h6>Bedrooms</h6>
+        <select name="CAT_Custom_8_Min" id="CAT_Custom_8_Min">
+          <option value="*">Min:</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <!--
+                <option value="4">4</option>                  
+                <option value="5">5</option> 
+-->
+        </select>
+      </div>
+      <div class="small-6 column">
+        <h6>Bathrooms</h6>
+        <select name="CAT_Custom_9_Min" id="CAT_Custom_9_Min">
+          <option value="*">Min:</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <!--
+                <option value="3">3</option>                 
+                <option value="4">4</option>                  
+                <option value="5">5</option> 
+-->
+        </select>
+      </div>
+      <div style="display:none"> {% comment -%} this hidden section is used by the BC Webapp Search Form...the range sliders drop a value in these fields which are then submitted {% endcomment -%}
+        <div class="small-6 column">
+          <h6>Price Min</h6>
+          <input name="CAT_Custom_4_Min" id="CAT_Custom_4_Min">
+        </div>
+        <div class="small-6 column">
+          <h6>Price Max</h6>
+          <input name="CAT_Custom_4_Max" id="CAT_Custom_4_Max">
+        </div>
+        <div class="small-6 column">
+          <h6>Area Min</h6>
+          <input name="CAT_Custom_7_Min" id="CAT_Custom_7_Min">
+        </div>
+        <div class="small-6 column">
+          <h6>Area Max</h6>
+          <input name="CAT_Custom_7_Max" id="CAT_Custom_7_Max">
+        </div>
+      </div>
+      <div class="small-12 column">
+        <div id="priceRange" class="range_block box1" data-min="{{pricemin}}" data-max="{{pricemax}}">
+          <h6>Price</h6>
+          <input type="text" class="range">
+        </div>
+      </div>
+      <div class="small-12 column">
+        <div id="areaRange" class="range_block box2" data-min="{{areamin}}" data-max="{{areamax}}">
+          <h6>Sq Ft</h6>
+          <input type="text" class="area">
+        </div>
+      </div>
+      <div class="small-12 column">
+        <input id="searchBtn" type="submit" value="Search  Properties">
+        <input id="resetBtn" class="button" type="reset" value="Reset Search" />
+      </div>
+    </form>
+    <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js?vs=b2333.r510325-phase1"></script> 
+    <script type="text/javascript">    
+        
+
+        function searchResultsUpdate() {
+            $(".search-msg .loc").html( $("#CAT_Custom_13").val() );
+            $(".search-msg .neighborhood").html( $("#CAT_Custom_15").val() );
+            $(".search-msg .type").html( $("#CAT_Custom_11").val() );
+            
+            var bedNum = $("#CAT_Custom_8_Min").val();
+            if(bedNum >= 0){
+                $(".search-msg .bd").html( $("#CAT_Custom_8_Min").val() + "+" );
+            } else {
+                $(".search-msg .bd").html("");
+            }
+            var bathNum = $("#CAT_Custom_9_Min").val();
+            if(bathNum >= 0){
+                $(".search-msg .bh").html( $("#CAT_Custom_9_Min").val() + "+" );
+            } else {
+                $(".search-msg .bh").html("");
+            }
+            
+            $(".search-msg .p-range").html( formatCurrency( $("#CAT_Custom_4_Min").val() ) + " to " + formatCurrency($("#CAT_Custom_4_Max").val() ) );
+            $(".search-msg .a-range").html( formatNumeric( $("#CAT_Custom_7_Min").val() ) + " to " + formatNumeric($("#CAT_Custom_7_Max").val() ) );
+            
+        };
+
+        
+        function submitForm() {
+            $(".my-search-results").fadeOut();
+            var $form = $("#property-search");
+            var submitForm = $.post($form.attr("action"), $form.serialize(), function (html) {
+                //alert( "success" );
+                var response = $(html).find('.webapp-search-results');
+                $("div.my-search-results").html(response);
+                searchResultsUpdate();
+                
+            })
+            .done(function () {
+                //alert( "second success" );
+            })
+            .fail(function () {
+                //alert( "error" );
+            })
+            .always(function () {
+                //alert( "finished" );
+                $(".my-search-results").fadeIn();
+                
+            });
+            console.log("got here");
+            $('.matchheightme').matchHeight();
+            return false; // prevent normal submit
+        };
+        
+        function formatCurrency(theValue) {
+            var neg = false;
+            if(theValue < 0) {
+                neg = true;
+                total = Math.abs(theValue);
+            }
+            theValue = theValue.replace(/,/g, "");
+            return (neg ? "-$" : '$') + parseFloat(theValue, 10).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString();
+        }
+        
+        function formatNumeric(theValue) {
+            var neg = false;
+            if(theValue < 0) {
+                neg = true;
+                total = Math.abs(theValue);
+            }
+            theValue = theValue.replace(/,/g, "");
+            return parseFloat(theValue, 10).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "$1,").toString();
+        }
+        
+        function checkWholeForm47801(theForm) {
+            submitForm(); 
+            return false;
+        }
+                
+                
+		$(document).ready(function() {
+            
+            {% comment -%}If parameters were passed from another page update this pages search fields before submitting the form{% endcomment -%}
+            
+            {% if globals.get.loc and globals.get.loc != "" -%}
+            	var passedLocation = {{globals.get.loc | json}};
+                $('#CAT_Custom_13').val(passedLocation); 
+            {% endif -%}
+            {% if globals.get.nhd and globals.get.nhd != "" -%}
+            	var passedNeighborhood = {{globals.get.nhd | json}};
+                $('#CAT_Custom_15').val(passedNeighborhood);
+            {% endif -%}
+            {% if globals.get.type and globals.get.type != "" -%}
+            	var passedType = {{globals.get.type | json}};
+                $('#CAT_Custom_11').val(passedType); 
+            {% endif -%}
+            {% if globals.get.bd and globals.get.bd != "" -%}
+            	var passedBedrooms = {{globals.get.bd | json}};
+                $('#CAT_Custom_8_Min').val(passedBedrooms);
+            {% endif -%}
+            {% if globals.get.bth and globals.get.bth != "" -%}
+            	var passedBathrooms = {{globals.get.bth | json}};
+                $('#CAT_Custom_9_Min').val(passedBathrooms);  
+            {% endif -%}
+            
+            {% if globals.get.minPrice and globals.get.minPrice != "" -%}
+            	var priceMin = {{globals.get.minPrice | json}};
+            {% else -%}                           
+                //var priceMin = $("#priceRange").data("min");
+                var priceMin = 0;                         
+            {% endif -%} 
+            {% if globals.get.maxPrice and globals.get.maxPrice != "" -%}
+            	var priceMax = {{globals.get.maxPrice | json}};
+            {% else -%}                           
+                var priceMax = $("#priceRange").data("max");                         
+            {% endif -%}                           
+                                       
+            $("#CAT_Custom_4_Min").val(priceMin);
+            $("#CAT_Custom_4_Max").val(priceMax);
+            
+            {% if globals.get.minArea and globals.get.minArea != "" -%}
+            	var areaMin = {{globals.get.minArea | json}};
+            {% else -%}                           
+                //var priceMin = $("#areaRange").data("min");
+                var areaMin = 0;                         
+            {% endif -%} 
+            {% if globals.get.maxArea and globals.get.maxArea != "" -%}
+            	var areaMax = {{globals.get.maxArea | json}};
+            {% else -%}                           
+                var areaMax = $("#areaRange").data("max");                         
+            {% endif -%}                          
+                                       
+            $("#CAT_Custom_7_Min").val(areaMin);
+            $("#CAT_Custom_7_Max").val(areaMax);
+
+            submitForm();                           
+                                       
+        	// Price range slider, init the slider and then update hidden fields with values after the slider is moved
+            var $range = $(".range");
+            var track = function() {
+                var $this = $(this),
+                    value = $this.prop("value").split(";");
+                $("#CAT_Custom_4_Min").val(value[0]);
+                $("#CAT_Custom_4_Max").val(value[1]);
+                
+            };
+        
+            $range.ionRangeSlider({
+                hide_min_max: true,
+                keyboard: true,
+                min: priceMin,
+                max: priceMax,
+                from: priceMin,
+                to: priceMax,
+                type: 'double',
+                step: 1,
+                prefix: "$",
+                grid: true,
+                onFinish: function (data) {
+                  submitForm();
+                }
+            });
+        
+            $range.on("change", track);
+        
+            // Area range slider, init the slider and then update hidden fields with values after the slider is moved	
+            var $area = $(".area");
+            var tracking = function() {
+                var $this = $(this),
+                    value = $this.prop("value").split(";");
+                $("#CAT_Custom_7_Min").val(value[0]);
+                $("#CAT_Custom_7_Max").val(value[1]);
+        		
+            };
+        
+            $area.ionRangeSlider({
+                hide_min_max: true,
+                keyboard: true,
+                min: areaMin,
+                max: areaMax,
+                from: 0,
+                to: areaMax,
+                type: 'double',
+                step: 1,
+                prefix: "",
+                grid: true,
+                onFinish: function (data) {
+                    submitForm();
+                }
+            });
+        
+            $area.on("change", tracking);  
+            
+            var priceSlider = $range.data("ionRangeSlider");
+            var areaSlider = $area.data("ionRangeSlider");
+            
+            var timer;                                         
+            $('input.cat_textbox').on('input', function(){   
+                clearTimeout(timer);                           
+                timer = setTimeout(submitForm, 600);         
+            });
+            
+            // submit the form if a dropdown is changed
+            $('select').change(function () {
+                submitForm();
+            });
+            
+            
+            $("#property-search #resetBtn").click(function() {
+                priceMin = 0;
+                priceMax = $("#priceRange").data("max"); 
+                areaMin = 0;
+                areaMax = $("#areaRange").data("max"); 
+                
+                priceSlider.reset();
+                areaSlider.reset();
+                
+                $range.data("ionRangeSlider").update({min:0});
+                $range.data("ionRangeSlider").update({from:0});
+                $range.data("ionRangeSlider").update({max:priceMax});
+                $range.data("ionRangeSlider").update({to:priceMax});
+                
+                $area.data("ionRangeSlider").update({min:0});
+                $area.data("ionRangeSlider").update({from:0});
+                $area.data("ionRangeSlider").update({max:areaMax});
+                $area.data("ionRangeSlider").update({to:areaMax});
+                
+                $('#CAT_txtKeywords').val('');
+                $('select').val('');
+                $('input:text').val('');
+                $("#CAT_Custom_4_Min").val(priceMin);
+                $("#CAT_Custom_4_Max").val(priceMax);
+                $("#CAT_Custom_7_Min").val(areaMin);
+                $("#CAT_Custom_7_Max").val(areaMax);
+                
+                submitForm();
+            });   
+            
+            
+        });
+                
+    </script> 
+  </div>
+  <div class="recent-prop-side">
+    <div class="block-title">
+      <h4>Recent Property</h4>
+      <div class="line small"></div>
+    </div>
+    <div class="popular-posts">
+      <ul>
+        {% comment -%}<!------------------------Call Marin Listings Web App This Item------------------------------------------->{% endcomment -%}
+        {module_webapps collection="listings" render="collection" id="Apartment Listings Marin" filter="all" sortType="date" resultsPerPage="3" template=""} 
+        {% comment -%}<!--listing for loop-------> {% endcomment -%}
+        {% for listing in listings.items %}
+
+        {% comment -%}<!------------------------Call Property Web App-------------------------------------------> {% endcomment -%}
+        {module_webapps collection="listingProp" render="collection" id="Apartment Listings Marin" filter="item" itemID="{{listing.['property_id']}}" template=""}
+        {% comment -%}<!------------------------Call Floor Plans Web App------------------------------------------->{% endcomment -%} 
+        {module_webapps id="Apartment Listings Marin" filter="item" itemID="{{listing.['floor plans_id']}}" collection="floorPlans" render="collection" template=""}
+
+        {% comment -%}<!--Start for loops to use above web app items multiple times on page-->{% endcomment -%}
+        {% for property in listingProp.items %} 
+        {% for floorplan in floorPlans.items %}
+
+        {% comment -%}<!-------------------Assign listing image variables-------------------------------------------------->{% endcomment -%}
+        {% if listing.['use alternate default listing image if available'] == "Floor Plan" -%}
+
+                {% if floorplan.['3d floor plan square'] != '' -%}
+                    {% assign defaultListingImage = {{floorplan.['3d floor plan square']}} -%}
+                    {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill_proportional" -%}
+                    {% elseif floorplan.['2d floor plan square'] != '' -%}
+                    {% assign defaultListingImage = {{floorplan.['2d floor plan square']}} -%}
+                    {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill_proportional" -%}
+        
+                    {% elseif floorplan.['3d floor plan'] != '' -%}
+                    {% assign defaultListingImage = {{floorplan.['3d floor plan']}} -%}
+                    {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill" -%}
+                    {% assign class = 'class = "non-square-listing"' -%}
+                    {% elseif floorplan.['2d floor plan'] != '' -%}
+                    {% assign defaultListingImage = {{floorplan.['2d floor plan']}} -%}
+                    {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill" -%}
+                    {% assign class = 'class = "non-square-listing"' -%}
+                {% endif -%}
+
+            {% elseif listing.['use alternate default listing image if available'] == "Property Square Image" -%}
+
+                {% if property.['default square image'] !='' -%}
+                    {% assign defaultListingImage = {{property.['default square image']}} -%}
+                    {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill_proportional" -%}
+        
+                    {% elseif property.['default slider image'] !='' -%}
+                    {% assign defaultListingImage = {{property.['default slider image']}} -%}
+                    {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill" -%}
+                    {% assign class = 'class = "non-square-listing"' -%}
+                {% endif -%}
+
+            {% elseif listing.['listing image'] != '' -%}
+                {% assign defaultListingImage = {{listing.['listing image']}} -%}
+                {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill_proportional" -%}
+            {% elseif floorplan.['3d floor plan square'] != '' -%}
+                {% assign defaultListingImage = {{floorplan.['3d floor plan square']}} -%}
+                {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill_proportional" -%}
+            {% elseif floorplan.['2d floor plan square'] != '' -%}
+                {% assign defaultListingImage = {{floorplan.['2d floor plan square']}} -%}
+                {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill_proportional" -%}
+            {% elseif property.['default square image'] != '' -%}
+                {% assign defaultListingImage = {{property.['default square image'] }} -%}
+                {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill_proportional" -%}
+           
+            {% elseif floorplan.['3d floor plan'] != '' -%}
+                {% assign defaultListingImage = {{floorplan.['3d floor plan']}} -%}
+                {% assign fill = "?Action=thumbnail&Width=115&Height=68&algorithim=fill" -%}
+                {% assign class = 'class = "non-square-listing"' -%}
+            {% elseif floorplan.['2d floor plan'] != '' -%}
+                {% assign defaultListingImage = {{floorplan.['2d floor plan']}} -%}
+                {% assign fill = "?Action=thumbnail&Width=115&Height=68&algorithim=fill" -%}
+                {% assign class = 'class = "non-square-listing"' -%}
+            {% elseif property.['default slider image'] != '' -%}
+                {% assign defaultListingImage = {{property.['default slider image'] }} -%}
+                {% assign fill = "?Action=thumbnail&Width=115&Height=68&algorithim=fill" -%}
+                {% assign class = 'class = "non-square-listing"' -%}
+           
+            {% else -%}
+                {% assign defaultListingImage = "/_assets/img/PhotoComingSoon-ListingImage.jpg" -%}
+                {% assign class ='class="no-image"' -%}
+                {% assign fill = "?Action=thumbnail&Width=73&Height=68&algorithim=fill_proportional" -%}
+        {% endif -%}
+        {% comment -%}<!--end variable definitions for listing image------>{% endcomment -%}
+        <li>
+          <div class="popular-img"> 
+              <a href="{{listing.url}}"> <img {{class}} src="{{defaultListingImage}}{{fill}}"> </a>
+            </div>
+          <div class="popular-desc">
+            <h6><a href="{{listing.url}}">{{listing.['Property Status']}}</a></h6>
+            <span>{{listing.['Listing Title']}}</span> </div>
+        </li>
+        {% endfor %}
+        {% endfor -%}{% comment -%}<!--end property and floor plan for loops-->{% endcomment -%}
+        {% endfor -%}{% comment -%}<!--end listing for loop-->{% endcomment -%} 
+      </ul>
+    </div>
+  </div>
+</div>

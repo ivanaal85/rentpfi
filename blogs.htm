@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html><!-- InstanceBegin template="/Templates/Inner Template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title>Blogs</title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+
+
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+ {% comment -%}<!--must update regions, _header and _footer anytime a new domain is added to the site-->{% endcomment -%}
+ {% include"/_System/Includes/_header.inc" %} 
+<section class="two-column-area">
+  <div class="row">
+    <div class="medium-8 columns left_area_panel">
+      <div class="content_area"> <!-- InstanceBeginEditable name="ContentArea" -->
+          {%assign filter = "classified" -%}
+          {% if {{region == 'Marin'}} -%}
+          {%assign itemid = 'itemid="118221"' -%}
+          {% elseif {{region}} == 'Sonoma' -%}
+          {%assign itemid = 'itemid="118220"' -%}
+          {% else -%}
+          {%assign filter = "classified" -%}
+          {% endif -%}
+        <p>{module_blog filter="{{filter}}" {{itemid}}}</p>
+
+<!-- InstanceEndEditable --> </div>
+    </div>
+    <div class="medium-4 columns right_area_panel">
+      <div class="side_panel">
+          {% include"/_System/Includes/inner-side-panel.inc" %} 
+      </div>
+    </div>
+  </div>
+</section>
+{% include"/_System/Includes/_footer.inc" %} 
+{% include"/_System/Includes/scripts.inc" %}
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

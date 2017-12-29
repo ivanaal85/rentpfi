@@ -1,0 +1,120 @@
+{module_webapps collection="ourManagersWebapp" render="collection" id="Our Managers Marin" filter="item" itemID="{tag_itemid}" template=""}
+{% for item in ourManagersWebapp.items %}
+<div class="small-12 left">
+  <div class="large-4 medium-6 small-11 left">
+    <div class="block-title">
+      <h1>{{item.name}}</h1>
+      <span>{{item.['Title']}}</span>
+      <div class="line small"></div>
+    </div>
+  </div>
+</div>
+<div class="agent-detail-page">
+  <div class="row">
+    <div class="large-6 small-6 columns">
+      <figure class="agents-large-image">
+          {% if item.['image'] != "" -%}
+          <img src="{{item.['Large Image']}}?Action=thumbnail&Width=348&Height=597&algorithim=fill_proportional">
+          {% elseif item.['placeholder image'] == "Female" -%}
+          <img src="{{defaultFemaleMgrImageLg}}?Action=thumbnail&Width=348&Height=597&algorithim=fill_proportional">
+          {% else -%}
+          <img src="{{defaultMaleMgrImageLg}}?Action=thumbnail&Width=348&Height=597&algorithim=fill_proportional">
+          {% endif -%}
+        </figure>
+    </div>
+    <div class="large-6 small-6 columns">
+      <div class="agent-contact-info">
+        <div class="block-title">
+          <h3>Contact Info</h3>
+          <div class="line small"></div>
+        </div>
+        <ul>
+         {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                        {% for item in myPropertyInfoWebapp.items %}
+          <li> <span><em class="fa fa-phone"></em>Phone:</span><a href="tel:{{item.['Phone']}}">{{item.['Phone']}}</a> </li>
+          {% endfor -%}
+                        {% if {tag_mobile number} == '' -%}
+                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                        {% for item in myPropertyInfoWebapp.items %}
+                        {% if item.['Mobile Number'] != '' -%}
+          <li> <span><em class="fa fa-mobile"></em>Mobile:</span><a href="tel:{{item.['Mobile Number']}}">{{item.['Mobile Number']}}</a> </li>
+          {% endif -%}
+                        {% endfor -%}
+                        {% else %}
+          <li> <span><em class="fa fa-mobile"></em>Mobile:</span><a href="tel:{{item.['Mobile Number']}}">{{item.['Mobile Number']}}</a> </li>
+          {% endif -%}
+                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                        {% for item in myPropertyInfoWebapp.items %}              
+          <li> <span><em class="fa fa-envelope"></em>Email:</span><a href="mailto:{{item.['Email']}}">{{item.['Email']}}</a> </li>
+          {% if item.['Skype User Name'] != '' -%}
+          <li> <span><em class="fa fa-skype"></em>Skype:</span><a href="#">{{item.['Skype User Name']}}</a></li>
+          {% endif -%}
+                        {% endfor -%} 
+        </ul>
+      </div>
+    </div>
+  </div>
+  {module_webapps collection="ourManagersWebapp" render="collection" id="Our Managers Marin" filter="item" itemID="{tag_itemid}" template=""}
+{% for item in ourManagersWebapp.items %}
+ {% if item.description != '' %}
+  <div class="small-12 left">
+    <div class="large-5 medium-6 small-11 left">
+      <div class="block-title">
+        <h2>About Me</h2>
+        <div class="line small"></div>
+      </div>
+    </div>
+  </div>
+  {% endif -%}
+  {{item.description}}
+  {% if item.['Manager Quote'] != '' %}
+  <blockquote>&ldquo;{{item.['Manager Quote']}}&rdquo;<br><br>
+  <cite>{{item.name}}</cite>
+  </blockquote>
+  {% endif -%}
+  </div>
+  {% endfor -%}
+  {% endfor -%} 
+<div class="agent-comment-form">
+  <div class="small-12 left">
+    <div class="large-5 medium-6 small-11 left">
+      <div class="block-title">
+        <h2>Contact Me</h2>
+        <div class="line small"></div>
+      </div>
+    </div>
+  </div>
+  {% for item in myPropertyInfoWebapp.items %}
+  {% if item.['Contact Form HTML'] != '' %}
+  {{item.['Contact Form HTML']}}
+  {% else %}
+    <form name="catwebformform2716" method="post" onsubmit="return checkWholeForm2716(this)" enctype="multipart/form-data" action="/Default.aspx?A=Form&Email={{item.['Email']}}&Subject=Customer+Enquiry+For+Property&EmailFrom=office@rentpfi.com&ID=/thank-you">
+     <div class="row">
+      <div class="large-6 medium-6 small-6 columns">
+        <input type="text" name="FirstName" id="FirstName" placeholder="Full Name" maxlength="255" />
+      </div>
+      <div class="large-6 medium-6 small-6 columns"> 
+        <input type="text" name="EmailAddress" id="EmailAddress" placeholder="Email Address" maxlength="255" />
+      </div>
+      <div class="large-12 medium-12 small-12 columns">
+        <textarea name="CAT_Custom_446375" id="CAT_Custom_446375" placeholder="Your Comment here.. " onkeydown="if(this.value.length>=4000)this.value=this.value.substring(0,3999);"></textarea>
+      </div>
+      <div class="large-12 medium-12 small-12 columns">
+        <input type="reset" value="Reset" />
+        <input type="submit" value="Submit" id="catwebformbutton">
+      </div>
+    </div>
+    <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js?vs=b2333.r510325-phase1"></script>
+<!--    <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js?vs=b1725.r465456-phase1"></script>-->
+</script><script type="text/javascript">
+//<![CDATA[
+var submitcount2716 = 0;function checkWholeForm2716(theForm){var why = "";if (theForm.FirstName) why += isEmpty(theForm.FirstName.value, "your Name");  if (theForm.EmailAddress) why += checkEmail(theForm.EmailAddress.value); if (theForm.CAT_Custom_446375) why += isEmpty(theForm.CAT_Custom_446375.value, "Message");if(why != ""){alert(why);return false;}if(submitcount2716 == 0){submitcount2716++;theForm.submit();return false;}else{alert("Form submission is in progress.");return false;}}
+//]]>
+</script>
+  </form>
+  {% endif %}
+  {% endfor -%}
+
+
+  
+</div>

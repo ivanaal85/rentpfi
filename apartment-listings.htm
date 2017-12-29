@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+{% capture templateHtml -%}
+<html><!-- InstanceBegin template="/Templates/Inner Template With Search.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %}
+<section class="two-column-area"> <!-- InstanceBeginEditable name="ContentArea" -->
+  <div class="row prop-search">
+    <div class="block-title">
+      <h1>{module_pagename}</h1>
+      <div class="line small"></div>
+    </div>
+    <div class="large-4 medium-5 columns left_area_panel">
+      <div class="side_panel"> 
+        <div class="side_area">
+          <div class="block-title">
+            <h4>Find Property</h4>
+            <div class="line small"></div>
+          </div>
+          <div class="search_block search-custom"> {module_webapps id="Apartment Listings {{region}}" filter="all" collection="search" template=""}
+            {% comment -%}<!--Get unique locations for the dropdown search-->{% endcomment -%}
+            {% assign theLocations = search.items | map:"Property Location" | join:"," | split:"," -%} 
+            {% assign theLocations = theLocations | sort -%} 
+            {% comment -%}<!--Remove any Duplicates from the Array-->{% endcomment -%}
+            {% assign uniqueLocations = "" -%}
+            {% for item in theLocations -%}
+            {% assign theitem = item | strip -%}
+            {% unless uniqueLocations contains theitem -%}
+            {% capture uniqueLocations -%}{{ uniqueLocations }},{{ theitem }}{% endcapture -%}
+            {% endunless -%}
+            {% endfor -%}	 
+            {% assign uniqueLocations = uniqueLocations | remove_first:"," | split:"," -%}
+
+            {% comment -%}<!--Get unique neighborhoods for the dropdown search-->{% endcomment -%}
+            {% assign theNeighborhoods = search.items | map:"Neighborhood" | join:"," | split:"," -%} 
+            {% assign theNeighborhoods = theNeighborhoods | sort -%} 
+            {% comment -%}<!--Remove any Duplicates from the Array-->{% endcomment -%}
+            {% assign uniqueNeighborhoods = "" -%}
+            {% for item in theNeighborhoods -%}
+            {% assign theitem = item | strip -%}
+            {% unless uniqueNeighborhoods contains theitem -%}
+            {% capture uniqueNeighborhoods -%}{{ uniqueNeighborhoods }},{{ theitem }}{% endcapture -%}
+            {% endunless -%}
+            {% endfor -%}	 
+            {% assign uniqueNeighborhoods = uniqueNeighborhoods | remove_first:"," | split:"," -%}
+
+            {% comment -%}<!--Get unique Property Type for the dropdown search-->{% endcomment -%}
+            {% assign thePropType = search.items | map:"Property Type" | join:"," | split:"," -%} 
+            {% assign thePropType = thePropType | sort -%} 
+            {% comment -%}<!--Remove any Duplicates from the Array-->{% endcomment -%}
+            {% assign uniquePropType = "" -%}
+            {% for item in thePropType -%}
+            {% assign theitem = item | strip -%}
+            {% unless uniquePropType contains theitem -%}
+            {% capture uniquePropType -%}{{ uniquePropType }},{{ theitem }}{% endcapture -%}
+            {% endunless -%}
+            {% endfor -%}	 
+            {% assign uniquePropType = uniquePropType | remove_first:"," | split:"," -%}
+
+
+            {% assign pricemin = search.items[0].['Price'] | convert: "number"  -%}
+            {% assign pricemax = search.items[0].['Price'] | convert: "number"  -%}
+            {% assign areamin = search.items[0].['Square Foot Area'] | convert: "number"  -%}
+            {% assign areamax = search.items[0].['Square Foot Area'] | convert: "number"  -%}
+
+            {% for item in search.items %}
+
+            {% assign itemprice = item.['Price'] | convert: "number"  -%}
+            {% assign itemarea = item.['Square Foot Area'] | convert: "number"  -%}
+
+            {% if itemprice < pricemin -%}
+            {% assign pricemin = itemprice -%}
+            {% endif -%}
+
+            {% if itemprice > pricemax -%}
+            {% assign pricemax = itemprice -%}
+            {% endif -%}
+
+            {% if itemarea < areamin -%}
+            {% assign areamin = itemarea -%}
+            {% endif -%}
+
+            {% if itemarea > areamax -%}
+            {% assign areamax = itemarea -%}
+            {% endif -%}
+
+            {% endfor %}
+            
+            {% comment -%}<!--assign form variables-->{% endcomment -%}
+              
+            {% if globals.site.['host'] == "www.apartmenthomessonoma.com" -%}    
+                {% assign formID = "75959" -%}
+                {% assign CCID = "30927" -%}
+                {% assign FID = "306292" -%}  
+
+            {% elseif globals.site.['host'] == "www.apartmenthomesmarin.com" -%}
+                {% assign formID = "47801" -%}
+                {% assign CCID = "30862" -%}
+                {% assign FID = "300262" -%}
+              
+            {% else -%}           
+            {% endif -%}   
+            <form id="property-search" name="catcustomcontentform{{FormID}}" method="post" onsubmit="return checkWholeForm{{FormID}}(this)" action="/Default.aspx?CCID={{CCID}}&FID={{FID}}&ExcludeBoolFalse=True&ID=/search-results">
+              <div class="small-12 column">
+                <select name="CAT_Custom_13" id="CAT_Custom_13">
+                  <option value=" ">Locations</option>
+
+                        {% for item in uniqueLocations %}
+
+                  <option value="{{item}}">{{item}}</option>
+
+                        {% endfor %}
+
+                </select>
+              </div>
+              <div class="small-12 column">
+                <select name="CAT_Custom_15" id="CAT_Custom_15">
+                  <option value=" ">Neighborhoods</option>
+
+                        {% for item in uniqueNeighborhoods %}
+
+                  <option value="{{item}}">{{item}}</option>
+
+                        {% endfor %}
+
+                </select>
+              </div>
+              <div class="small-12 column">
+                <select name="CAT_Custom_11" id="CAT_Custom_11">
+                  <option value=" ">Property Type</option>
+
+                        {% for item in uniquePropType %}
+
+                  <option value="{{item}}">{{item}}</option>
+
+                        {% endfor %}
+
+                </select>
+              </div>
+              <div class="small-6 column">
+                <h6>Bedrooms</h6>
+                <select name="CAT_Custom_8_Min" id="CAT_Custom_8_Min">
+                  <option value="*">Min:</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <!--
+                        <option value="4">4</option>                  
+                        <option value="5">5</option> 
+        -->
+                </select>
+              </div>
+              <div class="small-6 column">
+                <h6>Bathrooms</h6>
+                <select name="CAT_Custom_9_Min" id="CAT_Custom_9_Min">
+                  <option value="*">Min:</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <!--
+                        <option value="3">3</option>                 
+                        <option value="4">4</option>                  
+                        <option value="5">5</option> 
+        -->
+                </select>
+              </div>
+              <div style="display:none"> {% comment -%} this hidden section is used by the BC Webapp Search Form...the range sliders drop a value in these fields which are then submitted {% endcomment -%}
+                <div class="small-6 column">
+                  <h6>Price Min</h6>
+                  <input name="CAT_Custom_4_Min" id="CAT_Custom_4_Min">
+                </div>
+                <div class="small-6 column">
+                  <h6>Price Max</h6>
+                  <input name="CAT_Custom_4_Max" id="CAT_Custom_4_Max">
+                </div>
+                <div class="small-6 column">
+                  <h6>Area Min</h6>
+                  <input name="CAT_Custom_7_Min" id="CAT_Custom_7_Min">
+                </div>
+                <div class="small-6 column">
+                  <h6>Area Max</h6>
+                  <input name="CAT_Custom_7_Max" id="CAT_Custom_7_Max">
+                </div>
+              </div>
+              <div class="small-12 column">
+                <div id="priceRange" class="range_block box1" data-min="{{pricemin}}" data-max="{{pricemax}}">
+                  <h6>Price</h6>
+                  <input type="text" class="range">
+                </div>
+              </div>
+              <div class="small-12 column">
+                <div id="areaRange" class="range_block box2" data-min="{{areamin}}" data-max="{{areamax}}">
+                  <h6>Sq Ft</h6>
+                  <input type="text" class="area">
+                </div>
+              </div>
+              <div class="small-12 column">
+                <input id="searchBtn" type="submit" value="Search  Properties">
+                <input id="resetBtn" class="button" type="reset" value="Reset Search" />
+              </div>
+            </form>
+            <script type="text/javascript" src="/CatalystScripts/ValidationFunctions.js?vs=b2333.r510325-phase1"></script>
+              <script type="text/javascript">    
+            {% include"/_System/Includes/search-results-update.inc" %}
+            </script> 
+          </div>
+          <div class="recent-prop-side">
+            <div class="block-title">
+              <h4>Recent Property</h4>
+              <div class="line small"></div>
+            </div>
+            {% include"/_System/Includes/inner-blog-recent-properties.inc" %} 
+          </div>
+        </div> 
+        
+        </div>
+    </div>
+    <div class="large-8 medium-7 columns right_area_panel">
+      <div class="content_area">
+        <div class="small-12 left">
+          <div class="large-5 medium-5 small-11 left"> </div>
+        </div>
+        <div class="block-title">
+          <h4>You searched for...</h4>
+          <div class="line small"></div>
+        </div>
+        <div class="search-msg">
+          <div class="row">
+            <div class="medium-4 columns"><strong>Location:</strong><span class="loc"> All </span></div>
+            <div class="medium-4 columns"><strong>Neighborhood:</strong><span class="neighborhood">All </span></div>
+            <div class="medium-4 columns"><strong>Property Type:</strong><span class="type"> All Types </span></div>
+            <div class="medium-6 columns"> <strong># of Bedrooms:</strong><span class="bd"></span></div>
+            <div class="medium-6 columns"> <strong># of Bathrooms:</strong><span class="bh"></span></div>
+            <div class="medium-6 columns"><strong>Price Range:</strong><span class="p-range"></span></div>
+            <div class="medium-6 columns"><strong>Sqft Range:</strong><span class="a-range"></span></div>
+          </div>
+        </div>
+        <div class="my-search-results"></div>
+      </div>
+    </div>
+  </div>
+<!-- InstanceEndEditable --> </section>
+{% include"/_System/Includes/_footer.inc" %} 
+{% include"/_System/Includes/scripts.inc" %}
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ templateHtml2 | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }} 

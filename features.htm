@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html><!-- InstanceBegin template="/Templates/Features.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+        
+
+
+
+
+
+
+
+        <meta name="robots" content="noindex" />
+    <!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="inner-banner-bg"> <!--<img src="/_assets/img/banner-1.png" />-->
+  <div class="banner-caption">
+    <div class="row">
+      <h1></h1>
+    </div>
+  </div>
+</section>
+<section class="interior_content">
+  <div class="row">
+    <div class="large-12 columns"> <!-- InstanceBeginEditable name="ContentArea" -->
+        <div class="row">
+            <div class="large-4 medium-4 small-12 columns features_right_side">
+                <div class="features_right_panel">
+                    <div class="feature-menu">
+                        <p>Features</p>
+                        <ul>
+                            <li><a href="#events">Events</a>
+                            </li>
+                            <li><a href="#news">News</a>
+                            </li>
+                            <li><a href="#Faqs">Faqs</a>
+                            </li>
+                            <li><a href="#forum">Forum</a>
+                            </li>
+                            <li><a href="#download">Downloads</a>
+                            </li>
+                            <li><a href="#gallery">Photo Gallery</a>
+                            </li>
+                            <li><a href="#blog">Blog</a>
+                            </li>
+                            <li><a href="#store">Store</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="large-8 medium-8 small-12 columns features_content">
+                <div class="features_content_area">
+                    <!--start Events -->
+                    <div id="events" class="all-event">
+                        <h2>Events</h2>
+                        <p>Right-of-Way performs construction inspections of right-of-way improvements for privately funded projects and other projects not
+                            funded by Public Works. </p>
+                        <div class="event-list"> {module_booking filter="all"} </div>
+                    </div>
+                    <!--and Events -->
+
+                    <!--start news -->
+                    <div id="news" class="feature-news">
+                        <h2> News </h2>
+                        <div class="news-list"> {module_announcement filter="all"} </div>
+                    </div>
+                    <!--and news -->
+
+                    <!--start Faqs -->
+                    <div id="Faqs" class="feature-faqs">
+                        <h2>Faqs</h2> {module_faq filter="all" effect="ajax"} </div>
+                    <!--and Faqs -->
+
+                    <!--start forum -->
+                    <div id="forum" class="feature-forum">
+                        <h3>forum</h3>
+                        <div class="forum-but">
+                            <p>Nicole logged in. <a href="#">Log out.</a>
+                            </p>
+                            <a href="#" class="button right">Subcribe to forum</a> <a href="#" class="right button btn-topic">New Topic</a> </div>
+                        <div class="forum-title">
+                            <div class="forum-name">
+                                <p>Forum Name</p>
+                            </div>
+                            <div class="forum-topic">
+                                <p>Topics</p>
+                            </div>
+                            <div class="forum-post">
+                                <p>Posts</p>
+                            </div>
+                            <div class="forum-reply">
+                                <p>Latest Reply</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="forum-name"><a href="#">Test</a>
+                                </div>
+                                <div class="forum-topic">
+                                    <p>152</p>
+                                </div>
+                                <div class="forum-post">
+                                    <p>100</p>
+                                </div>
+                                <div class="forum-reply">
+                                    <p>16-May-2014 by nwindham</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="forum-name"><a href="#">Test</a>
+                                </div>
+                                <div class="forum-topic">
+                                    <p>152</p>
+                                </div>
+                                <div class="forum-post">
+                                    <p>100</p>
+                                </div>
+                                <div class="forum-reply">
+                                    <p>16-May-2014 by nwindham</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="forum-name"><a href="#">Test</a>
+                                </div>
+                                <div class="forum-topic">
+                                    <p>152</p>
+                                </div>
+                                <div class="forum-post">
+                                    <p>100</p>
+                                </div>
+                                <div class="forum-reply">
+                                    <p>16-May-2014 by nwindham</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--and forum -->
+
+                    <!--start download -->
+                    <div id="download" class="feature-media">
+                        <h2>Media Download</h2> {module_literature filter="all"} </div>
+                    <!--and download -->
+
+                    <!--start gallery -->
+                    <div id="gallery" class="feature-gallery">
+                        <h2>Gallery</h2>
+                        <div id="gallery"> {module_photogallery,15301,,,,420,420} {module_contentholder name="_Photogallery - Script"} </div>
+                    </div>
+                    <!--and gallery -->
+
+                    <!--start blog -->
+                    <div id="blog" class="feature-blog">
+                        <h2>Blog</h2>
+                        <div class="blog-list">
+
+                            {module_blogpostlist render="item" template="/Layouts/Custom/Blog.tpl" blogId="11089" rowCount="3"}
+
+                        </div>
+                    </div>
+                    <!--and blog -->
+
+                    <!--start pagination -->
+                    <div class="pagination_navigation text-left">
+                        <ul class="pagination" role="menubar" aria-label="Pagination">
+                            <li class="current"><a href="">1</a>
+                            </li>
+                            <li><a href="">2</a>
+                            </li>
+                            <li><a href="">3</a>
+                            </li>
+                            <li aria-disabled="true"><a href="">&euro;</a>
+                            </li>
+                            <li><a href="">15</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--and pagination -->
+
+                    <!--start store -->
+                    <div id="store" class="feature-store">
+                        <h2>store</h2>
+                        <div class="view-cart">
+                            <div>
+                                <p>You Are here: <a href="#">Store</a>
+                                </p>
+                            </div>
+                            <div class="right">
+                                <p>1Item(s),total: $40.00<a class="" href="#">View Cart</a>
+                                </p>
+                            </div>
+                            <ul class="row">
+                                <li class="medium-6 small-6 columns">
+                                    <div class="shop-block">
+                                        <div class="shop-images">
+                                            <a href="#"> <img src="/_assets/img/layer-7.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="shop-description">
+                                            <h6><a href="#">Cook Books</a></h6>
+                                            <p class="new-price"></p>
+                                            <p class="old-price"></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="medium-6 small-6 columns">
+                                    <div class="shop-block">
+                                        <div class="shop-images">
+                                            <a href="#"> <img src="/_assets/img/layer-7.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="shop-description">
+                                            <h6><a href="#">Clothing</a></h6>
+                                            <p class="new-price"></p>
+                                            <p class="old-price"></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="medium-6 small-6 columns">
+                                    <div class="shop-block">
+                                        <div class="shop-images">
+                                            <a href="#"> <img src="/_assets/img/layer-7.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="shop-description">
+                                            <h6><a href="#">Cook Books</a></h6>
+                                            <p class="new-price">$40</p>
+                                            <p class="old-price"></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="medium-6 small-6 columns">
+                                    <div class="shop-block">
+                                        <div class="shop-images">
+                                            <a href="#"> <img src="/_assets/img/layer-7.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="shop-description">
+                                            <h6><a href="#">TSHirt</a></h6>
+                                            <p class="new-price">$40</p>
+                                            <p class="old-price"></p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--and store -->
+
+                    <!--start pagination -->
+                    <div class="pagination_navigation text-left">
+                        <ul class="pagination" role="menubar" aria-label="Pagination">
+                            <li class="current"><a href="">1</a>
+                            </li>
+                            <li><a href="">2</a>
+                            </li>
+                            <li><a href="">3</a>
+                            </li>
+                            <li aria-disabled="true"><a href="">&euro;</a>
+                            </li>
+                            <li><a href="">15</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--and pagination -->
+
+                    <section class="button-scheme">
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <div class="button-class">
+                                    <ul>
+                                        <li> <a href="#" class="button  ">Primary</a> </li>
+                                        <li> <a href="#" class="button secondary ">secondary</a> </li>
+                                        <li> <a href="#" class="button ">hover </a> </li>
+                                        <li><a href="#" class=" button secondary ">Hover Sec</a> </li>
+                                        <li> <a href="#" class="button  large ">large btn</a> </li>
+                                        <li> <a href="#" class="button secondary large ">large btn</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!-- InstanceEndEditable --> </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"}
+<!--end section main--> 
+<!-- footer  --> 
+{% include"/_System/Includes/_footer.inc" %} 
+<!-- end footer  --> 
+{% include"/_System/Includes/scripts.inc" %} 
+<!-- include scripts -->
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

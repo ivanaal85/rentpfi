@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" --><title></title><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="inner-banner-bg"> <!--<img src="/_assets/img/banner-1.png" />-->
+  <div class="banner-caption">
+    <div class="row">
+      <h1></h1>
+    </div>
+  </div>
+</section>
+<section class="interior_content">
+  <div class="row">
+    <div class="large-12 columns"> <!-- TemplateBeginEditable name="ContentArea" -->{tag_pagecontent}<!-- TemplateEndEditable --> </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"}
+<!--end section main--> 
+<!-- footer  --> 
+{% include"/_System/Includes/_footer.inc" %} 
+<!-- end footer  --> 
+{% include"/_System/Includes/scripts.inc" %} 
+<!-- include scripts -->
+</body>
+</html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}

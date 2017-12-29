@@ -1,0 +1,12 @@
+<script src="/_assets/js/jquery-1.11.1.min.js"></script>
+<script>
+    //responsive photogallery
+$('table.photogalleryTable').replaceWith($('table.photogalleryTable').html()
+   .replace(/<tbody/gi, "<div id='photogalleryTable' class='row collapse'")
+   .replace(/<tr/gi, "<span")
+   .replace(/<\/tr>/gi, "</span>")
+   .replace(/<td class="photogalleryItem"/gi, "<div class='medium-3 small-6 left'")
+   .replace(/<\/td>/gi, "</div>")
+   .replace(/<\/tbody/gi, "<\/div")
+);
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% capture html -%}
+<html><!-- InstanceBegin template="/Templates/Default.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" --><title>Join - Create Account</title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+
+
+
+
+        
+    
+
+<!-- InstanceEndEditable -->
+{% include"/_System/Includes/head.inc" %}
+</head>
+<body>
+{% include"/_System/Includes/_header.inc" %} 
+<section class="inner-banner-bg"> {% comment -%}<!--<img src="/_assets/img/sitesearch_bg.jpg" />-->{% endcomment -%}
+  <div class="banner-caption">
+    <div class="row">
+      <h1></h1>
+    </div>
+  </div>
+</section>
+<section class="inner-main">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="small-12 left">
+        <div class="large-4 medium-6 small-11 left">
+          <div class="block-title">
+            <h1>{module_pagename}</h1>
+            <div class="line small"></div>
+          </div>
+        </div>
+      </div>
+      <!-- InstanceBeginEditable name="ContentArea" -->
+        
+        <div class="row">
+        <div class="columns medium-4">
+        <p class="clearfix">Create an account to take advantage of the features and benefits that make using our website faster and easier:</p>
+        <ul class="circle">
+            <!--<li>Save items to your wish list</li>
+            <li>Order tracking and order history</li>-->
+            <li>Save your account information</li>
+            <li>Receive email updates and offers</li>
+        </ul>
+        </div>
+        <div class="columns medium-8">
+        <div class="signupform">
+        {module_webform,63704}
+        </div>
+        </div>
+        </div>
+    
+
+<!-- InstanceEndEditable --> </div>
+  </div>
+</section>
+{module_contentholder, name="Newsletter {{region}} Section"} 
+{% comment -%}<!--end section main--> 
+<!-- footer  -->{% endcomment -%} 
+{% include"/_System/Includes/_footer.inc" %} 
+{% comment -%}<!-- end footer  -->{% endcomment -%} 
+{% include"/_System/Includes/scripts.inc" %} 
+{% comment -%}<!-- include scripts -->{% endcomment -%}
+</body>
+<!-- InstanceEnd --></html>
+{% endcapture -%}{{ html | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }}
