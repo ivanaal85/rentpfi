@@ -26,6 +26,9 @@
 
 
 
+
+
+
 <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
@@ -50,7 +53,12 @@
         </div>
       </div>
       <!-- InstanceBeginEditable name="ContentArea" -->
+{% if {{region}} == "RentPFI" -%}
+{module_contentholder, name="Our Property Managers Marin"}
+{module_contentholder, name="Our Property Managers Sonoma"}
+{% else -%}        
 {module_contentholder, name="Our Property Managers {{region}}"}
+{% endif -%}
 
 <!-- InstanceEndEditable --> </div>
   </div>
