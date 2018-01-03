@@ -52,17 +52,36 @@
           </div>
           <div class="search_block search-custom"> {module_webapps id="Apartment Listings {{region}}" filter="all" collection="search" template=""}
             {% comment -%}<!--Get unique locations for the dropdown search-->{% endcomment -%}
-            {% assign theLocations = search.items | map:"Property Location" | join:"," | split:"," -%} 
+            {% assign city = '' -%}  
+            {% assign array = '' -%}
+            {% assign uniqueLocations = "" -%}  
+            {% for listing in search.items -%} 
+            {module_webapps id="Apartment Listings {{region}}" filter="item" itemId="{{listing.['property_id']}}" render="collection" collection="property" template=""}
+
+            {% for property in property.items -%}
+
+            {% assign city = {{property.['city']}} | strip -%}
+            {% assign array = array | append:"," | append:city -%}
+            {% unless uniqueLocations contains '{{city}}' -%}
+            {% assign uniqueLocations = uniqueLocations | append:"," | append:city -%}
+            {% endunless -%}  
+            {% assign theLocations = property.items | map:"city" | join:"," | split:"," -%} 
             {% assign theLocations = theLocations | sort -%} 
+            {% endfor -%}
+            {% endfor -%}
+            {% assign uniqueLocations = uniqueLocations | remove_first:"," | split:"," -%}  
+
+
             {% comment -%}<!--Remove any Duplicates from the Array-->{% endcomment -%}
-            {% assign uniqueLocations = "" -%}
-            {% for item in theLocations -%}
-            {% assign theitem = item | strip -%}
-            {% unless uniqueLocations contains theitem -%}
-            {% capture uniqueLocations -%}{{ uniqueLocations }},{{ theitem }}{% endcapture -%}
+            {% assign uniqueCities = "" -%}
+            {% for item in uniqueLocations -%}
+            {% assign thecity= item -%}
+            {% unless uniqueCities contains thecity -%}
+            {% capture uniqueCities -%}{{ uniqueCities }},{{ thecity }}{% endcapture -%}  
             {% endunless -%}
             {% endfor -%}	 
-            {% assign uniqueLocations = uniqueLocations | remove_first:"," | split:"," -%}
+            {% assign uniqueCities = uniqueCities | remove_first:"," | split:"," -%}
+            {% assign uniqueLocations = uniqueCities -%} 
 
             {% comment -%}<!--Get unique neighborhoods for the dropdown search-->{% endcomment -%}
             {% assign theNeighborhoods = search.items | map:"Neighborhood" | join:"," | split:"," -%} 
