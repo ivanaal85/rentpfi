@@ -156,7 +156,7 @@
   <div class="large-6 medium-8 small-12 left">
     <div class="block-title">
       <h3>{{listing.['listing title']}}</h3>
-      <span>{{listing.['address']}}</span>
+      <span>{{property.['address'] | rstrip}}, {{property.['city'] | strip_html | rstrip}}, {{property.['zip'] | rstrip}}</span>
       <div class="line small"></div>
     </div>
   </div>
@@ -215,13 +215,7 @@
               <li>
                 <div class="small-5 left"><span>Address</span></div>
                 <div class="small-7 right">
-                  <h6>{{listing.['address']}}</h6>
-                </div>
-              </li>
-              <li>
-                <div class="small-5 left"><span>City</span></div>
-                <div class="small-7 right">
-                  <h6>{{listing.['property location']}}</h6>
+                  <h6>{{property.['address'] | rstrip}}, {{property.['city'] | strip_html | rstrip}}, {{property.['zip'] | rstrip}} </h6>
                 </div>
               </li>
               {% if listing.['neighborhood'] != '' -%}
