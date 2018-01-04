@@ -1,6 +1,6 @@
 {% capture script -%}
 function searchResultsUpdate() {
-$(".search-msg .loc").html( $("#CAT_Custom_13").val() );
+$(".search-msg .loc").html( $("#CAT_Custom_48").val() );
 $(".search-msg .neighborhood").html( $("#CAT_Custom_15").val() );
 $(".search-msg .type").html( $("#CAT_Custom_11").val() );
 var bedNum = $("#CAT_Custom_8_Min").val();
@@ -63,7 +63,7 @@ $(document).ready(function() {
 {% comment -%}If parameters were passed from another page update this pages search fields before submitting the form{% endcomment -%}
 {% if globals.get.loc and globals.get.loc != "" -%}
 var passedLocation = {{globals.get.loc | json}};
-$('#CAT_Custom_13').val(passedLocation);
+$('#CAT_Custom_48').val(passedLocation);
 {% endif -%}
 {% if globals.get.nhd and globals.get.nhd != "" -%}
 var passedNeighborhood = {{globals.get.nhd | json}};

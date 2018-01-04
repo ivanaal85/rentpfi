@@ -32,6 +32,9 @@
 
 
 
+
+
+
 <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
@@ -52,36 +55,17 @@
           </div>
           <div class="search_block search-custom"> {module_webapps id="Apartment Listings {{region}}" filter="all" collection="search" template=""}
             {% comment -%}<!--Get unique locations for the dropdown search-->{% endcomment -%}
-            {% assign city = '' -%}  
-            {% assign array = '' -%}
-            {% assign uniqueLocations = "" -%}  
-            {% for listing in search.items -%} 
-            {module_webapps id="Apartment Listings {{region}}" filter="item" itemId="{{listing.['property_id']}}" render="collection" collection="property" template=""}
-
-            {% for property in property.items -%}
-
-            {% assign city = {{property.['city']}} | strip_html | strip -%}
-            {% assign array = array | append:"," | append:city -%}
-            {% unless uniqueLocations contains '{{city}}' -%}
-            {% assign uniqueLocations = uniqueLocations | append:"," | append:city -%}
-            {% endunless -%}  
-            {% assign theLocations = property.items | map:"city" | join:"," | split:"," -%} 
+            {% assign theLocations = search.items | map:"Property Location" | join:"," | split:"," -%} 
             {% assign theLocations = theLocations | sort -%} 
-            {% endfor -%}
-            {% endfor -%}
-            {% assign uniqueLocations = uniqueLocations | remove_first:"," | split:"," -%}  
-
-
             {% comment -%}<!--Remove any Duplicates from the Array-->{% endcomment -%}
-            {% assign uniqueCities = "" -%}
-            {% for item in uniqueLocations -%}
-            {% assign thecity= item -%}
-            {% unless uniqueCities contains thecity -%}
-            {% capture uniqueCities -%}{{ uniqueCities }},{{ thecity }}{% endcapture -%}  
+            {% assign uniqueLocations = "" -%}
+            {% for item in theLocations -%}
+            {% assign theitem = item | strip -%}
+            {% unless uniqueLocations contains theitem -%}
+            {% capture uniqueLocations -%}{{ uniqueLocations }},{{ theitem }}{% endcapture -%}
             {% endunless -%}
             {% endfor -%}	 
-            {% assign uniqueCities = uniqueCities | remove_first:"," | split:"," -%}
-            {% assign uniqueLocations = uniqueCities -%} 
+            {% assign uniqueLocations = uniqueLocations | remove_first:"," | split:"," -%}
 
             {% comment -%}<!--Get unique neighborhoods for the dropdown search-->{% endcomment -%}
             {% assign theNeighborhoods = search.items | map:"Neighborhood" | join:"," | split:"," -%} 
@@ -154,7 +138,7 @@
             {% endif -%}   
             <form id="property-search" name="catcustomcontentform{{FormID}}" method="post" onsubmit="return checkWholeForm{{FormID}}(this)" action="/Default.aspx?CCID={{CCID}}&FID={{FID}}&ExcludeBoolFalse=True&ID=/search-results">
               <div class="small-12 column">
-                <select name="CAT_Custom_13" id="CAT_Custom_13">
+                <select name="CAT_Custom_48" id="CAT_Custom_48">
                   <option value=" ">Locations</option>
 
                         {% for item in uniqueLocations %}
@@ -292,9 +276,10 @@
       </div>
     </div>
   </div>
+
 <!-- InstanceEndEditable --> </section>
 {% include"/_System/Includes/_footer.inc" %} 
 {% include"/_System/Includes/scripts.inc" %}
 </body>
 <!-- InstanceEnd --></html>
-{% endcapture -%}{{ templateHtml2 | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }} 
+{% endcapture -%}{{ templateHtml | strip_newlines | replace:'	','' | replace:'    ','' | replace:'  ',' ' }} 
