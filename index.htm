@@ -230,8 +230,10 @@
 <section class="site_searchbox">
   <div class="row">
     <div class="large-12 columns">
-      <div class="searchbox_content search-custom"> 
-        
+      <div class="searchbox_content search-custom">  
+       
+{% comment -%} <!--I managed with the code below to get unique locations for the dropdown search from the listings web app properties data source field.  However, filtering is still not working.  I tried the suggestion here: https://forums.adobe.com/thread/2156675 to use the web at input form field for the data source in the search form.  Doesn't seem possible to filter by a second level field.  Also, this branch does not reflect changes still needed for filtering to work.  On the form the select name value needs to match the web app search form value for that same field-->{% endcomment -%}
+       
         <!--search box here-->
         {% comment -%} <!--dev copy for testing search form using data sources-->{% endcomment -%} 
         {module_webapps id="Apartment Listings {{region}}" filter="all" collection="search" template=""}
