@@ -60,7 +60,7 @@
 
             {% for property in property.items -%}
 
-            {% assign city = {{property.['city']}} | strip -%}
+            {% assign city = {{property.['city']}} | strip_html | strip -%}
             {% assign array = array | append:"," | append:city -%}
             {% unless uniqueLocations contains '{{city}}' -%}
             {% assign uniqueLocations = uniqueLocations | append:"," | append:city -%}
