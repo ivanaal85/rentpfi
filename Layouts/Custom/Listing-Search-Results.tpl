@@ -16,7 +16,7 @@
     {% capture propertyName -%}{{property.name}}{%endcapture-%}
     {% for floorplan in floorPlans.items %}
 
-    {% comment -%}<!--------------Assign listing image variables--------------->{% endcomment -%}
+    {% comment -%}<!--------------Assign listing variables--------------->{% endcomment -%}
     {% if listing.['use alternate default listing image if available'] == "Floor Plan" -%}
 
         {% if floorplan.['3d floor plan square'] != '' -%}
@@ -87,7 +87,20 @@
         {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
         {% assign class = 'class="default-recent-img"' -%}
     {% endif -%}
-{% comment -%}<!--end variable definitions for listing image------>{% endcomment -%}  
+
+{% comment -%}<!--------------Assign listing description variables--------------->{% endcomment -%}
+{% if listing.['use property small description'] == "checked" -%}
+        {% assign listingSmallDescription = {{property.['small description']}} -%}
+    {% else -%}
+        {% assign listingSmallDescription = {{listing.['small description']}} -%}
+{% endif -%}
+{% if listing.['use property regular description'] == "checked" -%}
+        {% assign listingRegularDescription = {{property.description}} -%}
+    {% else -%}
+        {% assign listingRegularDescription = {{listing.description']}} -%}
+{% endif -%}
+
+{% comment -%}<!--end variable definitions for listing------>{% endcomment -%}  
 <div class="medium-12 columns">
     <div class="properti-block reduced{tag_price reduced}">
         <div class="large-5 medium-11 small-12 left">
@@ -103,7 +116,7 @@
             <div class="properti-desc">
                 <h4><a href="{{listing.['url']}}">{{listing.['listing title']}}</a></h4>
                 <h5>{{propertyName}}</h5>
-                <p>{{listing.['small description']  | truncatewords: 25, '...'}}</p>
+                <p>{{listingSmallDescription  | truncatewords: 25, '...'}}</p>
             </div>
             <div class="property_facility">
                 <div class="pro_sqfoot"><span><img src="/_assets/img/sqr-foot-icon1.png">{{listing.['square foot area'] | remove: ".00" }} Sqft</span></div>

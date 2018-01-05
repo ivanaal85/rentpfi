@@ -59,7 +59,19 @@
                 {% assign sliderImage = {{property.['default slider image']}} -%}
 
                 {% endif -%}
-            {% comment -%}<!--end slider image variables-->{% endcomment -%}  
+            {% comment -%}<!--end slider image variables-->{% endcomment -%}
+                
+                {% comment -%}<!--------------Assign listing description variables--------------->{% endcomment -%}
+                {% if listing.['use property small description'] == "checked" -%}
+                        {% assign listingSmallDescription = {{property.['small description']}} -%}
+                    {% else -%}
+                        {% assign listingSmallDescription = {{listing.['small description']}} -%}
+                {% endif -%}
+                {% if listing.['use property regular description'] == "checked" -%}
+                        {% assign listingRegularDescription = {{property.description}} -%}
+                    {% else -%}
+                        {% assign listingRegularDescription = {{listing.description']}} -%}
+                {% endif -%}
 
             {% if {{sliderImage}} != '' -%}    
             <li class="hero-content"> <img src="{{sliderImage}}?Action=thumbnail&Width=1903&Height=793&algorithim=fill_proportional">
@@ -72,23 +84,23 @@
                               {% if listing.['Bonus Description'] != '' -%}
                               {% if listing.['Bonus Expiration Date'] > globals.site.dateNow  -%}
                               <p class="lead">{{propertyName}} - {{ listing.['Bonus Description'] | truncatewords: 20, '...' }}!</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 10, '...' }}</p>
+                              <p>{{ listingSmallDescription | truncatewords: 10, '...' }}</p>
                               {% else -%}
                               <p class="lead">{{propertyName}}</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 20, '...' }}</p>
+                              <p>{{ listingSmallDescription | truncatewords: 20, '...' }}</p>
                               {% endif -%}
                               {% else -%}
                               {% if listing.['Bonus Amount'] > 0 -%}
                               {% if listing.['Bonus Expiration Date'] > globals.site.dateNow  -%}
                               <p class="lead">{{propertyName}} - {{ listing.['Bonus Amount'] | money | remove: '.00' }} Bonus! Click Button Below For More Details...</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 20, '...' }}</p>
+                              <p>{{ listingSmallDescription | truncatewords: 20, '...' }}</p>
                               {% else -%}
                               <p class="lead">{{propertyName}}</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 20, '...' }}</p>
+                              <p>{{ listingSmallDescription | truncatewords: 20, '...' }}</p>
                               {% endif -%}
                               {% else -%}
                               <p class="lead">{{propertyName}}</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 20, '...' }}</p>
+                              <p>{{ listingSmallDescription| truncatewords: 20, '...' }}</p>
                               {% endif -%}
                               {% endif -%}
                               <h6>{{listing.['Price'] | money | remove: '.00'}}</h6> 
@@ -444,7 +456,7 @@
             {% capture propertyName -%}{{property.name}}{%endcapture-%}
         {% for floorplan in floorPlans.items %}
 
-        {% comment -%}<!--------------Assign listing image variables--------------->{% endcomment -%}
+        {% comment -%}<!--------------Assign listing variables--------------->{% endcomment -%}
     {% if listing.['use alternate default listing image if available'] == "Floor Plan" -%}
 
         {% if floorplan.['3d floor plan square'] != '' -%}
@@ -513,7 +525,19 @@
         {% assign fill = "?Action=thumbnail&Width=292&Height=271&algorithim=fill_proportional" -%}
         {% assign class = 'class="default-recent-img"' -%}
     {% endif -%}
-{% comment -%}<!--end variable definitions for listing image------>{% endcomment -%}    
+    
+    {% comment -%}<!--------------Assign listing description variables--------------->{% endcomment -%}
+    {% if listing.['use property small description'] == "checked" -%}
+            {% assign listingSmallDescription = {{property.['small description']}} -%}
+        {% else -%}
+            {% assign listingSmallDescription = {{listing.['small description']}} -%}
+    {% endif -%}
+    {% if listing.['use property regular description'] == "checked" -%}
+            {% assign listingRegularDescription = {{property.description}} -%}
+        {% else -%}
+            {% assign listingRegularDescription = {{listing.description']}} -%}
+    {% endif -%}        
+{% comment -%}<!--end variable definitions for listing------>{% endcomment -%}    
           <li> 
             <div class="medium-12 left recent_group">
               <div class="recent-pro-block">
@@ -535,7 +559,7 @@
                   <div class="recent-pro-desc">
                     <h5><a href="{{listing.['url']}}">{{listing.['listing title']}}</a></h5>
                       <p class="lead">{{propertyName}}</p>
-                    <p>{{listing.['small description'] | truncatewords: 20}}</p>
+                    <p>{{listingSmallDescription | truncatewords: 20}}</p>
                   </div>
                   <div class="properti-footer">
                     <div class="pro_manth"><span>{{listing.['price'] | number: "C0"}}</span></div>
@@ -686,7 +710,18 @@
                                 {% assign class1 = '' -%}   
 
                         {% endif -%}
-
+                      
+                    {% comment -%}<!--------------Assign listing description variables--------------->{% endcomment -%}
+                    {% if listing.['use property small description'] == "checked" -%}
+                            {% assign listingSmallDescription = {{property.['small description']}} -%}
+                        {% else -%}
+                            {% assign listingSmallDescription = {{listing.['small description']}} -%}
+                    {% endif -%}
+                    {% if listing.['use property regular description'] == "checked" -%}
+                            {% assign listingRegularDescription = {{property.description}} -%}
+                        {% else -%}
+                            {% assign listingRegularDescription = {{listing.description']}} -%}
+                    {% endif -%}
             {% comment -%}<!-------------------End Assign property gallery image variables-------------------------->{% endcomment -%}
 
                       <a href="{{listing.['url']}}"><img {{class1}} src="{{defaultGalleryImage}}{{fill}}"></a>
@@ -710,7 +745,7 @@
                   <div class="featured-desc">
                     <h3><a href="{{listing.['url']}}">{{listing.['listing title']}}</a></h3>
                       <h5>{{propertyName}}</h5>
-                    <p>{{listing.['small description']}}</p>
+                    <p>{{listingSmallDescription}}</p>
                     <div class="property_facility">
                       <div class="pro_sqfoot"><span><img src="/_assets/img/sqr-foot-icon1.png">{{listing.['square foot area'] | number: "N0"}} sqft</span></div>
                       <div class="pro_bedroom"><span><img src="/_assets/img/bedroom-icon1.png">{{listing.['bedrooms'] | number: "N0"}}</span></div>

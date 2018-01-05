@@ -42,7 +42,19 @@
                 {% assign sliderImage = {{property.['default slider image']}} -%}
 
                 {% endif -%}
-            {% comment -%}<!--end slider image variables-->{% endcomment -%}  
+            {% comment -%}<!--end slider image variables-->{% endcomment -%}
+                
+                {% comment -%}<!--------------Assign listing description variables--------------->{% endcomment -%}
+                {% if listing.['use property small description'] == "checked" -%}
+                        {% assign listingSmallDescription = {{property.['small description']}} -%}
+                    {% else -%}
+                        {% assign listingSmallDescription = {{listing.['small description']}} -%}
+                {% endif -%}
+                {% if listing.['use property regular description'] == "checked" -%}
+                        {% assign listingRegularDescription = {{property.description}} -%}
+                    {% else -%}
+                        {% assign listingRegularDescription = {{listing.description']}} -%}
+                {% endif -%}
 
             {% if {{sliderImage}} != '' -%}    
             <li class="hero-content"> <img src="{{sliderImage}}?Action=thumbnail&Width=1903&Height=793&algorithim=fill_proportional">
@@ -55,23 +67,23 @@
                               {% if listing.['Bonus Description'] != '' -%}
                               {% if listing.['Bonus Expiration Date'] > globals.site.dateNow  -%}
                               <p class="lead">{{propertyName}} - {{ listing.['Bonus Description'] | truncatewords: 20, '...' }}!</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 10, '...' }}</p>
+                              <p>{{ listingSmallDescription | truncatewords: 10, '...' }}</p>
                               {% else -%}
                               <p class="lead">{{propertyName}}</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 20, '...' }}</p>
+                              <p>{{ listingSmallDescription | truncatewords: 20, '...' }}</p>
                               {% endif -%}
                               {% else -%}
                               {% if listing.['Bonus Amount'] > 0 -%}
                               {% if listing.['Bonus Expiration Date'] > globals.site.dateNow  -%}
                               <p class="lead">{{propertyName}} - {{ listing.['Bonus Amount'] | money | remove: '.00' }} Bonus! Click Button Below For More Details...</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 20, '...' }}</p>
+                              <p>{{ listingSmallDescription | truncatewords: 20, '...' }}</p>
                               {% else -%}
                               <p class="lead">{{propertyName}}</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 20, '...' }}</p>
+                              <p>{{ listingSmallDescription | truncatewords: 20, '...' }}</p>
                               {% endif -%}
                               {% else -%}
                               <p class="lead">{{propertyName}}</p>
-                              <p>{{ listing.['Small Description'] | truncatewords: 20, '...' }}</p>
+                              <p>{{ listingSmallDescription| truncatewords: 20, '...' }}</p>
                               {% endif -%}
                               {% endif -%}
                               <h6>{{listing.['Price'] | money | remove: '.00'}}</h6> 
