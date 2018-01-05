@@ -17,7 +17,7 @@
     <ul class="hero-slider">
             {module_webapps collection="listings" render="collection" id="Apartment Listings {{region}}" filter="all" template=""}
             {% comment -%}<!--listing for loop-------> {% endcomment -%}
-            {% for listing in listings.items | limit:6 %}
+            {% for listing in listings.items -%}
             {% comment -%}<!------------------------Call Property Web App-------------------------------------------> {% endcomment -%}
             {module_webapps collection="listingProp" render="collection" id="Apartment Listings {{region}}" filter="item" itemID="{{listing.['property_id']}}" template=""}    
             {% comment -%}<!--Start for loops to use above web app items multiple times on page-->{% endcomment -%}

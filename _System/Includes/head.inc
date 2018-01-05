@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
         </noscript>
         <link href="/_assets/css/all.css" rel="stylesheet">	
-<!--        <link href="/_assets/css/all.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">	-->
+{% comment -%}<!--        <link href="/_assets/css/all.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">	-->{% endcomment -%}
         <script src="//cdn.jsdelivr.net/gh/jquery/jquery@1.11.1/dist/jquery.min.js"></script>
         <script src="//cdn.jsdelivr.net/gh/GREGG-CHRISTOFFERSON/modernizr@v2.8.3/modernizr.min.js" async></script>
 	<!--[if lt IE 9]>
