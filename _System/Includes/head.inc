@@ -22,7 +22,16 @@
 {% include"/_System/Includes/global-variables.inc" %}
 {% include"/_System/Includes/regions.inc" %}     
 {module_contentholder, name="Google Analytics {{region}}"}
-
+<script>
+		  function(response) {
+    if (response && !response.error_message) {
+      alert('Posting completed.');
+    } else {
+      alert('Error while posting.');
+    }
+  }
+);
+</script>
 
 
 

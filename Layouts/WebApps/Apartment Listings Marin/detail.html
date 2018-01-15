@@ -1,3 +1,4 @@
+<head>
 {% comment -%}<!-------------------------------Production Copy------------------------------------------------>
 <!------------------------Call Marin Listings Web App This Item------------------------------------------->{% endcomment -%}
 {module_webapps collection="listings" render="collection" id="Apartment Listings Marin" filter="item" itemID="{tag_itemid}" template=""} 
@@ -152,6 +153,47 @@
 {% endif -%}
 
 {% comment -%}<!--end variable definitions for listing image------>{% endcomment -%}
+<meta property="og:url" content="http://{module_siteURL}{{listing.url}}" />
+<meta property="og:type" content="article" />
+{% if listing.['video id'] != '' -%}
+<meta property="og:video" content="https://www.youtube.com/embed/{{listing.['video id']}}" />
+<meta property="og:video:secure_url" content="https://www.youtube.com/embed/{{listing.['video id']}}" />
+{% endif -%}
+<meta property="og:title" content="{{listing.['listing title']}}" />
+{% if listing.['video id'] != ''  -%}
+<meta property="og:image" content="https://i.ytimg.com/vi_webp/{{listing.['video id']}}/maxresdefault.webp"/>
+{% elseif listing.['listing image'] != '' -%} 
+<meta property="og:image" content="http://{module_siteURL}{{listing.['listing image']}}"/> 
+{% else -%}
+<meta property="og:image" content="http://{module_siteURL}{{defaultGalleryImage}}"/>     
+{% endif -%}
+<meta property="og:image:width" content="292" />
+<meta property="og:image:height" content="272" />
+{% if listing.['small description'] != '' -%}
+<meta property="og:description" content="{{listing.['small description'] | truncate: 200}}" />
+{% else -%}
+<meta property="og:description" content="{{listing.description | truncate: 200}}" />
+{% endif -%}
+<meta property="fb:app_id" content="558419337825654" />
+</head>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '558419337825654',
+      xfbml      : true,
+      version    : 'v2.11'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <div class="small-12 left">
   <div class="large-6 medium-8 small-12 left">
     <div class="block-title">
@@ -263,7 +305,8 @@
       </div>
       <div class="large-8 medium-6 columns">
         <h2>{{listing.['listing title']}}</h2>
-        {{listing.['description']}} </div>
+        {{listing.['description']}} 
+        </div>
     </div>
   </div>
   <div class="property-features">

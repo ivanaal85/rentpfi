@@ -5,7 +5,6 @@
 {module_webapps collection="listings" render="collection" id="Apartment Listings {{region}}" filter="item" itemID="{tag_itemid}" template=""} 
     {% comment -%}<!--listing for loop-------> {% endcomment -%}
     {% for listing in listings.items %}
-
     {% comment -%}<!----------------Call Property Web App------------------> {% endcomment -%}
     {module_webapps collection="listingProp" render="collection" id="Apartment Listings {{region}}" filter="item" itemID="{{listing.['property_id']}}" template=""}
     {% comment -%}<!-----------------Call Floor Plans Web App---------------------------->{% endcomment -%} 
@@ -100,7 +99,26 @@
         {% assign listingRegularDescription = {{listing.description']}} -%}
 {% endif -%}
 
-{% comment -%}<!--end variable definitions for listing------>{% endcomment -%}  
+{% comment -%}<!--end variable definitions for listing------>{% endcomment -%} 
+{% comment -%}<!--facebook share buttons-->{% endcomment -%}    
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '558419337825654',
+      xfbml      : true,
+      version    : 'v2.11'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <div class="medium-12 columns">
     <div class="properti-block reduced{tag_price reduced}">
         <div class="large-5 medium-11 small-12 left">
@@ -117,6 +135,38 @@
                 <h4><a href="{{listing.['url']}}">{{listing.['listing title']}}</a></h4>
                 <h5>{{propertyName}}</h5>
                 <p>{{listingSmallDescription  | truncatewords: 25, '...'}}</p>
+                <span class="social-share"> <a id="{{listing.name}}" href="javascript:void(0);"><em class="fa fa-facebook" aria-hidden="true"></em></a> <a class="customer share" href="javascript:void(0);" onClick="PopupCenter('https://twitter.com/intent/tweet?url={module_siteUrl,true,true}{{listing.url | url_param_escape}}','','500','250')"><em class="fa fa-twitter" aria-hidden="true"></em></a> <a class="customer share" href="javascript:void(0);" target="_blank" onClick="PopupCenter('https://www.linkedin.com/shareArticle?mini=true&url=http://{module_siteUrl}{{listing.url}}')"><em class="fa fa-linkedin" aria-hidden="true"></em></a> <a href="mailto:?subject=I wanted you to see this apartment for rent - {{listing.['listing title']}}&amp;body=Check out this apartment for rent http://{module_siteUrl}{{listing.url}}"><em class="fa fa-envelope" aria-hidden="true"></em></a> 
+                <script>
+                var randomID = Math.floor(Math.random() * 1000000000001);
+                document.getElementById('{{listing.name}}').setAttribute('id', randomID);
+                document.getElementById(randomID).onclick = function() {
+                  FB.ui({
+                    method: 'share',
+                    display: 'popup',
+                    href: '{module_siteUrl}{{listing.url}}',
+                  }, function(response){});
+                }
+
+
+                function PopupCenter(url, title, w, h) {
+                    // Fixes dual-screen position                         Most browsers      Firefox
+                    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                    var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                    var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                    var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                    var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                    // Puts focus on the newWindow
+                    if (window.focus) {
+                        newWindow.focus();
+                    }
+                }
+                    </script> 
+                </span>
             </div>
             <div class="property_facility">
                 <div class="pro_sqfoot"><span><img src="/_assets/img/sqr-foot-icon1.png">{{listing.['square foot area'] | remove: ".00" }} Sqft</span></div>

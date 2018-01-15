@@ -7,7 +7,8 @@
 {% include"/_System/Includes/global-variables.inc" %} 
 <meta name="google-site-verification" content="L3_azK4TRh8TFmWW7vvorLbl3tgDFZFHF2TNjG4eang" />	
 </head>
-<body> 
+<body>
+{% comment -%}<!--facebook share buttons-->{% endcomment -%}    
  {% comment -%}<!--must update regions, _header and _footer anytime a new domain is added to the site-->{% endcomment -%}
 {% include"/_System/Includes/_header.inc" %}  
 <!-- //header.row -->

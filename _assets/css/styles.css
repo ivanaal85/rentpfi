@@ -25,7 +25,8 @@ h6{font-size:18px;}
 .left{float:left}
 .right{float:right}
 ul{margin:0px;}
-a{color:#265136;}
+a{color:#265136;} 
+.social-share a {color: #989898; margin-right: 15px; font-size: 17px;} 
 .featured-desc h3 a:hover{color: #ccaf67;} 
 
 a img { -webkit-transition: opacity 300ms ease-out; -moz-transition: opacity 300ms ease-out; transition: opacity 300ms ease-out; }
@@ -575,6 +576,7 @@ footer p{font-size:13.16px; color:#fff;font-weight:400;line-height:20.67px}
 
 .properti-description h2{color:#525252;margin:10px 0 30px 0;}
 .properti-description p{font-size:17.03px;color:#9e9f9f;line-height:31.39px;}
+.properti-description .social-share a {font-size: 17px;}
 
 .property-features{width:100%;float:left;text-align:center;}
 .property-features h3{color:#525252;font-weight:400;text-align:left;}
