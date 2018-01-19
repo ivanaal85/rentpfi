@@ -1,3 +1,4 @@
+{module_contentholder, name="Google Tag Manager"}
 <section class="search-container">
 <div class="row">
 <div class="medium-12 columns">

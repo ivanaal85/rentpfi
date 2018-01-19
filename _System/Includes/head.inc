@@ -1,4 +1,13 @@
-	<meta charset="utf-8" />
+{% comment -%}<!-- Google Tag Manager -->{% endcomment -%}
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W82BQQD');</script>
+{% comment -%}<!-- End Google Tag Manager -->{% endcomment -%}
+{% include"/_System/Includes/regions.inc" %}     
+{module_contentholder, name="Google Analytics {{region}}"}
+<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 		<title>{module_pagename}</title>
 {module_webapps id="30263" filter="item" itemId="7616221" resultsPerPage="1" template="" collection="companyInfo"}
@@ -20,8 +29,6 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
 	<![endif]-->      
 {% include"/_System/Includes/global-variables.inc" %}
-{% include"/_System/Includes/regions.inc" %}     
-{module_contentholder, name="Google Analytics {{region}}"}
 <script>
 		  function(response) {
     if (response && !response.error_message) {
