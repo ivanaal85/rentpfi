@@ -1,4 +1,31 @@
+{% include"/_System/Includes/regions.inc" %} 
+{% comment -%}<!--assign blog Variables-->{% endcomment -%}
+{%capture blogURL-%}{tag_itemurl_nolink}{%endcapture-%}
+{% capture postBody -%}{tag_blogpostbody}{% endcapture -%}
+{% comment -%}<!--assign Facebook App ID Variables for regions-->{% endcomment -%}
+{% if {{region}} == 'Marin' -%}
+{% assign fbapp_id = "558419337825654" -%}
+{% elseif {{region}} == 'Sonoma' -%}
+{% assign fbapp_id = "567762963572517" -%}
+{% else -%}
+{% assign fbapp_id = "163420730963523" -%}
+{% endif -%}
+<head>
+<meta property="og:title" content="{tag_blogposttitle_nolink}" />
+{% if '{tag_blogpostmetadescription}' == '' -%}
+{% capture postMetaDesc -%}{tag_blogposttitle_nolink} {% endcapture -%}   
+{% else -%}
+{% capture postMetaDesc -%}{tag_blogpostmetadescription} {% endcapture -%}    
+<meta property="og:description" content="{{postMetaDesc | Truncate: 160}}" />
+<meta name="description" content="{{postMetaDesc | Truncate: 160}}" />    
+{% endif -%}    
+<meta property="og:image" content="{module_defaulturl}{tag_blogpostfeaturedimageurl}" />
+<meta property="og:url" content="{module_pageaddress}" />  
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="{{fbapp_id}}" />    
+</head>
 {% assign myDate = date %}
+
 {% include "/bc-widgets/friendly-date/init.liquid" -%}
 <div class="large-11 medium-12 left">
     <div class="block-title">
@@ -14,14 +41,25 @@
         <div class="post-meta">
             <ul>
                 {module_data resource="blogposts" version="v3" fields="tag" subresource="tags" resourceId="{tag_blogpostid}" skip="0" limit="10" order="objectType" collection="postTags"}
-                <li><em class="fa fa-pencil"></em><span> {% for item in postTags.items -%} <a href="/media/tag/{{item.tag.tagName}}">{{item.tag.tagName}}</a> {% endfor -%} </span> </li>
+                {%capture hashtags-%}{% for item in postTags.items -%}{{item.tag.tagName | remove:" "}},{% endfor -%}{%endcapture-%}
+                <li><em class="fa fa-pencil"></em><span> {% for item in postTags.items -%} <a href='tag/{{item.tag.tagName}}'>{{item.tag.tagName}}&nbsp;&nbsp;/&nbsp;&nbsp;</a> {% endfor -%} </span> </li>
                 <li><em class="fa fa-calendar"></em>{tag_blogpostday}-{tag_blogpostmonth}-{tag_blogpostyear}</li>
                 <li><em class="fa fa-comment"></em><a href="{tag_permalinkonly}#comments">{tag_commentcount} Comments </a></li>
                 <li><em class="fa fa-user"></em>{tag_blogpostauthor}</li>
                 <li><em class="fa fa-calendar-o"></em> Posted {{friendlyDate}} ago</li>
             </ul>
         </div>
-        <div class="post-desc"> {tag_blogpostbody} </div>
+        <div class="post-desc"> 
+            {{postBody | strip }}
+            <p>
+                <span class="social-share"> 
+                   <a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=http://{module_siteUrl}{{blogURL}}" title="Facebook share" target="_blank"><em class="fa fa-facebook" aria-hidden="true"></em></a> 
+                   <a class="twitter customer share" href="https://twitter.com/intent/tweet?url={module_siteUrl,true,true}{{blogURL | url_param_escape}}&hashtags={{hashtags}}" title="Twitter share" target="_blank"><em class="fa fa-twitter" aria-hidden="true"></em></a> 
+                   <a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=http://{module_siteUrl}{{blogURL}}" target="_blank" title="linkedin Share"><em class="fa fa-linkedin" aria-hidden="true"></em></a> 
+                   <a href="mailto:?subject=I wanted you to see this blog post - {tag_blogposttitle_nolink}&amp;body=Check out this blog post http://{module_siteUrl}{{blogURL}}"><em class="fa fa-envelope" aria-hidden="true"></em></a>
+              </span>
+            </p>
+        </div>
         <div class="comment_listview">
             <div class="small-12 left">
                 <div class="large-4 medium-5 small-6 left">
@@ -31,7 +69,7 @@
                     </div>
                 </div>
             </div>  
-            <ul> {tag_commentspaged}</ul>
+            <ul> {tag_commentspaged} </ul>
         </div>
         
         <div class="comment-form">

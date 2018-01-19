@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 {% capture html -%}
-<html><!-- InstanceBegin template="/Templates/Default.dwt" codeOutsideHTMLIsLocked="false" -->
+<html><!-- InstanceBegin template="/Templates/Account.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
-<!-- InstanceBeginEditable name="doctitle" --><title>Join - Create Account</title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
-
-
+<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
 
 
         
-    
 
+
+
+
+        <meta name="robots" content="noindex" />
+    
 <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
 <body>
 {% include"/_System/Includes/_header.inc" %} 
-<section class="inner-banner-bg"> {% comment -%}<!--<img src="/_assets/img/sitesearch_bg.jpg" />-->{% endcomment -%}
+<section class="inner-banner"> <img src="/_assets/img/banner-1.png?Action=thumbnail&Width=1903&Height=895&algorithim=fill_proportional" />
   <div class="banner-caption">
-    <div class="row">
+    <div class="row"> 
       <h1></h1>
     </div>
   </div>
@@ -33,27 +35,19 @@
           </div>
         </div>
       </div>
-      <!-- InstanceBeginEditable name="ContentArea" -->
-        
-        <div class="row">
-        <div class="columns medium-4">
-        <p class="clearfix">Create an account to take advantage of the features and benefits that make using our website faster and easier:</p>
-        <ul class="circle">
-            <li>Save items to your wish list</li>
-            <li>Track your account history</li>
-            <li>Save your account information</li>
-            <li>Receive email updates and offers</li>
-        </ul>
+      <div class="row">
+        <div class="medium-3 columns"> {module_menu, version="2", menuId="1537645", moduleTemplateGroup="Aside"} 
+          {% comment -%}<!--end ul side-nav-->{% endcomment -%} 
         </div>
-         </div> 
-        <div class="columns medium-8">
-        <div class="signupform">
-        {module_webform,63704}
-        </div>
-        </div>
-          
+        <div class="medium-9  columns solutions-detail"> <!-- InstanceBeginEditable name="ContentArea" -->
+        <p class="lead">Keep track of your favorite apartments in one place!</p>
+        <hr /> {module_favorites,a,0,0}
 
+
+    
 <!-- InstanceEndEditable --> </div>
+      </div>
+    </div>
   </div>
 </section>
 {module_contentholder, name="Newsletter {{region}} Section"} 

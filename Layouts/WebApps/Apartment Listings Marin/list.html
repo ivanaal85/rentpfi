@@ -1,5 +1,4 @@
-{% comment -%}<!------------------------Call Marin Listings Web App This Item------------------------------------------->
-{% endcomment -%}
+{% comment -%}<!------------------------Call Marin Listings Web App This Item---------------------->{% endcomment -%}
 {module_webapps collection="listings" render="collection" id="Apartment Listings Marin" filter="item" itemID="{tag_itemid}" template=""} 
     {% comment -%}<!--listing for loop-------> {% endcomment -%}
     {% for listing in listings.items %}
@@ -100,6 +99,13 @@
             <div class="properti-desc">
                 <h4><a href="{{listing.['url']}}">{{listing.['listing title']}}</a></h4>
                 <p>{{listing.['small description']  | truncatewords: 25, '...'}}</p>
+                    <span class="social-share"> 
+                       <a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=http://{module_siteUrl}{{listing.url}}" title="Facebook share" target="_blank"><em class="fa fa-facebook" aria-hidden="true"></em></a> 
+                       <a class="twitter customer share" href="https://twitter.com/intent/tweet?url={module_siteUrl,true,true}{{listing.url | url_param_escape}}&hashtags={{listing.['hashtags']}}" title="Twitter share" target="_blank"><em class="fa fa-twitter" aria-hidden="true"></em></a> 
+                       <a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=http://{module_siteUrl}{{listing.url}}" target="_blank" title="Linkedin Share"><em class="fa fa-linkedin" aria-hidden="true"></em></a> 
+                       <a href="mailto:?subject=I wanted you to see this apartment for rent - {{listing.['listing title']}}&amp;body=Check out this apartment for rent http://{module_siteUrl}{{listing.url}}" title="Email Share"><em class="fa fa-envelope" aria-hidden="true"></em></a>
+                       {tag_addtofavorites,<img alt="favorites icon" title="Add to Favorites" src="/_assets/img/favorites-icon.png" />,<img alt="favorites icon" title="Remove from Favorites" src="/_assets/img/remove-favorites-icon.png" />}
+                    </span>
             </div>
             <div class="property_facility">
                 <div class="pro_sqfoot"><span><img src="/_assets/img/sqr-foot-icon1.png">{{listing.['square foot area'] | remove: ".00" }} Sqft</span></div>

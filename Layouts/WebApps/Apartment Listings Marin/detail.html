@@ -3,8 +3,15 @@
 <!------------------------Call Marin Listings Web App This Item------------------------------------------->{% endcomment -%}
 {module_webapps collection="listings" render="collection" id="Apartment Listings Marin" filter="item" itemID="{tag_itemid}" template=""} 
 {% comment -%}<!--listing for loop-------> {% endcomment -%}
+<title>
+{% if {{this.['bonus description']}} != '' -%}
+    {% assign metaTitle = {{this.['bonus description']}} -%} 
+    {% else -%}
+    {% assign metaTitle = {{this.['listing title']}} -%} 
+    {% endif -%} 
+{{metaTitle | strip_html | truncate:70}} | {{globals.site.name}}
+</title>
 {% for listing in listings.items -%}
-
 {% comment -%}<!------------------------Call Property Web App-------------------------------------------> {% endcomment -%}
 {module_webapps collection="listingProp" render="collection" id="Apartment Listings Marin" filter="item" itemID="{{listing.['property_id']}}" template=""}
 {% comment -%}<!------------------------Call Floor Plans Web App------------------------------------------->{% endcomment -%} 
@@ -151,7 +158,12 @@
     {% else -%}
     {% assign defaultGalleryImage4 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
 {% endif -%}
-
+    
+{% if listing.['bonus description'] != '' -%}
+        {% assign listingTitle = {{listing.['bonus description'] | append: '!'}} -%}
+        {% else -%}
+        {% assign listingTitle = {{listing.['listing title']}} -%}
+{% endif -%}    
 {% comment -%}<!--end variable definitions for listing image------>{% endcomment -%}
 <meta property="og:url" content="http://{module_siteURL}{{listing.url}}" />
 <meta property="og:type" content="article" />
@@ -159,13 +171,13 @@
 <meta property="og:video" content="https://www.youtube.com/embed/{{listing.['video id']}}" />
 <meta property="og:video:secure_url" content="https://www.youtube.com/embed/{{listing.['video id']}}" />
 {% endif -%}
-<meta property="og:title" content="{{listing.['listing title']}}" />
+<meta property="og:title" content="{{listingTitle}}" />
 {% if listing.['video id'] != ''  -%}
-<meta property="og:image" content="https://i.ytimg.com/vi_webp/{{listing.['video id']}}/maxresdefault.webp"/>
+<meta property="og:image" content="https://i.ytimg.com/vi_webp/{{listing.['video id']}}/maxresdefault.webp" />
 {% elseif listing.['listing image'] != '' -%} 
-<meta property="og:image" content="http://{module_siteURL}{{listing.['listing image']}}"/> 
+<meta property="og:image" content="http://{module_siteURL}{{listing.['listing image']}}" /> 
 {% else -%}
-<meta property="og:image" content="http://{module_siteURL}{{defaultGalleryImage}}"/>     
+<meta property="og:image" content="http://{module_siteURL}{{defaultGalleryImage}}" />     
 {% endif -%}
 <meta property="og:image:width" content="292" />
 <meta property="og:image:height" content="272" />
@@ -175,6 +187,8 @@
 <meta property="og:description" content="{{listing.description | truncate: 200}}" />
 {% endif -%}
 <meta property="fb:app_id" content="558419337825654" />
+{% capture metaDesc -%}{tag_description}{%endcapture-%}
+<meta property="description" content="{{metaDesc | truncate: 160 | strip_html }}" />     
 </head>
 <script>
   window.fbAsyncInit = function() {
@@ -197,15 +211,22 @@
 <div class="small-12 left">
   <div class="large-6 medium-8 small-12 left">
     <div class="block-title">
-      <h3>{{listing.['listing title']}}</h3>
+      <h3>{{listingTitle}}</h3>
       <span>{{property.['address'] | rstrip}}, {{property.['city'] | strip_html | rstrip}}, {{property.['zip'] | rstrip}}</span>
+        <span class="social-share"> 
+               <a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=http://{module_siteUrl}{{listing.url}}" title="Facebook share" target="_blank"><em class="fa fa-facebook" aria-hidden="true"></em></a> 
+               <a class="twitter customer share" href="https://twitter.com/intent/tweet?url={module_siteUrl,true,true}{{listing.url | url_param_escape}}&hashtags={{listing.['hashtags']}}" title="Twitter share" target="_blank"><em class="fa fa-twitter" aria-hidden="true"></em></a> 
+               <a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=http://{module_siteUrl}{{listing.url}}" target="_blank" title="Linkedin Share"><em class="fa fa-linkedin" aria-hidden="true"></em></a> 
+               <a href="mailto:?subject=I wanted you to see this apartment for rent - {{listing.['listing title']}}&amp;body=Check out this apartment for rent http://{module_siteUrl}{{listing.url}}" title="Email Share"><em class="fa fa-envelope" aria-hidden="true"></em></a>
+               {tag_addtofavorites,<img alt="favorites icon" title="Add to Favorites" src="/_assets/img/favorites-icon.png" />,<img alt="favorites icon" title="Remove from Favorites" src="/_assets/img/remove-favorites-icon.png" />}
+          </span>
       <div class="line small"></div>
     </div>
   </div>
 </div>
 <div class="properti-detail-page reduced{tag_price reduced}"> 
     {% if listing.['property gallery'] == '' and floorplan.['3d floor plan'] == '' and floorplan.['2d floor plan'] == '' and property.['default slider image'] == '' and listing.['listing image'] == '' and floorplan.['3d floor plan square'] == '' and floorplan.['2d floor plan square'] == '' and property.['default square image'] == '' -%}
-    <div class="properti-large-slider"  style="display:none"></div>
+    <div class="properti-large-slider" style="display:none"></div>
     {% else -%}
     <div class="properti-large-slider">
     <ul class="slider-for">
@@ -305,7 +326,17 @@
       </div>
       <div class="large-8 medium-6 columns">
         <h2>{{listing.['listing title']}}</h2>
-        {{listing.['description']}} 
+        {{listing.['description']}}
+          {% if listing.['bonus description'] != '' -%}
+          <p>{{listing.['bonus description'] | append: '!'}}</p>
+          {% endif -%}
+           <span class="social-share"> 
+               <a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=http://{module_siteUrl}{{listing.url}}" title="Facebook share" target="_blank"><em class="fa fa-facebook" aria-hidden="true"></em></a> 
+               <a class="twitter customer share" href="https://twitter.com/intent/tweet?url={module_siteUrl,true,true}{{listing.url | url_param_escape}}&hashtags={{listing.['hashtags']}}" title="Twitter share" target="_blank"><em class="fa fa-twitter" aria-hidden="true"></em></a> 
+               <a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=http://{module_siteUrl}{{listing.url}}" target="_blank" title="Linkedin Share"><em class="fa fa-linkedin" aria-hidden="true"></em></a> 
+               <a href="mailto:?subject=I wanted you to see this apartment for rent - {{listing.['listing title']}}&amp;body=Check out this apartment for rent http://{module_siteUrl}{{listing.url}}" title="Email Share"><em class="fa fa-envelope" aria-hidden="true"></em></a>
+               {% capture favorites -%}{tag_addtofavorites}{% endcapture -%} {{favorites | replace: 'src="/_assets/img/favorites-icon.png"', 'src="/_assets/img/detail-remove-favorites-icon.png"' | replace: 'src="/_assets/img/remove-favorites-icon.png', 'src="/_assets/img/detail-favorites-icon.png' }} 
+          </span>
         </div>
     </div>
   </div>
@@ -489,4 +520,4 @@ var submitcount12803 = 0;function checkWholeForm12803(theForm){var why = "";if (
 {% endfor -%}
 <!--end floor plan, property, leasing office and manager webapp for loops-->
 {% endfor -%} 
-<!--Listing endfor----> 
+<!--Listing endfor---->

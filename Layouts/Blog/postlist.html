@@ -1,6 +1,7 @@
 {% assign myDate = date %}
 {% include "/bc-widgets/friendly-date/init.liquid" -%}
-
+{%capture blogTitle-%}{module_pageaddress}{%endcapture-%}
+{%capture blogURL-%}{tag_itemurl_nolink}{%endcapture-%}
 <div class="blog-item">
   <div class="row">
       
@@ -14,9 +15,10 @@
                     <div class="post-meta">
                       <ul>
                           {module_data resource="blogposts" version="v3" fields="tag" subresource="tags" resourceId="{tag_blogpostid}" skip="0" limit="10" order="objectType" collection="postTags"}
+                          {%capture hashtags-%}{% for item in postTags.items -%}{{item.tag.tagName | remove:" "}},{% endfor -%}{%endcapture-%}
                         <li><em class="fa fa-pencil"></em><span>
 {% for item in postTags.items -%} 
-                            <a href="/media/tag/{{item.tag.tagName}}">{{item.tag.tagName}}</a>
+                            <a href='{{blogTitle | remove: globals.site.host | remove: "http://" | remove: "https://" }}/tag/{{item.tag.tagName}}'>{{item.tag.tagName}}&nbsp;&nbsp;/&nbsp;&nbsp;</a>
                             {% endfor -%} 
 
                             </span> </li>
@@ -28,6 +30,15 @@
                     </div>
                     <div class="blog-item-desc">
                         <p>{tag_blogpostbody,350}</p>
+                        <p>
+                            <span class="social-share"> 
+                               <a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=http://{module_siteUrl}{{blogURL}}" title="Facebook share" target="_blank"><em class="fa fa-facebook" aria-hidden="true"></em></a> 
+                               <a class="twitter customer share" href="https://twitter.com/intent/tweet?url={module_siteUrl,true,true}{{blogURL | url_param_escape}}&hashtags={{hashtags}}" title="Twitter share" target="_blank"><em class="fa fa-twitter" aria-hidden="true"></em></a> 
+                               <a class="linkedin customer share" href="https://www.linkedin.com/shareArticle?mini=true&url=http://{module_siteUrl}{{blogURL}}" target="_blank" title="linkedin Share"><em class="fa fa-linkedin" aria-hidden="true"></em></a> 
+                               <a href="mailto:?subject=I wanted you to see this blog post - {tag_blogposttitle_nolink}&amp;body=Check out this blog post http://{module_siteUrl}{{blogURL}}"><em class="fa fa-envelope" aria-hidden="true"></em></a>
+                          </span>
+                        </p>
+
                     </div>
     <a href="{tag_itemurl_nolink}" class="button small">Read More</a> </div>
 

@@ -12,6 +12,8 @@ figure div.featured_overlay p{color: #fff;padding: 0px 21px;}
 .recent-pro-desc p.lead {margin: -12px 0 12px 0;}
 h1, h2, h3, h4, h5, h6{margin:0px;font-family: 'Roboto', sans-serif;}
 .blog-details .post-desc p {font-size: 18px;}
+.post-desc .social-share a {color: #26513b; font-size: 22px;}
+.post-desc .social-share a:hover{color:#36724c;}
 h1 {font-size: 37px;line-height:normal;}
 h2 {font-size: 33px;line-height:normal}
 h3 {font-size:28px;}
@@ -25,12 +27,16 @@ h6{font-size:18px;}
 .left{float:left}
 .right{float:right}
 ul{margin:0px;}
+.circle li {list-style: circle;}
+.signupform {float: left;margin-top: 25px;}
 a{color:#265136;} 
 .social-share a {color: #989898; margin-right: 15px; font-size: 17px;} 
+.social-share a:hover {color: #b3b3b3;}
 .featured-desc h3 a:hover{color: #ccaf67;} 
 
 a img { -webkit-transition: opacity 300ms ease-out; -moz-transition: opacity 300ms ease-out; transition: opacity 300ms ease-out; }
 a img:hover { opacity: .7;}
+.favoritelink img {margin-top: -3px;}
 
 select { -moz-appearance: none; text-indent: 0.01px;text-overflow: ''; background-color: #fff;background-image: url(../img/select-icon.png); background-position: right center;border: 1px solid #e8e8e8; padding:10px 10px;font-size: 15px; font-family: 'Roboto', sans-serif; color: #9e9f9f; line-height: normal; border-radius: 0;height: 40px; margin: 0px; box-shadow: none; margin-bottom: 20px;}
 select:hover {background-color: #F7F7F7; border-color: #D4D2D2;}
@@ -577,7 +583,8 @@ footer p{font-size:13.16px; color:#fff;font-weight:400;line-height:20.67px}
 .properti-description h2{color:#525252;margin:10px 0 30px 0;}
 .properti-description p{font-size:17.03px;color:#9e9f9f;line-height:31.39px;}
 .properti-description .social-share a {font-size: 17px;}
-
+.properti-detail-page .properti-description .social-share a {font-size: 22px; color: #26513b;}
+.properti-detail-page .properti-description .social-share a:hover {color: #367253;}
 .property-features{width:100%;float:left;text-align:center;}
 .property-features h3{color:#525252;font-weight:400;text-align:left;}
 .features_list {width: 100%;margin: 0 auto; padding:45px 0px; float:right; max-width: 800px; text-align: left;}
@@ -647,6 +654,8 @@ footer p{font-size:13.16px; color:#fff;font-weight:400;line-height:20.67px}
 .blog_comment span a:hover{color:#007fc8;}
 .blog-item-desc p {font-size: 13.67px; color: #474747; line-height: 21.27px; font-weight: 300;margin-left: 20px;}
 .blog-item-desc a.button { margin-bottom: 0px;}
+.blog-item-desc .social-share a {color: #265136;}
+.blog-item-desc .social-share a:hover{color:#36724c}
 .blog-item figure a img{max-height: 472px; overflow: hidden;}
 .content_area .blogtitle{display:none}
 .content_area .blogtitle.Media{display:block }

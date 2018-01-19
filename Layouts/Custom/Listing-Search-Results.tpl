@@ -1,4 +1,12 @@
-{% include"/_System/Includes/regions.inc" %} 
+{% include"/_System/Includes/regions.inc" %}
+{% comment -%}<!--assign Facebook App ID Variables for regions-->{% endcomment -%}
+{% if {{region}} == 'Marin' -%}
+{% assign fbapp_id = "558419337825654" -%}
+{% elseif {{region}} == 'Sonoma' -%}
+{% assign fbapp_id = "567762963572517" -%}
+{% else -%}
+{% assign fbapp_id = "163420730963523" -%}
+{% endif -%}
 {% comment -%}<!------------------------Call {{region}} Listings Web App This Item------------------------------------------->
 <!--This layout is used for listing search results-->
 {% endcomment -%}
@@ -104,7 +112,7 @@
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '558419337825654',
+      appId      : '{{fbapp_id}}',
       xfbml      : true,
       version    : 'v2.11'
     });
@@ -135,7 +143,8 @@
                 <h4><a href="{{listing.['url']}}">{{listing.['listing title']}}</a></h4>
                 <h5>{{propertyName}}</h5>
                 <p>{{listingSmallDescription  | truncatewords: 25, '...'}}</p>
-                <span class="social-share"> <a id="{{listing.name}}" href="javascript:void(0);"><em class="fa fa-facebook" aria-hidden="true"></em></a> <a class="customer share" href="javascript:void(0);" onClick="PopupCenter('https://twitter.com/intent/tweet?url={module_siteUrl,true,true}{{listing.url | url_param_escape}}','','500','250')"><em class="fa fa-twitter" aria-hidden="true"></em></a> <a class="customer share" href="javascript:void(0);" target="_blank" onClick="PopupCenter('https://www.linkedin.com/shareArticle?mini=true&url=http://{module_siteUrl}{{listing.url}}')"><em class="fa fa-linkedin" aria-hidden="true"></em></a> <a href="mailto:?subject=I wanted you to see this apartment for rent - {{listing.['listing title']}}&amp;body=Check out this apartment for rent http://{module_siteUrl}{{listing.url}}"><em class="fa fa-envelope" aria-hidden="true"></em></a> 
+                <span class="social-share"> <a id="{{listing.name}}" href="javascript:void(0);" title="Facebook Share"><em class="fa fa-facebook" aria-hidden="true"></em></a> <a class="customer share" href="javascript:void(0);" title="Twitter Share" onClick="PopupCenter('https://twitter.com/intent/tweet?url={module_siteUrl,true,true}{{listing.url | url_param_escape}}&hashtags={{listing.['hashtags']}}','','500','250')"><em class="fa fa-twitter" aria-hidden="true"></em></a> <a class="customer share" href="javascript:void(0);" target="_blank" onClick="PopupCenter('https://www.linkedin.com/shareArticle?mini=true&url=http://{module_siteUrl}{{listing.url}}')" title="Linkedin Share"><em class="fa fa-linkedin" aria-hidden="true"></em></a> <a href="mailto:?subject=I wanted you to see this apartment for rent - {{listing.['listing title']}}&amp;body=Check out this apartment for rent http://{module_siteUrl}{{listing.url}}" title="Email Share"><em class="fa fa-envelope" aria-hidden="true"></em></a>
+                {tag_addtofavorites,<img alt="favorites icon" title="Add to Favorites" src="/_assets/img/favorites-icon.png" />,<img alt="favorites icon" title="Remove from Favorites" src="/_assets/img/remove-favorites-icon.png" />}    
                 <script>
                 var randomID = Math.floor(Math.random() * 1000000000001);
                 document.getElementById('{{listing.name}}').setAttribute('id', randomID);
