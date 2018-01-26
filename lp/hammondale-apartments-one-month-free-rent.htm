@@ -1,0 +1,13 @@
+<!DOCTYPE html>{% assign json-file = "/_System/apps/thr-landing/assets/json/1516142567432.json" -%}{module_json json="/_System/apps/thr-landing/assets/forms/items/1516142567432.json" template="" collection="itemData"}{module_json json="{{json-file}}" template="" collection="json"}{% capture before -%}
+<html lang="en">
+
+    <head>
+        <title>Hammondale Apartments | One Month Free Rent</title>
+        <meta name="description" content="Save on move in cost with one month&#39;s free rent.  Offer good on move-ins before February 1st." />
+    </head>
+
+    <body></body>
+
+</html>{% endcapture -%}{% capture head -%}{% include "/_System/apps/thr-landing/assets/includes/head.inc" -%}{% endcapture -%}{% capture body -%}
+
+<body>{% include "/_System/apps/thr-landing/assets/includes/body.inc" -%}{% endcapture -%}{% capture after -%}{{head}}{{body}}{% endcapture -%}{{before | replace:before,after}}
