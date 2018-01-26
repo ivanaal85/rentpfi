@@ -12,28 +12,94 @@
     {% for property in listingProp.items %} 
     {% for floorplan in floorPlans.items %}
 
-    {% comment -%}<!--------------Assign listing image variables--------------->{% endcomment -%}
+    {% comment -%}<!--------------Assign listing image, seo and description variables--------------->{% endcomment -%}
     {% if listing.['use alternate default listing image if available'] == "Floor Plan" -%}
 
         {% if floorplan.['3d floor plan square'] != '' -%}
             {% assign defaultListingImage = {{floorplan.['3d floor plan square']}} -%}
             {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
             {% assign class = 'class="listing-page"' -%}
+
+                {% if floorplan.['3d floor plan alt text'] != '' -%}
+                    {% assign listingAlt = {{floorplan.['3d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan title'] != '' -%}
+                    {% assign listingTitle = {{floorplan.['3d floor plan title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan caption'] != '' -%}
+                    {% assign listingCap = {{floorplan.['3d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%} 
+
             {% elseif floorplan.['2d floor plan square'] != '' -%}
             {% assign defaultListingImage = {{floorplan.['2d floor plan square']}} -%}
             {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
             {% assign class = 'class="listing-page"' -%}
+
+                {% if floorplan.['2d floor plan alt text'] != '' -%}
+                    {% assign listingAlt = {{floorplan.['2d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan title'] != '' -%}
+                    {% assign listingTitle = {{floorplan.['2d floor plan title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan caption'] != '' -%}
+                    {% assign listingCap = {{floorplan.['2d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%} 
 
             {% elseif floorplan.['3d floor plan'] != '' -%}
             {% assign defaultListingImage = {{floorplan.['3d floor plan']}} -%}
             {% assign fill = "?Action=thumbnail&Width=550&Height=279&algorithim=fill" -%}
             {% assign class = 'class="listing-page"' -%}
             {% assign class = 'class="non-square-search-result"' -%}
+
+                {% if floorplan.['3d floor plan alt text'] != '' -%}
+                    {% assign listingAlt = {{floorplan.['3d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan title'] != '' -%}
+                    {% assign listingTitle = {{floorplan.['3d floor plan title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan caption'] != '' -%}
+                    {% assign listingCap = {{floorplan.['3d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%} 
+
             {% elseif floorplan.['2d floor plan'] != '' -%}
             {% assign defaultListingImage = {{floorplan.['2d floor plan']}} -%}
             {% assign fill = "?Action=thumbnail&Width=550&Height=279&algorithim=fill" -%}
             {% assign class = 'class="listing-page"' -%}
             {% assign class = 'class="non-square-search-result"' -%}
+
+                {% if floorplan.['2d floor plan alt text'] != '' -%}
+                    {% assign listingAlt = {{floorplan.['2d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan title'] != '' -%}
+                    {% assign listingTitle = {{floorplan.['2d floor plan title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan caption'] != '' -%}
+                    {% assign listingCap = {{floorplan.['2d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%} 
         {% endif -%}
 
     {% elseif listing.['use alternate default listing image if available'] == "Property Square Image" -%}
@@ -42,46 +108,199 @@
             {% assign defaultListingImage = {{property.['default square image']}} -%}
             {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
             {% assign class = 'class="listing-page"' -%}
+                
+                {% if property.['default image alt text'] != '' -%}
+                    {% assign listingAlt = {{property.['default image alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if property.['default image title'] != '' -%}
+                    {% assign listingTitle = {{property.['default image title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if property.['default image caption'] != '' -%}
+                    {% assign listingCap = {{property.['default image caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%}
 
             {% elseif property.['default slider image'] != '' -%}
             {% assign defaultListingImage = {{property.['default slider image']}} -%}
             {% assign fill = "?Action=thumbnail&Width=550&Height=279&algorithim=fill" -%}
             {% assign class = 'class="non-square-search-result"' -%}
+
+                {% if property.['default image alt text'] != '' -%}
+                    {% assign listingAlt = {{property.['default image alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if property.['default image title'] != '' -%}
+                    {% assign listingTitle = {{property.['default image title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if property.['default image caption'] != '' -%}
+                    {% assign listingCap = {{property.['default image caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%}
         {% endif -%}
 
     {% elseif listing.['listing image'] != '' -%}
         {% assign defaultListingImage = {{listing.['listing image']}} -%}
         {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
         {% assign class = 'class="listing-page"' -%}
+
+            {% if listing.['listing image alt text'] != '' -%}
+                {% assign listingAlt = {{listing.['listing image alt text']}} -%}
+            {% else -%}
+                {% assign listingAlt = '' -%}
+            {% endif -%}
+            {% if listing.['listing image title'] != '' -%}
+                {% assign listingTitle = {{listing.['listing image title']}} -%}
+            {% else -%}
+                {% assign listingTitle = '' -%}
+            {% endif -%}
+            {% if listing.['listing image caption'] != '' -%}
+                {% assign listingCap = {{listing.['listing image caption']}} -%}
+            {% else -%}
+                    {% assign listingCap = '' -%}
+            {% endif -%}
+
     {% elseif floorplan.['3d floor plan square'] != '' -%}
         {% assign defaultListingImage = {{floorplan.['3d floor plan square']}} -%}
         {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
         {% assign class = 'class="listing-page"' -%}
+
+            {% if floorplan.['3d floor plan alt text'] != '' -%}
+                    {% assign listingAlt = {{floorplan.['3d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan title'] != '' -%}
+                    {% assign listingTitle = {{floorplan.['3d floor plan title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan caption'] != '' -%}
+                    {% assign listingCap = {{floorplan.['3d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%} 
+
     {% elseif floorplan.['2d floor plan square'] != '' -%}
         {% assign defaultListingImage = {{floorplan.['2d floor plan square']}} -%}
         {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
         {% assign class = 'class="listing-page"' -%}
+    
+            {% if floorplan.['2d floor plan alt text'] != '' -%}
+                    {% assign listingAlt = {{floorplan.['2d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan title'] != '' -%}
+                    {% assign listingTitle = {{floorplan.['2d floor plan title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan caption'] != '' -%}
+                    {% assign listingCap = {{floorplan.['2d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%} 
+
     {% elseif property.['default square image'] != '' -%}
         {% assign defaultListingImage = {{property.['default square image'] }} -%}
         {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
         {% assign class = 'class="listing-page"' -%}
 
+            {% if property.['default image alt text'] != '' -%}
+                    {% assign listingAlt = {{property.['default image alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if property.['default image title'] != '' -%}
+                    {% assign listingTitle = {{property.['default image title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if property.['default image caption'] != '' -%}
+                    {% assign listingCap = {{property.['default image caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%}
+
     {% elseif floorplan.['3d floor plan'] != '' -%}
         {% assign defaultListingImage = {{floorplan.['3d floor plan']}} -%}
         {% assign fill = "?Action=thumbnail&Width=550&Height=279&algorithim=fill" -%}
         {% assign class = 'class="non-square-search-result"' -%}
+
+            {% if floorplan.['3d floor plan alt text'] != '' -%}
+                    {% assign listingAlt = {{floorplan.['3d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan title'] != '' -%}
+                    {% assign listingTitle = {{floorplan.['3d floor plan title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan caption'] != '' -%}
+                    {% assign listingCap = {{floorplan.['3d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%} 
+
     {% elseif floorplan.['2d floor plan'] != '' -%}
         {% assign defaultListingImage = {{floorplan.['2d floor plan']}} -%}
         {% assign fill = "?Action=thumbnail&Width=550&Height=279&algorithim=fill" -%}
         {% assign class = 'class="non-square-search-result"' -%}
+        
+            {% if floorplan.['2d floor plan alt text'] != '' -%}
+                    {% assign listingAlt = {{floorplan.['2d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan title'] != '' -%}
+                    {% assign listingTitle = {{floorplan.['2d floor plan title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan caption'] != '' -%}
+                    {% assign listingCap = {{floorplan.['2d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%} 
+
     {% elseif property.['default slider image'] != '' -%}
         {% assign defaultListingImage = {{property.['default slider image'] }} -%}
         {% assign fill = "?Action=thumbnail&Width=550&Height=279&algorithim=fill" -%}
         {% assign class = 'class="non-square-search-result"' -%}
+
+            {% if property.['default image alt text'] != '' -%}
+                    {% assign listingAlt = {{property.['default image alt text']}} -%}
+                {% else -%}
+                    {% assign listingAlt = '' -%}
+                {% endif -%}
+                {% if property.['default image title'] != '' -%}
+                    {% assign listingTitle = {{property.['default image title']}} -%}
+                {% else -%}
+                    {% assign listingTitle = '' -%}
+                {% endif -%}
+                {% if property.['default image caption'] != '' -%}
+                    {% assign listingCap = {{property.['default image caption']}} -%}
+                {% else -%}
+                    {% assign listingCap = '' -%}
+                {% endif -%}
+
     {% else -%}
         {% assign defaultListingImage = "/_assets/img/PhotoComingSoon-ListingImage.jpg" -%}
         {% assign fill = "?Action=thumbnail&Width=296&Height=279&algorithim=fill_proportional" -%}
         {% assign class = 'class="default-recent-img"' -%}
+        {% assign listingAlt = 'photo coming soon' -%}
+        {% assign listingTitle = 'Photo Coming Soon' -%}
+        {% assign listingCap = 'Photo Coming Soon'-%}
     {% endif -%}
 {% comment -%}<!--end variable definitions for listing image------>{% endcomment -%}  
 <div class="medium-12 columns">
@@ -89,7 +308,7 @@
         <div class="large-5 medium-11 small-12 left">
             <div class="properti-image">
                 <figure class="view-overlay"> 
-                    <a href="{{listing.['url']}}"><img {{class}} data-mh="featured-prop" src="{{defaultListingImage}}{{fill}}"></a>
+                    <a href="{{listing.['url']}}"><img {{class}} data-mh="featured-prop" src="{{defaultListingImage}}{{fill}}" alt="{{listingAlt}}" title="{{listingTitle}}"></a>
                     <div class="triangle"><em class="fa fa-star"></em></div>
                     <div class="overlay-icon"><a href="{{listing.['url']}}"><em class="fa fa-search"></em></a></div>
                 </figure>
@@ -108,9 +327,9 @@
                     </span>
             </div>
             <div class="property_facility">
-                <div class="pro_sqfoot"><span><img src="/_assets/img/sqr-foot-icon1.png">{{listing.['square foot area'] | remove: ".00" }} Sqft</span></div>
-                <div class="pro_bedroom"><span><img src="/_assets/img/bedroom-icon1.png">{{listing.['bedrooms'] | number: "N0"}}</span></div>
-                <div class="pro_bathtub"><span><img src="/_assets/img/bathtub-icon1.png">{{listing.['bathrooms'] | number: "N0"}}</span></div>
+                <div class="pro_sqfoot"><span><img src="/_assets/img/sqr-foot-icon1.png" alt="square footage icon" title="Square Footage">{{listing.['square foot area'] | remove: ".00" }} Sqft</span></div>
+                <div class="pro_bedroom"><span><img src="/_assets/img/bedroom-icon1.png" alt="bedrooms icon" title="Bedrooms">{{listing.['bedrooms'] | number: "N0"}}</span></div>
+                <div class="pro_bathtub"><span><img src="/_assets/img/bathtub-icon1.png" alt="bathrooms icon" title="Bathrooms">{{listing.['bathrooms'] | number: "N0"}}</span></div>
             </div>
             <div class="properti-footer">
                 <div class="pro_manth"><span>{{listing.['price'] | number: "C0"}}</span></div>

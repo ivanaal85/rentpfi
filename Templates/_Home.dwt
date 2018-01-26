@@ -45,7 +45,7 @@
                 {% endif -%}
             {% comment -%}<!--end slider image variables-->{% endcomment -%}
                 
-                {% comment -%}<!--------------Assign listing description variables--------------->{% endcomment -%}
+            {% comment -%}<!--------------Assign listing description variables--------------->{% endcomment -%}
                 {% if listing.['use property small description'] == "checked" -%}
                         {% assign listingSmallDescription = {{property.['small description']}} -%}
                     {% else -%}
@@ -56,9 +56,27 @@
                     {% else -%}
                         {% assign listingRegularDescription = {{listing.description']}} -%}
                 {% endif -%}
-
+        
+            {% comment -%}<!--assign on-page seo variables-->{% endcomment -%}
+                {% if listing.['slider image alt text'] != '' -%}
+                    {% assign sliderAlt = {{listing.['slider image alt text']}} -%}
+                {% else -%}
+                    {% assign sliderAtl = '' -%}
+                {% endif -%}
+                {% if listing.['slider image title'] != '' -%}
+                    {% assign sliderTitle = {{listing.['slider image title']}} -%}
+                {% else -%}
+                    {% assign sliderTitle = '' -%}
+                {% endif -%}
+                {% if listing.['slider image caption'] != '' -%}
+                    {% assign sliderCap = {{listing.['slider image caption']}} -%}
+                {% else -%}
+                    {% assign sliderCap = '' -%}
+                {% endif -%}
+            {% comment -%}<!--end variables-->{% endcomment -%}
+        
             {% if {{sliderImage}} != '' -%}    
-            <li class="hero-content"> <img src="{{sliderImage}}?Action=thumbnail&Width=1903&Height=793&algorithim=fill_proportional">
+            <li class="hero-content"> <img src="{{sliderImage}}?Action=thumbnail&Width=1903&Height=793&algorithim=fill_proportional" alt="{{sliderAlt}}" title="{{sliderTitle}}" />
                   <div class="hero-caption">
                     <div class="row">
                       <div class="medium-12 column">
@@ -90,13 +108,13 @@
                               <h6>{{listing.['Price'] | money | remove: '.00'}}</h6> 
                           </div>
                           <ul>
-                            <li><img src="/_assets/img/sqr-foot-icon.png">
+                            <li><img src="/_assets/img/sqr-foot-icon.png" alt="square footage icon" title="Square Foot Area">
                                 <h6>{{listing.['Square Foot Area'] | remove: '.00'}} Sq. Feet</h6>
                             </li>
-                            <li><img src="/_assets/img/bedroom-icon.png">
+                            <li><img src="/_assets/img/bedroom-icon.png" alt="bedrooms icon" title="Bedrooms">
                                 <h6>{{listing.['Bedrooms'] | remove: '.00'}}</h6>
                             </li>
-                            <li><img src="/_assets/img/bathtub-icon.png">
+                            <li><img src="/_assets/img/bathtub-icon.png" alt="bathrooms icon" title="Bathrooms">
                                 <h6>{{listing.['Bathrooms'] | remove: '.00'}}</h6>
                             </li>
                           </ul>
@@ -146,11 +164,28 @@
             {% assign sliderImage = {{property.['default slider image']}} -%}
 
             {% endif -%}
+        
+        {% comment -%}<!--assign on-page seo variables-->{% endcomment -%}
+                {% if listing.['slider image alt text'] != '' -%}
+                    {% assign sliderAlt1 = {{listing.['slider image alt text']}} -%}
+                {% else -%}
+                    {% assign sliderAlt1 = '' -%}
+                {% endif -%}
+                {% if listing.['slider image title'] != '' -%}
+                    {% assign sliderTitle1 = {{listing.['slider image title']}} -%}
+                {% else -%}
+                    {% assign sliderTitle1 = '' -%}
+                {% endif -%}
+                {% if listing.['slider image caption'] != '' -%}
+                    {% assign sliderCap1 = {{listing.['slider image caption']}} -%}
+                {% else -%}
+                    {% assign sliderCap1 = '' -%}
+                {% endif -%}
+            {% comment -%}<!--end variables-->{% endcomment -%}
         {% comment -%}<!--end slider image variables-->{% endcomment -%} 
         
       {% if {{sliderImage}} != '' -%} 
-      <li> <img src="{{sliderImage}}?Action=thumbnail&Width=960&Height=400&algorithim=fill_proportional"> 
-        <!--			<img src="{{item.['Slider Image']}}">	-->
+      <li> <img src="{{sliderImage}}?Action=thumbnail&Width=960&Height=400&algorithim=fill_proportional" alt="{{sliderAlt1}}" title="{{sliderTitle1}}" /> 
         <div class="hero-caption">
           <div class="row">
             <div class="medium-12 column">
@@ -199,10 +234,26 @@
             {% assign sliderImage = {{property.['default slider image']}} -%}
 
             {% endif -%}
+        {% comment -%}<!--assign on-page seo variables-->{% endcomment -%}
+                {% if listing.['slider image alt text'] != '' -%}
+                    {% assign sliderAlt2 = {{listing.['slider image alt text']}} -%}
+                {% else -%}
+                    {% assign sliderAlt1 = '' -%}
+                {% endif -%}
+                {% if listing.['slider image title'] != '' -%}
+                    {% assign sliderTitle2 = {{listing.['slider image title']}} -%}
+                {% else -%}
+                    {% assign sliderTitle2 = '' -%}
+                {% endif -%}
+                {% if listing.['slider image caption'] != '' -%}
+                    {% assign sliderCap2 = {{listing.['slider image caption']}} -%}
+                {% else -%}
+                    {% assign sliderCap2 = '' -%}
+                {% endif -%}
+            {% comment -%}<!--end variables-->{% endcomment -%}
         {% comment -%}<!--end slider image variables-->{% endcomment -%} 
       {% if {{sliderImage}} != '' -%} 
-      <li> <img src="{{sliderImage}}?Action=thumbnail&Width=960&Height=400&algorithim=fill_proportional"> 
-        <!--			<img src="{{item.['Slider Image']}}">	-->
+      <li> <img src="{{sliderImage}}?Action=thumbnail&Width=960&Height=400&algorithim=fill_proportional" alt="{{sliderAlt2}}" title="{{sliderTitle2}}"   /> 
         <div class="hero-caption">
           <div class="row">
             <div class="medium-12 column">

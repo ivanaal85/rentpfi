@@ -19,7 +19,7 @@
             <h4>Most Commented</h4>
             <div class="line small"></div>
           </div>
-          <div class="BlogRecentPost"> {% include "/bc-widgets/most-commented-posts/init.liquid" -%} </div>
+          <div class="BlogRecentPost"> {% include "/bc-widgets/most-commented-posts/init.liquid" -%} </div> 
         </div>
         <div class="side_area">
           <div class="block-title">

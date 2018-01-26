@@ -27,13 +27,29 @@
 {% for leasing_office in myPropertyInfoWebapp.items %}
 {% for manager in myWebapp.items %}
 
-{% comment -%}<!-------------------Assign property gallery image variables-------------------------------------------------->{% endcomment -%}
+{% comment -%}<!-------------------Assign property gallery image and seo variables-------------------------------------------------->{% endcomment -%}
 {% if listing.['property gallery'] !='' -%}
     {% assign defaultGalleryImage = {{listing.['property gallery']}} -%}
     {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
     {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
     {% assign class = '' -%}
     {% assign classNav = '' -%}
+        
+        {% if listing.['property image alt text'] != '' -%}
+            {% assign propertyAlt = {{listing.['property image alt text']}} -%}
+        {% else -%}
+            {% assign propertyAlt = '' -%}
+        {% endif -%}
+        {% if listing.['property image title'] != '' -%}
+            {% assign propertyTitle = {{listing.['property image title']}} -%}
+        {% else -%}
+            {% assign propertyTitle = '' -%}
+        {% endif -%}
+        {% if listing.['property image caption'] != '' -%}
+            {% assign propertyCap = {{listing.['property image caption']}} -%}
+        {% else -%}
+            {% assign propertyCap = '' -%}
+        {% endif -%}
 
     {% elseif listing.['use alternate default property gallery image if available'] == "Floor Plan" -%}
 
@@ -43,24 +59,91 @@
             {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
             {% assign class = '' -%}
             {% assign classNav = '' -%}
+        
+                {% if floorplan.['3d floor plan alt text'] != '' -%}
+                    {% assign propertyAlt = {{floorplan.['3d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign propertyAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan title'] != '' -%}
+                    {% assign propertyTitle = {{floorplan.['3d floor plan title']}}-%}
+                {% else -%}
+                    {% assign propertyTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan caption'] != '' -%}
+                    {% assign propertyCap = {{floorplan.['3d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign propertyCap = '' -%}
+                {% endif -%}
+    
         {% elseif floorplan.['2d floor plan'] != '' -%}
             {% assign defaultGalleryImage = {{floorplan.['2d floor plan']}} -%}
             {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
             {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
             {% assign class = '' -%}
             {% assign classNav = '' -%}
+    
+                {% if floorplan.['2d floor plan alt text'] != '' -%}
+                    {% assign propertyAlt = {{floorplan.['2d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign propertyAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan title'] != '' -%}
+                    {% assign propertyTitle = {{floorplan.['2d floor plan title']}}-%}
+                {% else -%}
+                    {% assign propertyTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan caption'] != '' -%}
+                    {% assign propertyCap = {{floorplan.['2d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign propertyCap = '' -%}
+                {% endif -%}
+    
         {% elseif floorplan.['3d floor plan square'] != '' -%}
             {% assign defaultGalleryImage = {{floorplan.['3d floor plan square']}} -%}
             {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
             {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
             {% assign class = 'class = "default-gallery-img1"' -%}
             {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    
+                {% if floorplan.['3d floor plan alt text'] != '' -%}
+                    {% assign propertyAlt = {{floorplan.['3d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign propertyAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan title'] != '' -%}
+                    {% assign propertyTitle = {{floorplan.['3d floor plan title']}}-%}
+                {% else -%}
+                    {% assign propertyTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['3d floor plan caption'] != '' -%}
+                    {% assign propertyCap = {{floorplan.['3d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign propertyCap = '' -%}
+                {% endif -%}
+    
         {% elseif floorplan.['2d floor plan square'] != '' -%}
             {% assign defaultGalleryImage = {{floorplan.['2d floor plan square']}} -%}
             {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
             {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
             {% assign class = 'class = "default-gallery-img1"' -%}
             {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    
+                {% if floorplan.['2d floor plan alt text'] != '' -%}
+                    {% assign propertyAlt = {{floorplan.['2d floor plan alt text']}} -%}
+                {% else -%}
+                    {% assign propertyAlt = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan title'] != '' -%}
+                    {% assign propertyTitle = {{floorplan.['2d floor plan title']}}-%}
+                {% else -%}
+                    {% assign propertyTitle = '' -%}
+                {% endif -%}
+                {% if floorplan.['2d floor plan caption'] != '' -%}
+                    {% assign propertyCap = {{floorplan.['2d floor plan caption']}} -%}
+                {% else -%}
+                    {% assign propertyCap = '' -%}
+                {% endif -%}
         {% endif -%}
 
     {% elseif listing.['use alternate default property gallery image if available'] == "Default Slider Image" -%}
@@ -71,12 +154,45 @@
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
         {% assign class = '' -%}
         {% assign classNav = '' -%}
+    
+            {% if property.['default image alt text'] != '' -%}
+                {% assign propertyAlt = {{property.['default image alt text']}} -%}
+            {% else -%}
+                    {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if property.['default image title'] != '' -%}
+                {% assign propertyTitle = {{property.['default image title']}} -%}
+            {% else -%}
+                    {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if property.['default image caption'] != '' -%}
+                {% assign propertyCap = {{property.['default image caption']}} -%}
+            {% else -%}
+                    {% assign propertyCap = '' -%}
+            {% endif -%}
+    
         {% elseif property.['default square image'] != '' -%}
         {% assign defaultGalleryImage = {{property.['default square image']}} -%}
         {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
         {% assign class = 'class = "default-gallery-img1"' -%}
         {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    
+            {% if property.['default image alt text'] != '' -%}
+                {% assign propertyAlt = {{property.['default image alt text']}} -%}
+            {% else -%}
+                    {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if property.['default image title'] != '' -%}
+                {% assign propertyTitle = {{property.['default image title']}} -%}
+            {% else -%}
+                    {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if property.['default image caption'] != '' -%}
+                {% assign propertyCap = {{property.['default image caption']}} -%}
+            {% else -%}
+                    {% assign propertyCap = '' -%}
+            {% endif -%}
         {% endif -%}
 
     {% elseif floorplan.['3d floor plan'] != '' -%}
@@ -85,42 +201,160 @@
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
         {% assign class = '' -%}
         {% assign classNav = '' -%}
+        
+            {% if floorplan.['3d floor plan alt text'] != '' -%}
+                {% assign propertyAlt = {{floorplan.['3d floor plan alt text']}} -%}
+            {% else -%}
+                {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if floorplan.['3d floor plan title'] != '' -%}
+                {% assign propertyTitle = {{floorplan.['3d floor plan title']}}-%}
+            {% else -%}
+                {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if floorplan.['3d floor plan caption'] != '' -%}
+                {% assign propertyCap = {{floorplan.['3d floor plan caption']}} -%}
+            {% else -%}
+                {% assign propertyCap = '' -%}
+            {% endif -%}
+    
     {% elseif floorplan.['2d floor plan'] != '' -%}
         {% assign defaultGalleryImage = {{floorplan.['2d floor plan']}} -%}
         {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
         {% assign class = '' -%}
         {% assign classNav = '' -%}
+    
+            {% if floorplan.['2d floor plan alt text'] != '' -%}
+                {% assign propertyAlt = {{floorplan.['2d floor plan alt text']}} -%}
+            {% else -%}
+                {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if floorplan.['2d floor plan title'] != '' -%}
+                {% assign propertyTitle = {{floorplan.['2d floor plan title']}}-%}
+            {% else -%}
+                {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if floorplan.['2d floor plan caption'] != '' -%}
+                {% assign propertyCap = {{floorplan.['2d floor plan caption']}} -%}
+            {% else -%}
+                {% assign propertyCap = '' -%}
+            {% endif -%}
+    
     {% elseif property.['default slider image'] != '' -%}
         {% assign defaultGalleryImage = {{property.['default slider image']}} -%}
         {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill_proportional" -%}
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
         {% assign class = '' -%}
         {% assign classNav = '' -%}
+    
+            {% if property.['default image alt text'] != '' -%}
+                {% assign propertyAlt = {{property.['default image alt text']}} -%}
+            {% else -%}
+                    {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if property.['default image title'] != '' -%}
+                {% assign propertyTitle = {{property.['default image title']}} -%}
+            {% else -%}
+                    {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if property.['default image caption'] != '' -%}
+                {% assign propertyCap = {{property.['default image caption']}} -%}
+            {% else -%}
+                    {% assign propertyCap = '' -%}
+            {% endif -%}
+    
     {% elseif floorplan.['3d floor plan square'] != '' -%}
         {% assign defaultGalleryImage = {{floorplan.['3d floor plan square']}} -%}
         {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
         {% assign class = 'class = "default-gallery-img1"' -%}
         {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    
+            {% if floorplan.['3d floor plan alt text'] != '' -%}
+                {% assign propertyAlt = {{floorplan.['3d floor plan alt text']}} -%}
+            {% else -%}
+                {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if floorplan.['3d floor plan title'] != '' -%}
+                {% assign propertyTitle = {{floorplan.['3d floor plan title']}}-%}
+            {% else -%}
+                {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if floorplan.['3d floor plan caption'] != '' -%}
+                {% assign propertyCap = {{floorplan.['3d floor plan caption']}} -%}
+            {% else -%}
+                {% assign propertyCap = '' -%}
+            {% endif -%}
+    
     {% elseif floorplan.['2d floor plan square'] != '' -%}
         {% assign defaultGalleryImage = {{floorplan.['2d floor plan square']}} -%}
         {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
         {% assign class = 'class = "default-gallery-img1"' -%}
         {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    
+            {% if floorplan.['2d floor plan alt text'] != '' -%}
+                {% assign propertyAlt = {{floorplan.['2d floor plan alt text']}} -%}
+            {% else -%}
+                {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if floorplan.['2d floor plan title'] != '' -%}
+                {% assign propertyTitle = {{floorplan.['2d floor plan title']}}-%}
+            {% else -%}
+                {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if floorplan.['2d floor plan caption'] != '' -%}
+                {% assign propertyCap = {{floorplan.['2d floor plan caption']}} -%}
+            {% else -%}
+                {% assign propertyCap = '' -%}
+            {% endif -%}
+    
     {% elseif property.['default square image'] != '' -%}
         {% assign defaultGalleryImage = {{property.['default square image']}} -%}
         {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
         {% assign class = 'class = "default-gallery-img1"' -%}
         {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    
+            {% if property.['default image alt text'] != '' -%}
+                {% assign propertyAlt = {{property.['default image alt text']}} -%}
+            {% else -%}
+                    {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if property.['default image title'] != '' -%}
+                {% assign propertyTitle = {{property.['default image title']}} -%}
+            {% else -%}
+                    {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if property.['default image caption'] != '' -%}
+                {% assign propertyCap = {{property.['default image caption']}} -%}
+            {% else -%}
+                    {% assign propertyCap = '' -%}
+            {% endif -%}
+    
     {% elseif listing.['listing image'] != '' -%}
         {% assign defaultGalleryImage = {{listing.['listing image']}} -%}
         {% assign fill = "?Action=thumbnail&Width=641&Height=390&algorithim=fill" -%}
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill" -%}
         {% assign class = 'class = "default-gallery-img1"' -%}
         {% assign classNav = 'class="default-gallery-thumb1"' -%}
+    
+            {% if listing.['property image alt text'] != '' -%}
+                {% assign propertyAlt = {{listing.['property image alt text']}} -%}
+            {% else -%}
+                {% assign propertyAlt = '' -%}
+            {% endif -%}
+            {% if listing.['property image title'] != '' -%}
+                {% assign propertyTitle = {{listing.['property image title']}} -%}
+            {% else -%}
+                {% assign propertyTitle = '' -%}
+            {% endif -%}
+            {% if listing.['property image caption'] != '' -%}
+                {% assign propertyCap = {{listing.['property image caption']}} -%}
+            {% else -%}
+                {% assign propertyCap = '' -%}
+            {% endif -%}
 
     {% else -%}
         {% assign defaultGalleryImage = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
@@ -128,6 +362,9 @@
         {% assign fillNav = "?Action=thumbnail&Width=170&Height=103&algorithim=fill_proportional" -%}
         {% assign class = '' -%}
         {% assign classNav = '' -%}
+        {% assign propertyAlt = 'photo coming soon' -%}
+        {% assign propertyTitle = 'Photo Coming Soon' -%}
+        {% assign propertyCap = 'Photo Coming Soon'-%}
 
 {% endif -%}
 
@@ -137,26 +374,98 @@
 
 {% if listing.['property gallery 1'] !='' -%}
     {% assign defaultGalleryImage1 = {{listing.['property gallery 1']}} -%}
+    {% if listing.['property image 1 alt text'] != '' -%}
+            {% assign propertyAlt1 = {{listing.['property image 1 alt text']}} -%}
+        {% else -%}
+            {% assign propertyAlt1 = '' -%}
+        {% endif -%}
+        {% if listing.['property image 1 title'] != '' -%}
+            {% assign propertyTitle1 = {{listing.['property image 1 title']}} -%}
+        {% else -%}
+            {% assign propertyTitle1 = '' -%}
+        {% endif -%}
+        {% if listing.['property image 1 caption'] != '' -%}
+            {% assign propertyCap1 = {{listing.['property image 1 caption']}} -%}
+        {% else -%}
+            {% assign propertyCap1 = '' -%}
+        {% endif -%}
     {% else -%}
     {% assign defaultGalleryImage1 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+        {% assign propertyAlt1 = 'photo coming soon' -%}
+        {% assign propertyTitle1 = 'Photo Coming Soon' -%}
+        {% assign propertyCap1 = 'Photo Coming Soon'-%}
 {% endif -%}
 
 {% if listing.['property gallery 2'] !='' -%}
     {% assign defaultGalleryImage2 = {{listing.['property gallery 2']}} -%}
+        {% if listing.['property image 2 alt text'] != '' -%}
+            {% assign propertyAlt2 = {{listing.['property image 2 alt text']}} -%}
+        {% else -%}
+            {% assign propertyAlt2 = '' -%}
+        {% endif -%}
+        {% if listing.['property image 2 title'] != '' -%}
+            {% assign propertyTitle2 = {{listing.['property image 2 title']}} -%}
+        {% else -%}
+            {% assign propertyTitle2 = '' -%}
+        {% endif -%}
+        {% if listing.['property image 2 caption'] != '' -%}
+            {% assign propertyCap2 = {{listing.['property image 2 caption']}} -%}
+        {% else -%}
+            {% assign propertyCap2 = '' -%}
+        {% endif -%}
     {% else -%}
     {% assign defaultGalleryImage2 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+        {% assign propertyAlt2 = 'photo coming soon' -%}
+        {% assign propertyTitle2 = 'Photo Coming Soon' -%}
+        {% assign propertyCap2 = 'Photo Coming Soon'-%}
 {% endif -%}
 
 {% if listing.['property gallery 3'] !='' -%}
     {% assign defaultGalleryImage3 = {{listing.['property gallery 3']}} -%}
+        {% if listing.['property image 3 alt text'] != '' -%}
+            {% assign propertyAlt3 = {{listing.['property image 3 alt text']}} -%}
+        {% else -%}
+            {% assign propertyAlt3 = '' -%}
+        {% endif -%}
+        {% if listing.['property image 3 title'] != '' -%}
+            {% assign propertyTitle3 = {{listing.['property image 3 title']}} -%}
+        {% else -%}
+            {% assign propertyTitle3 = '' -%}
+        {% endif -%}
+        {% if listing.['property image 3 caption'] != '' -%}
+            {% assign propertyCap3 = {{listing.['property image 3 caption']}} -%}
+        {% else -%}
+            {% assign propertyCap3 = '' -%}
+        {% endif -%}
     {% else -%}
     {% assign defaultGalleryImage3 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+        {% assign propertyAlt3 = 'photo coming soon' -%}
+        {% assign propertyTitle3 = 'Photo Coming Soon' -%}
+        {% assign propertyCap3 = 'Photo Coming Soon'-%}
 {% endif -%}
 
 {% if listing.['property gallery 4'] !='' -%}
     {% assign defaultGalleryImage4 = {{listing.['property gallery 4']}} -%}
+        {% if listing.['property image 4 alt text'] != '' -%}
+            {% assign propertyAlt4 = {{listing.['property image 4 alt text']}} -%}
+        {% else -%}
+            {% assign propertyAlt4 = '' -%}
+        {% endif -%}
+        {% if listing.['property image 4 title'] != '' -%}
+            {% assign propertyTitle4 = {{listing.['property image 4 title']}} -%}
+        {% else -%}
+            {% assign propertyTitle4 = '' -%}
+        {% endif -%}
+        {% if listing.['property image 4 caption'] != '' -%}
+            {% assign propertyCap4 = {{listing.['property image 4 caption']}} -%}
+        {% else -%}
+            {% assign propertyCap4 = '' -%}
+        {% endif -%}
     {% else -%}
     {% assign defaultGalleryImage4 = "/_assets/img/PhotoComingSoon-PropertyGallery.jpg" -%}
+        {% assign propertyAlt4 = 'photo coming soon' -%}
+        {% assign propertyTitle4 = 'Photo Coming Soon' -%}
+        {% assign propertyCap4 = 'Photo Coming Soon'-%}
 {% endif -%}
     
 {% if listing.['bonus description'] != '' -%}
@@ -230,38 +539,38 @@
     {% else -%}
     <div class="properti-large-slider">
     <ul class="slider-for">
-      <li><img {{class}} src="{{defaultGalleryImage}}{{fill}}">
+      <li><img {{class}} src="{{defaultGalleryImage}}{{fill}}" alt="{{propertyAlt}}" title="{{propertyTitle}}">
         <div class="triangle"><em class="fa fa-star"></em></div>
       </li>
-      <li><img src="{{defaultGalleryImage1}}{{fillpro}}">
+      <li><img src="{{defaultGalleryImage1}}{{fillpro}}" alt="{{propertyAlt1}}" title="{{propertyTitle1}}">
         <div class="triangle"><em class="fa fa-star"></em></div>
       </li>
-      <li><img src="{{defaultGalleryImage2}}{{fillpro}}">
+      <li><img src="{{defaultGalleryImage2}}{{fillpro}}" alt="{{propertyAlt2}}" title="{{propertyTitle2}}">
         <div class="triangle"><em class="fa fa-star"></em></div>
       </li>
-      <li><img src="{{defaultGalleryImage3}}{{fillpro}}">
+      <li><img src="{{defaultGalleryImage3}}{{fillpro}}" alt="{{propertyAlt3}}" title="{{propertyTitle3}}">
         <div class="triangle"><em class="fa fa-star"></em></div>
       </li>
-      <li><img src="{{defaultGalleryImage4}}{{fillpro}}">
+      <li><img src="{{defaultGalleryImage4}}{{fillpro}}" alt="{{propertyAlt4}}" title="{{propertyTitle4}}">
         <div class="triangle"><em class="fa fa-star"></em></div>
       </li>
     </ul>
     <div class="row">
       <ul class="slider-nav">
         <li {{classNav}}>
-          <div class="small-12 column"><img src="{{defaultGalleryImage}}{{fillNav}}"></div>
+          <div class="small-12 column"><img src="{{defaultGalleryImage}}{{fillNav}}" alt="{{propertyAlt}}" title="{{propertyTitle}}"></div>
         </li>
         <li>
-          <div class="small-12 column"><img src="{{defaultGalleryImage1}}{{fillNav}}"></div>
+          <div class="small-12 column"><img src="{{defaultGalleryImage1}}{{fillNav}}" alt="{{propertyAlt1}}" title="{{propertyTitle1}}"></div>
         </li>
         <li>
-          <div class="small-12 column"><img src="{{defaultGalleryImage2}}{{fillNav}}"></div>
+          <div class="small-12 column"><img src="{{defaultGalleryImage2}}{{fillNav}}" alt="{{propertyAlt2}}" title="{{propertyTitle2}}"></div>
         </li>
         <li>
-          <div class="small-12 column"><img src="{{defaultGalleryImage3}}{{fillNav}}"></div>
+          <div class="small-12 column"><img src="{{defaultGalleryImage3}}{{fillNav}}" alt="{{propertyAlt3}}" title="{{propertyTitle3}}"></div>
         </li>
         <li>
-          <div class="small-12 column"><img src="{{defaultGalleryImage4}}{{fillNav}}"></div>
+          <div class="small-12 column"><img src="{{defaultGalleryImage4}}{{fillNav}}" alt="{{propertyAlt4}}" title="{{propertyTitle4}}"></div>
         </li>
       </ul>
     </div>

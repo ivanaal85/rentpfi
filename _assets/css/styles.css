@@ -199,7 +199,7 @@ input[type="reset"]{ margin-left: 10px;}
 .home-recent-properti{width:100%; float:left;padding:60px 0;border-bottom:1px solid #e8e8e8;}
 .recent-pro-content{width:100%; float:left;}
 .block-title {width: 100%;float: left;border-bottom: 3px solid #dcdcdc;position: relative;padding-bottom: 10px;margin-bottom: 52px;text-align:left;}
-.block-title h1 {color:#7b7b7b;font-weight:300;letter-spacing:-1px;font-size: 28px;}
+.block-title h1 {color:#7b7b7b;font-weight:300;letter-spacing:-1px;font-size: 33px;}
 .region-bg {padding-left: 0px;padding-right: 0px;}
 .region-bg .block-title {margin:6% 5% 0% 10%;border-bottom: 3px solid #ffffff;}
 .row.prop-search .block-title {padding-top: 46px;}
@@ -494,7 +494,7 @@ footer p{font-size:13.16px; color:#fff;font-weight:400;line-height:20.67px}
 .agents_listview figure img{width:100%;border-radius:50%;display:block;opacity:0.9}
 .agents_listview h4{font-family: 'Source Sans Pro', sans-serif;color:#555555;margin-bottom:20px;}
 .agents_listview h4 a{line-height:21px; color:#555555}
-.agents_listview h4 a:hover{ color:#007fc8}
+.agents_listview h4 a:hover{ color:#BB9434;}
 .agents_listview .agents-footer{border:none;padding:5px;}
 
 .about-recent-section{width:100%; float:left;padding:50px 0;background:#f3f3f3;border-top:1px solid #d8d8d8;}
@@ -734,7 +734,7 @@ footer p{font-size:13.16px; color:#fff;font-weight:400;line-height:20.67px}
 .contact_form_section:after{content:'';width: 0;height: 0;border-top: 65px solid transparent;border-right: 115px solid #406652;border-bottom: 65px solid transparent;position:absolute;top:50%;left:-112px;transform:translateY(-50%);}
 .contact_form {width: 100%;float: left; max-width: 385px;}
 .contact_form .block-title{margin-bottom:26px;}
-.contact_form .block-title h2{color:#fff;margin-bottom:9px;}
+.contact_form .block-title h1,.contact_form .block-title h2{color:#fff;margin-bottom:9px;}
 .contact_form .block-title .line{background:#bb9434;}
 .contact_form p{font-size:15px;color:#fff;line-height:25px;text-align:center;}
 .contact_form a{color:#F0B500;}
