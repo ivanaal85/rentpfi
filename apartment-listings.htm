@@ -124,12 +124,12 @@
             
             {% comment -%}<!--assign form variables-->{% endcomment -%}
               
-            {% if globals.site.['host'] == "www.apartmenthomessonoma.com" -%}    
+            {% if globals.site.['host'] contains 'apartmenthomessonoma.'  -%}
                 {% assign formID = "75959" -%}
                 {% assign CCID = "30927" -%}
                 {% assign FID = "306292" -%}  
 
-            {% elseif globals.site.['host'] == "www.apartmenthomesmarin.com" -%}
+            {% elseif globals.site.['host'] contains 'apartmenthomesmarin.'  -%}
                 {% assign formID = "47801" -%}
                 {% assign CCID = "30862" -%}
                 {% assign FID = "300262" -%}

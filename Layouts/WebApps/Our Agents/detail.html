@@ -1,71 +1,99 @@
+<!DOCTYPE HTML>
+<html>
 
-<div class="small-12 left">
-  <div class="large-4 medium-6 small-11 left">
-    <div class="block-title">
-      <h1>{tag_name}</h1>
-      <span>Real Estate Broker</span>
-      <div class="line small"></div>
-    </div>
-  </div>
-</div>
-<div class="agent-detail-page">
-  <div class="row">
-    <div class="large-6 small-6 columns">
-      <figure class="agents-large-image"><img src="{tag_large image_value}"></figure>
-    </div>
-    <div class="large-6 small-6 columns">
-      <div class="agent-contact-info">
-        <div class="block-title">
-          <h3>Contact Info</h3>
-          <div class="line small"></div>
+    <head>
+        <meta name="robots" content="noindex" />
+    </head>
+
+    <body>
+        <div class="small-12 left">
+            <div class="large-4 medium-6 small-11 left">
+                <div class="block-title">
+                    <h1>{tag_name}</h1> <span>Real Estate Broker</span>
+                    <div class="line small">&nbsp;</div>
+                </div>
+            </div>
         </div>
-        <ul>
-          <li> <span><em class="fa fa-phone"></em>Phone:</span><a href="tel:{tag_office phone number}">{tag_office phone number}</a> </li>
-          <li> <span><em class="fa fa-mobile"></em>Mobile:</span><a href="tel:{tag_mobile number}">{tag_mobile number}</a> </li>
-          <li> <span><em class="fa fa-envelope"></em>Email:</span><a href="mailto:{tag_email id}">{tag_email id}</a> </li>
-          <li> <span><em class="fa fa-skype"></em>Skype:</span><a href="#">{tag_skype user name}</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="small-12 left">
-    <div class="large-5 medium-6 small-11 left">
-      <div class="block-title">
-        <h2>About Me</h2>
-        <div class="line small"></div>
-      </div>
-    </div>
-  </div>
-  {tag_description} </div>
-<div class="agent-comment-form">
-  <div class="small-12 left">
-    <div class="large-5 medium-6 small-11 left">
-      <div class="block-title">
-        <h2>Contact Me</h2>
-        <div class="line small"></div>
-      </div>
-    </div>
-  </div>
-  <form name="catwebformform41380" method="post" onsubmit="return checkWholeForm41380(this)" enctype="multipart/form-data" action="/Default.aspx?A=Form&Email={tag_email id}&Subject=Customer+Enquiry+For+Property&EmailFrom=dave@bcgurus.com&PageID=/thank-you">
-    <div class="row">
-      <div class="large-6 medium-6 small-6 columns">
-        <input type="text" name="FirstName" id="FirstName" placeholder="Full Name" maxlength="255" />
-      </div>
-      <div class="large-6 medium-6 small-6 columns">
-        <input type="text" name="EmailAddress" id="EmailAddress" placeholder="Email Address" maxlength="255" />
-      </div>
-      <div class="large-12 medium-12 small-12 columns">
-        <textarea name="CAT_Custom_446375" id="CAT_Custom_446375" placeholder="Your Comment here.. " onkeydown="if(this.value.length>=4000)this.value=this.value.substring(0,3999);"></textarea>
-      </div>
-      <div class="large-12 medium-12 small-12 columns">
-        <input type="reset" value="Reset" />
-        <input type="submit" value="Submit" id="catwebformbutton">
-      </div>
-    </div>
-    <script type="text/javascript" src="http://uguru-realestateagency-us.businesscatalyst.com/CatalystScripts/ValidationFunctions.js?vs=b1725.r465456-phase1"></script><script type="text/javascript">
-//<![CDATA[
-var submitcount41380 = 0;function checkWholeForm41380(theForm){var why = "";if (theForm.FirstName) why += isEmpty(theForm.FirstName.value, "your Name");  if (theForm.EmailAddress) why += checkEmail(theForm.EmailAddress.value); if (theForm.CAT_Custom_446375) why += isEmpty(theForm.CAT_Custom_446375.value, "Message");if(why != ""){alert(why);return false;}if(submitcount41380 == 0){submitcount41380++;theForm.submit();return false;}else{alert("Form submission is in progress.");return false;}}
-//]]>
-</script>
-  </form>
-</div>
+        <div class="agent-detail-page">
+            <div class="row">
+                <div class="large-6 small-6 columns">
+                    <figure class="agents-large-image"><img src="{tag_large image_value}">
+                    </figure>
+                </div>
+                <div class="large-6 small-6 columns">
+                    <div class="agent-contact-info">
+                        <div class="block-title">
+                            <h3>Contact Info</h3>
+                            <div class="line small">&nbsp;</div>
+                        </div>
+                        <ul>
+                            <li> <span><em class="fa fa-phone">&nbsp;</em>Phone:</span><a href="tel:{tag_office phone number}">{tag_office phone number}</a>                                </li>
+                            <li> <span><em class="fa fa-mobile">&nbsp;</em>Mobile:</span><a href="tel:{tag_mobile number}">{tag_mobile number}</a> </li>
+                            <li>
+                            <span><em class="fa fa-envelope">&nbsp;</em>Email:</span><a href="mailto:{tag_email id}">{tag_email id}</a> </li>
+                            <li> <span><em class="fa fa-skype">&nbsp;</em>Skype:</span><a href="#">{tag_skype user name}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="small-12 left">
+                <div class="large-5 medium-6 small-11 left">
+                    <div class="block-title">
+                        <h2>About Me</h2>
+                        <div class="line small">&nbsp;</div>
+                    </div>
+                </div>
+            </div> {tag_description} </div>
+        <div class="agent-comment-form">
+            <div class="small-12 left">
+                <div class="large-5 medium-6 small-11 left">
+                    <div class="block-title">
+                        <h2>Contact Me</h2>
+                        <div class="line small">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <form name="catwebformform41380" method="post" onsubmit="return checkWholeForm41380(this)" enctype="multipart/form-data" action="/Default.aspx?A=Form&amp;Email={tag_email id}&amp;Subject=Customer+Enquiry+For+Property&amp;EmailFrom=dave@bcgurus.com&amp;PageID=/thank-you">
+                <div class="row">
+                    <div class="large-6 medium-6 small-6 columns">
+                        <input type="text" name="FirstName" id="FirstName" placeholder="Full Name" maxlength="255"> </div>
+                    <div class="large-6 medium-6 small-6 columns">
+                        <input type="text" name="EmailAddress" id="EmailAddress" placeholder="Email Address" maxlength="255"> </div>
+                    <div class="large-12 medium-12 small-12 columns">
+                        <textarea name="CAT_Custom_446375" id="CAT_Custom_446375" placeholder="Your Comment here.. " onkeydown="if(this.value.length>=4000)this.value=this.value.substring(0,3999);"></textarea>
+                    </div>
+                    <div class="large-12 medium-12 small-12 columns">
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Submit" id="catwebformbutton"> </div>
+                </div>
+                <script type="text/javascript" src="http://uguru-realestateagency-us.businesscatalyst.com/CatalystScripts/ValidationFunctions.js?vs=b1725.r465456-phase1"></script>
+                <script type="text/javascript">
+                    //<![CDATA[
+                    var submitcount41380 = 0;
+
+                    function checkWholeForm41380(theForm) {
+                            var why = "";
+                            if (theForm.FirstName) why += isEmpty(theForm.FirstName.value, "your Name");
+                            if (theForm.EmailAddress) why += checkEmail(theForm.EmailAddress.value);
+                            if (theForm.CAT_Custom_446375) why += isEmpty(theForm.CAT_Custom_446375.value, "Message");
+                            if (why != "") {
+                                alert(why);
+                                return false;
+                            }
+                            if (submitcount41380 == 0) {
+                                submitcount41380++;
+                                theForm.submit();
+                                return false;
+                            } else {
+                                alert("Form submission is in progress.");
+                                return false;
+                            }
+                        }
+                        //]]>
+                </script>
+            </form>
+        </div>
+    </body>
+
+</html>

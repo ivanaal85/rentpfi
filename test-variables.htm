@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <title>Test Variables</title>
+        <meta name="robots" content="noindex" />
+    </head>
+
+    <body>
+        {% comment -%}
+        <!--must update regions, _header and _footer anytime a new domain is added to the site-->{% endcomment -%} {% if globals.site.['host'] contains '.apartmenthomesmarin.com'  -%} {% assign region = "Marin" -%} {% assign host = '.apartmenthomesmarin.com' -%}
+        <p>The host contains {{host}} but the region is {{region}}</p>
+
+        {% elseif globals.site.['host'] contains '.apartmenthomessonoma.com' -%} {% assign region = "Sonoma" -%} {% assign host = '.apartmenthomessonoma.com' -%}
+        <p>The host contains {{host}} but the region is {{region}}</p>
+
+        {% else -%} {% assign region = "RentPFI" -%} {% assign host = '.rentpfi.com' -%}
+        <p>The host contains {{host}} but the region is {{region}}</p>
+        {% endif -%} {% if globals.site.['host'] contains '.apartmenthomesmarin.com' and {{region}} == "RentPFI"  -%}
+        <p>Why is BC accepting both conditions that the host contains '.apartmenthomesmarin.com' and that the region is "RentPFI"? If the region is "RentPFI",
+            according to the simple liquid logic on this page, the host should contain '.rentpfi.com'</p>
+        {% endif -%} {% comment -%}
+
+        <!--Output the variables dependant on what the host contains-->{% endcomment -%}
+
+
+    </body>
+
+
+</html>

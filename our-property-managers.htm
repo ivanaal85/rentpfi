@@ -2,34 +2,12 @@
 {% capture html -%}
 <html><!-- InstanceBegin template="/Templates/Default.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
-<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+<!-- InstanceBeginEditable name="doctitle" --><title>{% include"/_System/Includes/regions.inc" %}Meet our Managers |{{site}} Property Management Team</title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- InstanceEndEditable -->
+        <meta name="description" content="Whether you are looking for a town home, a studio, or a pet friendly spacious apartment, our property managers can assist you with finding your next rental throughout {{citiesServed}}. " />
+ <link rel="canonical" href="{{canonicalHost}}{{pageAddress}}" />
+    <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
 <body>
@@ -53,14 +31,10 @@
         </div>
       </div>
       <!-- InstanceBeginEditable name="ContentArea" -->
-{% if {{region}} == "RentPFI" -%}
-{module_contentholder, name="Our Property Managers Marin"}
-{module_contentholder, name="Our Property Managers Sonoma"}
-{% else -%}        
-{module_contentholder, name="Our Property Managers {{region}}"}
-{% endif -%}
+        {% if {{region}} == "RentPFI" -%} {module_contentholder, name="Our Property Managers Marin"} {module_contentholder, name="Our Property Managers Sonoma"}
+        {% else -%} {module_contentholder, name="Our Property Managers {{region}}"} {% endif -%}
 
-<!-- InstanceEndEditable --> </div>
+    <!-- InstanceEndEditable --> </div>
   </div>
 </section>
 {module_contentholder, name="Newsletter {{region}} Section"} 

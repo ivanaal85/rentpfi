@@ -8,8 +8,8 @@
     var godefer = document.getElementsByTagName('link')[0];
     godefer.parentNode.insertBefore(giftofspeed, godefer);
 </script>
-{% comment -%}<!--<script src="../../_assets/js/main.min.js"></script>-->{% endcomment -%}
-<script src="//cdn.jsdelivr.net/gh/GREGG-CHRISTOFFERSON/rentpfi@v0.1.1/_assets/js/main.min.js"></script>
+<script src="../../_assets/js/main.min.js"></script>
+{% comment -%}<script src="//cdn.jsdelivr.net/gh/GREGG-CHRISTOFFERSON/rentpfi@v0.1.1/_assets/js/main.min.js"></script>{% endcomment -%}
 <script>
       $(document).foundation();
     </script> 

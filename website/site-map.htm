@@ -2,25 +2,11 @@
 {% capture html -%}
 <html><!-- InstanceBegin template="/Templates/Default.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
-<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
-
-
-
-
-
-
-
-
-
-
+<!-- InstanceBeginEditable name="doctitle" --><title>{% include"/_System/Includes/regions.inc" %}Site Map | {{site}}</title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
         
-
-    
-
-
-
-
-<!-- InstanceEndEditable -->
+        <meta name="description" content="Easily navigate {{site}} using the site map." />
+ <link rel="canonical" href="{{canonicalHost}}{{pageAddress}}" />
+    <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
 <body>
@@ -44,9 +30,9 @@
         </div>
       </div>
       <!-- InstanceBeginEditable name="ContentArea" -->
-{module_contentholder, name="Site Map {{region}}"}
+        {module_contentholder, name="Site Map {{region}}"}
 
-<!-- InstanceEndEditable --> </div>
+    <!-- InstanceEndEditable --> </div>
   </div>
 </section>
 {module_contentholder, name="Newsletter {{region}} Section"} 

@@ -3,6 +3,7 @@
 <html><!-- InstanceBegin template="/Templates/Features.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 <!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+        
 
 
 
@@ -10,8 +11,8 @@
 
 
 
-
-<!-- InstanceEndEditable -->
+        <meta name="robots" content="noindex" />
+    <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
 <body>
@@ -26,20 +27,16 @@
 <section class="interior_content">
   <div class="row">
     <div class="large-12 columns"> <!-- InstanceBeginEditable name="ContentArea" -->
-<section class="main_content">
-  <div class="small-12 left">
-    <div class="large-4 medium-6 small-11 left">
-      <div class="block-title">
-        <h2> {module_pagename}</h2>
-        <div class="line small"></div>
-      </div>
-    </div>
-  </div>
-    {module_booking filter="all"}</section>
-
-
-
-<!-- InstanceEndEditable --> </div>
+        <section class="main_content">
+            <div class="small-12 left">
+                <div class="large-4 medium-6 small-11 left">
+                    <div class="block-title">
+                        <h2> {module_pagename}</h2>
+                        <div class="line small">&nbsp;</div>
+                    </div>
+                </div>
+            </div> {module_booking filter="all"}</section>
+    <!-- InstanceEndEditable --> </div>
   </div>
 </section>
 {module_contentholder, name="Newsletter {{region}} Section"}

@@ -2,23 +2,27 @@
 {% capture html -%}
 <html><!-- InstanceBegin template="/Templates/Inner Template.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
-<!-- InstanceBeginEditable name="doctitle" --><title>Blogs</title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
-
-
-
-
-
-
-
-
+<!-- InstanceBeginEditable name="doctitle" --><title>{% include"/_System/Includes/regions.inc" %}{{site}} Blogs </title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
 
 
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <meta name="description" content="View a quick list of {{site}} blogs created to inform the readers about the lifestyle in {{county}}, give helpful tips on apartment living in {{citiesServed}}, and connect the readers to local resources and businesses." />
     
-
-
-
-
 <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
@@ -29,16 +33,16 @@
   <div class="row">
     <div class="medium-8 columns left_area_panel">
       <div class="content_area"> <!-- InstanceBeginEditable name="ContentArea" -->
-          {%assign filter = "classified" -%}
-          {% if {{region == 'Marin'}} -%}
-          {%assign itemid = 'itemid="118221"' -%}
-          {% elseif {{region}} == 'Sonoma' -%}
-          {%assign itemid = 'itemid="118220"' -%}
+        {%assign filter = "classified" -%} {% if {{region == 'Marin'}} -%} {%assign itemid = 'itemid="118221"' -%} {% elseif {{region}} == 'Sonoma' -%} {%assign itemid = 'itemid="118220"' -%}
+        {% endif -%}
+          {% case region -%}
+          {% when 'RentPFI' -%}
+           {module_blog,a}
           {% else -%}
-          {%assign filter = "classified" -%}
-          {% endif -%}
-        <p>{module_blog filter="{{filter}}" {{itemid}}}</p>
+           <p>{module_blog filter="{{filter}}" {{itemid}}}</p>
+          {% endcase -%} 
 
+    
 <!-- InstanceEndEditable --> </div>
     </div>
     <div class="medium-4 columns right_area_panel">

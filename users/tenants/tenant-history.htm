@@ -3,12 +3,13 @@
 <html><!-- InstanceBegin template="/Templates/Account.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 <!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+        
 
 
 
 
-
-<!-- InstanceEndEditable -->
+        <meta name="robots" content="noindex" />
+    <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
 <body>
@@ -35,54 +36,49 @@
         <div class="medium-3 columns"> {module_menu, version="2", menuId="1537645", moduleTemplateGroup="Aside"} 
           {% comment -%}<!--end ul side-nav-->{% endcomment -%} 
         </div>
-        <div class="medium-9  columns solutions-detail"> <!-- InstanceBeginEditable name="ContentArea" --><script type="text/javascript">
-	$(function () {
-		$("#js-messages table:odd, #js-orders table:odd").addClass("odd");
+        <div class="medium-9  columns solutions-detail"> <!-- InstanceBeginEditable name="ContentArea" -->
+        <script type="text/javascript">
+            $(function() {
+                $("#js-messages table:odd, #js-orders table:odd").addClass("odd");
 
-		$(".js-subject a").each(function () {
-			var txt = this.innerHTML;
+                $(".js-subject a").each(function() {
+                    var txt = this.innerHTML;
 
-			txt = txt.replace("/", " - ");
-			this.innerHTML = txt;
-		});
-	});
-</script>
-
-<h3>Purchases</h3>
-<table width="100%">
-    <tbody>
-        <tr>
-            <th style="text-align: left; width: 15%;">Order #</th>
-            <th style="text-align: left; width: 20%;">Created On<br />
-            </th>
-            <th style="text-align: left; width: 15%;">Amount</th>
-            <th style="text-align: left; width: 30%;">Details</th>
-            <th style="text-align: left; width: 15%;">Status</th>
-        </tr>
-    </tbody>
-</table>
-<div id="js-orders">
-{module_order,a,}
-</div>
-<hr />
-<h3>Cases</h3>
-<table width="100%">
-    <tbody>
-        <tr>
-            <th style="text-align: left; width: 15%;">Document #</th>
-            <th style="text-align: left; width: 20%;">Created On<br />
-            </th>
-            <th style="text-align: left; width: 40%;">Details</th>
-        </tr>
-    </tbody>
-</table>
-<div id="js-messages">
-<div id="js-orders">{module_case,a,}</div>
-</div>
-
-
-
-<!-- InstanceEndEditable --> </div>
+                    txt = txt.replace("/", " - ");
+                    this.innerHTML = txt;
+                });
+            });
+        </script>
+        <h3>Purchases</h3>
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <th style="text-align: left; width: 15%;">Order #</th>
+                    <th style="text-align: left; width: 20%;">Created On
+                        <br /> </th>
+                    <th style="text-align: left; width: 15%;">Amount</th>
+                    <th style="text-align: left; width: 30%;">Details</th>
+                    <th style="text-align: left; width: 15%;">Status</th>
+                </tr>
+            </tbody>
+        </table>
+        <div id="js-orders"> {module_order,a,}</div>
+        <hr>
+        <h3>Cases</h3>
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <th style="text-align: left; width: 15%;">Document #</th>
+                    <th style="text-align: left; width: 20%;">Created On
+                        <br /> </th>
+                    <th style="text-align: left; width: 40%;">Details</th>
+                </tr>
+            </tbody>
+        </table>
+        <div id="js-messages">
+            <div id="js-orders">{module_case,a,}</div>
+        </div>
+    <!-- InstanceEndEditable --> </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,21 @@
-
+<head>
+    
+<title>{% include"/_System/Includes/regions.inc" %}
+    {% capture pageAddress-%}{module_pageaddress}{% endcapture -%}
+    {% if  pageAddress contains "services" -%}
+        {% assign thisTitle = "Best Tenant Services - " -%}
+        {% assign thisTitle = {{thisTitle | append: {{site}} | append: "Property Management Services" -%}
+        {% assign thisMetaDesc = {{site}} -%} 
+        {% assign thisMetaDesc = {{thisMetaDesc | append:" strives to provide high quality rentals in " | append:{{county}} | append: " along with best services to its residents to help them create an enjoyable apartment living experience." }} -%}
+    {% elseif pageAddress contains 'responsive' -%}
+        {% assign thisTitle = {{site}} Responsive Management -%}
+        {% assign thisTitle = {{thisTitle | append: " Responsive Management"}} -%}
+        {% assign thisMetaDesc = {{site}} -%} 
+        {% assign thisMetaDesc = {{thisMetaDesc | append: " Management Team is experienced and dedicated to providing prospective tenants with best rental options and its residents with professional on-site management."}}  -%} 
+    {% endif -%}{{thisTitle}}</title>
+    
+<meta name="description" content={{thisMetaDesc}}   
+</head>
  <div class="service-block service-detail">
 <div class="medium-2 columns">
 <div class="service-icon">
@@ -9,6 +26,7 @@
 {tag_small description}
 
     {tag_description}
+    
 </div>
   </div>
 

@@ -2,7 +2,8 @@
 {% capture html -%}
 <html><!-- InstanceBegin template="/Templates/Full Width Template.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
-<!-- InstanceBeginEditable name="doctitle" --><title></title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+<!-- InstanceBeginEditable name="doctitle" --><title>{% include"/_System/Includes/regions.inc" %}Why Choose {{site}} | {{county}} Apartments</title><!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" -->
+        
 
 
 
@@ -15,330 +16,322 @@
 
 
 
-<!-- InstanceEndEditable -->
+
+
+        <meta name="description" content="Learn why choosing {{site}} is the right decision.  Experience high quality apartment living and best tenant services in some of the most desirable {{county}} neighborhoods." />
+        <link rel="canonical" href="{{canonicalHost}}{{pageAddress}}" />
+    <!-- InstanceEndEditable -->
 {% include"/_System/Includes/head.inc" %}
 </head>
 <body>
 {% include"/_System/Includes/_header.inc" %}  
 <section class="main_content"> <!-- InstanceBeginEditable name="ContentArea" -->
-<section class="inner-main">
-  <div class="row">
-    <div class="large-12 columns">
-      <div class="small-12 left">
-        <div class="large-4 medium-6 small-11 left">
-          <div class="block-title">
-            <h2>{module_pagename}</h2>
-            <div class="line small"></div>
-          </div>
-        </div>
-      </div>
-      <div class="about-two-col">
-        {module_contentholder, name="About Content {{region}}"}
-      </div>
-      <div class="about-ouragents">
-        {% if {{region}} != 'RentPFI' -%}
-        <div class="large-12 left">
-          <div class="large-5 left">
-            <div class="block-title">
-              <h2>Our {{region}} Managers</h2>
-              <div class="line small"></div>
-            </div>
-          </div>
-        </div>
-          {% else -%}
-        <div class="large-12 left">
-          <div class="large-5 left">
-            <div class="block-title">
-              <h2>Our Marin Managers</h2>
-              <div class="line small"></div>
-            </div>
-          </div>
-        </div>
-          {% endif -%}
-        <div class="row">
-          <ul class="four-col-slider">
-            {module_webapps id="Our Managers {{region}}" filter="all" collection="myWebapp" render="collection" template=""}
-            {% for item in myWebapp.items %}
-            {% unless item.['name'] == '1 - No Current Onsite Agent' -%}  
-            <li>
-              <div class="large-12 columns">
-                <div class="agents_listview">
-                  {% if item.['image'] != "" -%}
-                      <figure><a href="{{item.url}}"><img src="{{item.['Image']}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% elseif item.['placeholder image'] == "Male" -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultMaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% elseif item.['placeholder image'] == "Female" -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultFemaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% else -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultListingImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                  {% endif -%}
-                  <h4><a href="{{item.['url']}}">{{item.['name']}}</a></h4>
-                  <div class="agents-footer">
-                    <ul>
-                        {% if item.['Twitter Link'] != '' -%}
-                        <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Twitter Link'] != '' -%}
-                        <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
+        <section class="inner-main">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="small-12 left">
+                        <div class="large-4 medium-6 small-11 left">
+                            <div class="block-title">
+                                <h1>{module_pagename}</h1>
+                                <div class="line small"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-two-col">
+                        {module_contentholder, name="About Content {{region}}"}
+                    </div>
+                    <div class="about-ouragents">
+                        {% if {{region}} != 'RentPFI' -%}
+                        <div class="large-12 left">
+                            <div class="large-5 left">
+                                <div class="block-title">
+                                    <h2>Our {{region}} Managers</h2>
+                                    <div class="line small"></div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else -%}
+                        <div class="large-12 left">
+                            <div class="large-5 left">
+                                <div class="block-title">
+                                    <h2>Our Marin Managers</h2>
+                                    <div class="line small"></div>
+                                </div>
+                            </div>
+                        </div>
                         {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Facebook Link'] != '' -%}
-                        <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Facebook Link'] != '' -%}
-                        <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['LinkedIn Link'] != '' -%}
-                        <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['LinkedIn Link'] != '' -%}
-                        <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Google-Plus Link'] != '' -%}
-                        <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Google-Plus Link'] != '' -%}
-                        <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Rss Link'] != '' -%}
-                        <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Rss Link'] != '' -%}
-                        <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Manager Quote'] != '' -%}
-                        <li><div class="testimonial">&ldquo;{{item.['Manager Quote']}}&rdquo;</div></li>
-                        {% endif -%}
-                    </ul>
-                  </div>
+                        <div class="row">
+                            <ul class="four-col-slider">
+                                {module_webapps id="Our Managers {{region}}" filter="all" collection="myWebapp" render="collection" template=""} {% for item in myWebapp.items %} {% unless item.['name'] == '1 - No Current Onsite Agent' -%}
+                                <li>
+                                    <div class="large-12 columns">
+                                        <div class="agents_listview">
+                                            {% if item.['image'] != "" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{item.['Image']}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% elseif item.['placeholder image'] == "Male" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultMaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% elseif item.['placeholder image'] == "Female" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultFemaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% else -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultListingImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% endif -%}
+                                            <h4><a href="{{item.['url']}}">{{item.['name']}}</a></h4>
+                                            <div class="agents-footer">
+                                                <ul>
+                                                    {% if item.['Twitter Link'] != '' -%}
+                                                    <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Twitter Link'] != '' -%}
+                                                    <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Facebook Link'] != '' -%}
+                                                    <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Facebook Link'] != '' -%}
+                                                    <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['LinkedIn Link'] != '' -%}
+                                                    <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['LinkedIn Link'] != '' -%}
+                                                    <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Google-Plus Link'] != '' -%}
+                                                    <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Google-Plus Link'] != '' -%}
+                                                    <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Rss Link'] != '' -%}
+                                                    <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info {{region}}"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Rss Link'] != '' -%}
+                                                    <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Manager Quote'] != '' -%}
+                                                    <li>
+                                                        <div class="testimonial">&ldquo;{{item.['Manager Quote']}}&rdquo;</div>
+                                                    </li>
+                                                    {% endif -%}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endunless -%} {% endfor -%}
+                            </ul>
+                        </div>
+                        {% unless {{region}} == 'Marin' or {{region}} == 'Sonoma' -%}
+                        <div class="row">
+                            <ul class="four-col-slider">
+                                {module_webapps id="Our Managers Marin" filter="all" collection="myWebapp" render="collection" template=""} {% for item in myWebapp.items %} {% unless item.['name'] == '1 - No Current Onsite Agent' -%}
+                                <li>
+                                    <div class="large-12 columns">
+                                        <div class="agents_listview">
+                                            {% if item.['image'] != "" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{item.['Image']}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% elseif item.['placeholder image'] == "Male" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultMaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% elseif item.['placeholder image'] == "Female" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultFemaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% else -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultListingImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% endif -%}
+                                            <h4><a href="{{item.['url']}}">{{item.['name']}}</a></h4>
+                                            <div class="agents-footer">
+                                                <ul>
+                                                    {% if item.['Twitter Link'] != '' -%}
+                                                    <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Twitter Link'] != '' -%}
+                                                    <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Facebook Link'] != '' -%}
+                                                    <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Facebook Link'] != '' -%}
+                                                    <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['LinkedIn Link'] != '' -%}
+                                                    <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['LinkedIn Link'] != '' -%}
+                                                    <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Google-Plus Link'] != '' -%}
+                                                    <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Google-Plus Link'] != '' -%}
+                                                    <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Rss Link'] != '' -%}
+                                                    <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Rss Link'] != '' -%}
+                                                    <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Manager Quote'] != '' -%}
+                                                    <li>
+                                                        <div class="testimonial">&ldquo;{{item.['Manager Quote']}}&rdquo;</div>
+                                                    </li>
+                                                    {% endif -%}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endunless -%} {% endfor -%}
+                            </ul>
+                        </div>
+                        <div class="large-12 left">
+                            <div class="large-5 left">
+                                <div class="block-title">
+                                    <h2>Our Sonoma Managers</h2>
+                                    <div class="line small"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <ul class="four-col-slider">
+                                {module_webapps id="Our Managers Sonoma" filter="all" collection="myWebapp" render="collection" template=""} {% for item in myWebapp.items %} {% unless item.['name'] == '1 - No Current Onsite Agent' -%}
+                                <li>
+                                    <div class="large-12 columns">
+                                        <div class="agents_listview">
+                                            {% if item.['image'] != "" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{item.['Image']}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% elseif item.['placeholder image'] == "Male" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultMaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% elseif item.['placeholder image'] == "Female" -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultFemaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% else -%}
+                                            <figure>
+                                                <a href="{{item.url}}"><img src="{{defaultListingImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional">
+                                                </a>
+                                            </figure>
+                                            {% endif -%}
+                                            <h4><a href="{{item.['url']}}">{{item.['name']}}</a></h4>
+                                            <div class="agents-footer">
+                                                <ul>
+                                                    {% if item.['Twitter Link'] != '' -%}
+                                                    <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Twitter Link'] != '' -%}
+                                                    <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Facebook Link'] != '' -%}
+                                                    <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Facebook Link'] != '' -%}
+                                                    <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['LinkedIn Link'] != '' -%}
+                                                    <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['LinkedIn Link'] != '' -%}
+                                                    <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Google-Plus Link'] != '' -%}
+                                                    <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Google-Plus Link'] != '' -%}
+                                                    <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Rss Link'] != '' -%}
+                                                    <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a>
+                                                    </li>
+                                                    {% else %} {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
+                                                    {% for item in myPropertyInfoWebapp.items %} {% if item.['Rss Link'] != '' -%}
+                                                    <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a>
+                                                    </li>
+                                                    {% endif -%} {% endfor -%} {% endif -%} {% if item.['Manager Quote'] != '' -%}
+                                                    <li>
+                                                        <div class="testimonial">&ldquo;{{item.['Manager Quote']}}&rdquo;</div>
+                                                    </li>
+                                                    {% endif -%}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endunless -%} {% endfor -%}
+                            </ul>
+                        </div>
+                        {% endunless -%}
+                    </div>
                 </div>
-              </div>
-            </li>
-            {% endunless -%}
-            {% endfor -%}
-          </ul>
-          </div>
-          {% unless {{region}} == 'Marin' or {{region}} == 'Sonoma' -%}
-          <div class="row">
-          <ul class="four-col-slider">
-            {module_webapps id="Our Managers Marin" filter="all" collection="myWebapp" render="collection" template=""}
-            {% for item in myWebapp.items %}
-            {% unless item.['name'] == '1 - No Current Onsite Agent' -%}  
-            <li>
-              <div class="large-12 columns">
-                <div class="agents_listview">
-                  {% if item.['image'] != "" -%}
-                      <figure><a href="{{item.url}}"><img src="{{item.['Image']}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% elseif item.['placeholder image'] == "Male" -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultMaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% elseif item.['placeholder image'] == "Female" -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultFemaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% else -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultListingImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                  {% endif -%}
-                  <h4><a href="{{item.['url']}}">{{item.['name']}}</a></h4>
-                  <div class="agents-footer">
-                    <ul>
-                        {% if item.['Twitter Link'] != '' -%}
-                        <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Twitter Link'] != '' -%}
-                        <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Facebook Link'] != '' -%}
-                        <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Facebook Link'] != '' -%}
-                        <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['LinkedIn Link'] != '' -%}
-                        <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['LinkedIn Link'] != '' -%}
-                        <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Google-Plus Link'] != '' -%}
-                        <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Google-Plus Link'] != '' -%}
-                        <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Rss Link'] != '' -%}
-                        <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Marin"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Rss Link'] != '' -%}
-                        <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Manager Quote'] != '' -%}
-                        <li><div class="testimonial">&ldquo;{{item.['Manager Quote']}}&rdquo;</div></li>
-                        {% endif -%}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </li>
-            {% endunless -%}
-            {% endfor -%}
-          </ul>
-          </div>
-          <div class="large-12 left">
-          <div class="large-5 left">
-            <div class="block-title">
-              <h2>Our Sonoma Managers</h2>
-              <div class="line small"></div>
             </div>
-          </div>
-         </div>
-          <div class="row">
-              <ul class="four-col-slider">
-            {module_webapps id="Our Managers Sonoma" filter="all" collection="myWebapp" render="collection" template=""}
-            {% for item in myWebapp.items %}
-            {% unless item.['name'] == '1 - No Current Onsite Agent' -%}  
-            <li>
-              <div class="large-12 columns">
-                <div class="agents_listview">
-                  {% if item.['image'] != "" -%}
-                      <figure><a href="{{item.url}}"><img src="{{item.['Image']}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% elseif item.['placeholder image'] == "Male" -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultMaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% elseif item.['placeholder image'] == "Female" -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultFemaleMgrImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                      {% else -%}
-                      <figure><a href="{{item.url}}"><img src="{{defaultListingImage}}?Action=thumbnail&Width=135&Height=135&algorithim=fill_proportional"></a></figure>
-                  {% endif -%}
-                  <h4><a href="{{item.['url']}}">{{item.['name']}}</a></h4>
-                  <div class="agents-footer">
-                    <ul>
-                        {% if item.['Twitter Link'] != '' -%}
-                        <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Twitter Link'] != '' -%}
-                        <li><a href="{{item.['Twitter Link']}}"><em class="fa fa-twitter"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Facebook Link'] != '' -%}
-                        <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Facebook Link'] != '' -%}
-                        <li><a href="{{item.['Facebook Link']}}"><em class="fa fa-facebook"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['LinkedIn Link'] != '' -%}
-                        <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['LinkedIn Link'] != '' -%}
-                        <li><a href="{{item.['LinkedIn Link']}}"><em class="fa fa-linkedin"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Google-Plus Link'] != '' -%}
-                        <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Google-Plus Link'] != '' -%}
-                        <li><a href="{{item.['Google-Plus Link']}}"><em class="fa fa-google-plus"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Rss Link'] != '' -%}
-                        <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
-                        {% else %}
-                        {module_webapps collection="myPropertyInfoWebapp" render="collection" id="Property Info Sonoma"  filter="item" itemId="{{item.['Leasing Office Location_id']}}" template=""}
-                        {% for item in myPropertyInfoWebapp.items %}
-                        {% if item.['Rss Link'] != '' -%}
-                        <li><a href="{{item.['Rss Link']}}"><em class="fa fa-rss"></em></a></li>
-                        {% endif -%}
-                        {% endfor -%}
-                        {% endif -%}
-                        {% if item.['Manager Quote'] != '' -%}
-                        <li><div class="testimonial">&ldquo;{{item.['Manager Quote']}}&rdquo;</div></li>
-                        {% endif -%}
-                    </ul>
-                  </div>
+            </div>
+        </section>
+        <section class="about-recent-section">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="small-12 left">
+                        <div class="large-5 medium-6 left">
+                            <div class="block-title">
+                                <h2>Recent Properties</h2>
+                                <div class="line small"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% unless {{region}} == 'RentPFI' -%}
+                    <div class="row"> {module_webapps,Apartment Listings {{region}},l,3,,,true,,,} </div>
+                    {% endunless -%} {% unless {{region}} == 'Marin' or {{region}} == 'Sonoma'-%}
+                    <div class="row"> {module_webapps,Apartment Listings Marin,l,3,,,true,,,} </div>
+                    <div class="row"> {module_webapps,Apartment Listings Sonoma,l,3,,,true,,,} </div>
+                    {% endunless -%}
                 </div>
-              </div>
-            </li>
-            {% endunless -%}
-            {% endfor -%}
-          </ul>
-          </div>
-          {% endunless -%}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="about-recent-section">
-  <div class="row">
-    <div class="large-12 columns">
-      <div class="small-12 left">
-        <div class="large-5 medium-6 left">
-          <div class="block-title">
-            <h2>Recent Properties</h2>
-            <div class="line small"></div>
-          </div>
-        </div>
-      </div>
-        {% unless {{region}} == 'RentPFI' -%}
-      <div class="row"> {module_webapps,Apartment Listings {{region}},l,3,,,true,,,} </div>
-        {% endunless -%}
-        {% unless {{region}} == 'Marin' or {{region}} == 'Sonoma'-%}
-      <div class="row"> {module_webapps,Apartment Listings Marin,l,3,,,true,,,} </div>
-      <div class="row"> {module_webapps,Apartment Listings Sonoma,l,3,,,true,,,} </div>
-        {% endunless -%}
-    </div>
-  </div>
-</section>    
+            </div>
+        </section>
 
-<!-- InstanceEndEditable --> </section>
+
+    <!-- InstanceEndEditable --> </section>
 {module_contentholder, name="Newsletter {{region}} Section"}
 <!--end section main--> 
 <!-- footer  --> 
